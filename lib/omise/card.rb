@@ -1,7 +1,7 @@
-require "omise/thing"
+require "omise/resource"
 
 module Omise
-  class Card < Thing
+  class Card < Resource
     def self.endpoint
       "cards"
     end

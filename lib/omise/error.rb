@@ -1,6 +1,6 @@
-require "omise/thing"
+require "omise/resource"
 
 module Omise
-  class Error < Thing
+  class Error < Resource
   end
 end

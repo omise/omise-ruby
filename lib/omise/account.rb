@@ -1,7 +1,7 @@
-require "omise/thing"
+require "omise/resource"
 
 module Omise
-  class Account < Thing
+  class Account < Resource
     def self.endpoint
       "account"
     end

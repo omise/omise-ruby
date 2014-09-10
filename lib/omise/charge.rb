@@ -1,7 +1,7 @@
-require "omise/thing"
+require "omise/resource"
 
 module Omise
-  class Charge < Thing
+  class Charge < Resource
     def self.endpoint
       "charges"
     end
