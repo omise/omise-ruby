@@ -1,6 +1,12 @@
-require "omise/resource"
-
 module Omise
-  class Error < Resource
+  class Error < StandardError
+    def initialize(attributes = {})
+      @code = attributes["code"]
+      @message = attributes["message"]
+    end
+
+    def to_s
+      "#{@message} (#{@code})"
+    end
   end
 end

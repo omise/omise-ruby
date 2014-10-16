@@ -1,111 +1,41 @@
+require "json"
+require "openssl"
+require "rest-client"
+
 module Omise
   class Resource
-    module ClassMethods
-      def all
-        Omise.resource(path).get do |response|
-          typecast JSON.load(response)
-        end
-      end
-
-      def find(id = nil)
-        Omise.resource(path(id)).get do |response|
-          typecast JSON.load(response)
-        end
-      end
-
-      def create(attributes = {})
-        Omise.resource(path).post(attributes) do |response|
-          typecast JSON.load(response)
-        end
-      end
-
-      def path(id = nil)
-        [endpoint, id].compact.join("/")
-      end
-
-      def typecast(object)
-        klass = begin
-          Omise.const_get(object["object"].capitalize)
-        rescue NameError
-          Resource
-        end
-
-        klass.new(object)
-      end
+    def initialize(url, path, key)
+      @uri = URI.parse(url)
+      @uri.path = [@uri.path, path].join
+      @resource = RestClient::Resource.new(@uri.to_s, {
+        user: key,
+        verify_ssl: OpenSSL::SSL::VERIFY_PEER,
+        ssl_ca_file: Omise::CA_BUNDLE_PATH
+      })
     end
 
-    module InstanceMethods
-      def update(attributes = {})
-        Omise.resource(location).patch(attributes) do |response|
-          assign_attributes JSON.load(response)
-        end
-      end
-
-      def destroy
-        Omise.resource(location).destroy do |response|
-          assign_attributes JSON.load(response)
-        end
-      end
-
-      def assign_attributes(object)
-        if object["object"] == @attributes["object"]
-          @attributes = object
-          true
-        else
-          false
-        end
-      end
+    def get
+      @resource.get { |r| handle_response(r) }
     end
 
-    module Attributes
-      def initialize(attributes = {})
-        @attributes = attributes
-      end
-
-      def attributes
-        @attributes
-      end
-
-      def location
-        @attributes["location"]
-      end
-
-      def destroyed?
-        @attributes["deleted"]
-      end
-
-      def as_json(*)
-        @attributes
-      end
-
-      def [](key)
-        value = @attributes[key.to_s]
-        if value.is_a?(Hash)
-          @attributes[key.to_s] = self.class.typecast(value)
-        else
-          value
-        end
-      end
-
-      def key?(key)
-        @attributes.key?(key.to_s)
-      end
-
-      def respond_to?(method_name)
-        key?(method_name) || super
-      end
-
-      def method_missing(method_name, *args, &block)
-        if key?(method_name)
-          self[method_name]
-        else
-          super
-        end
-      end
+    def patch(attributes)
+      @resource.patch(attributes) { |r| handle_response(r) }
     end
 
-    extend ClassMethods
-    include InstanceMethods
-    include Attributes
+    def post(attributes)
+      @resource.post(attributes) { |r| handle_response(r) }
+    end
+
+    def delete
+      @resource.delete { |r| handle_response(r) }
+    end
+
+    private
+
+    def handle_response(response)
+      object = JSON.load(response)
+      raise Omise::Error.new(object) if object["object"] == "error"
+      object
+    end
   end
 end

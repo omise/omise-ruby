@@ -1,23 +1,17 @@
-require "omise/resource"
+require "omise/object"
 
 module Omise
-  class List < Resource
+  class List < OmiseObject
     include Enumerable
 
     def initialize(attributes = {})
-      super
-      @data = attributes["data"].map { |o| Omise::Resource.typecast(o) }
+      super(attributes)
+      setup_data
     end
 
-    def find(id)
-      Omise.resource([location, id].join("/")).get do |response|
-        self.class.typecast JSON.load(response)
-      end
-    end
-
-    def create(attributes = {})
-      Omise.resource(location).post(attributes) do |response|
-        self.class.typecast JSON.load(response)
+    def reload(attributes = {})
+      assign_attributes resource(attributes).get do
+        setup_data
       end
     end
 
@@ -25,12 +19,14 @@ module Omise
       to_a.each(*args, &block)
     end
 
-    def destroy_all
-      each(&:destroy)
-    end
-
     def to_a
       @data
+    end
+
+    private
+
+    def setup_data
+      @data = @attributes["data"].map { |o| Omise.typecast(o) }
     end
   end
 end

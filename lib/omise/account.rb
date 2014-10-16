@@ -1,9 +1,9 @@
-require "omise/resource"
+require "omise/object"
+require "omise/singleton_resource"
 
 module Omise
-  class Account < Resource
-    def self.endpoint
-      "account"
-    end
+  class Account < OmiseObject
+    self.endpoint = "account"
+    singleton!
   end
 end
