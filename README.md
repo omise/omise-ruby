@@ -1,5 +1,7 @@
 # Omise Ruby Client
 
+[![Code Climate](https://codeclimate.com/github/omise/omise-ruby/badges/gpa.svg)](https://codeclimate.com/github/omise/omise-ruby)
+
 ## Installation
 
 Install using bundle (via github only at this time).
