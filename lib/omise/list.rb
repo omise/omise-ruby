@@ -23,6 +23,14 @@ module Omise
       @data
     end
 
+    def last
+      to_a.last
+    end
+
+    def [](*args)
+      to_a[*args]
+    end
+
     private
 
     def setup_data
