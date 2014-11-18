@@ -8,8 +8,12 @@ module Omise
       new resource(location, attributes).post(attributes)
     end
 
-    def self.retrieve(id, attributes = {})
-      new resource(location(id), attributes).get
+    def self.retrieve(id = nil, attributes = {})
+      if id.nil?
+        List.new resource(location, attributes).get
+      else
+        new resource(location(id), attributes).get
+      end
     end
 
     def reload(attributes = {})
