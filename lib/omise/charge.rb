@@ -27,5 +27,18 @@ module Omise
         @customer ||= Customer.retrieve(@attributes["customer"], options)
       end
     end
+
+    def transaction(options = {})
+      if @attributes["customer"]
+        @transaction ||= Transaction.retrieve(@attributes["transaction"], options)
+      end
+    end
+
+    private
+
+    def cleanup!
+      @customer = nil
+      @transaction = nil
+    end
   end
 end
