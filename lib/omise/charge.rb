@@ -2,7 +2,7 @@ require "omise/object"
 
 module Omise
   class Charge < OmiseObject
-    self.endpoint = "charges"
+    self.endpoint = "/charges"
 
     def self.retrieve(id, attributes = {})
       new resource(location(id), attributes).get

@@ -2,7 +2,7 @@ require "omise/object"
 
 module Omise
   class Transfer < OmiseObject
-    self.endpoint = "transfers"
+    self.endpoint = "/transfers"
 
     def self.create(attributes = {})
       new resource(location, attributes).post(attributes)

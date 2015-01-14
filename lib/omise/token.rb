@@ -3,7 +3,7 @@ require "omise/vault"
 
 module Omise
   class Token < OmiseObject
-    self.endpoint = "tokens"
+    self.endpoint = "/tokens"
 
     extend Vault
 

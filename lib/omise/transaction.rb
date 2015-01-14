@@ -2,7 +2,7 @@ require "omise/object"
 
 module Omise
   class Transaction < OmiseObject
-    self.endpoint = "transactions"
+    self.endpoint = "/transactions"
 
     def self.retrieve(id = nil, attributes = {})
       if id.nil?

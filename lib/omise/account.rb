@@ -3,7 +3,7 @@ require "omise/singleton_resource"
 
 module Omise
   class Account < OmiseObject
-    self.endpoint = "account"
+    self.endpoint = "/account"
     singleton!
   end
 end

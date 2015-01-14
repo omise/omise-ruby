@@ -3,7 +3,7 @@ require "omise/card_list"
 
 module Omise
   class Customer < OmiseObject
-    self.endpoint = "customers"
+    self.endpoint = "/customers"
 
     def self.retrieve(id, attributes = {})
       new resource(location(id), attributes).get
