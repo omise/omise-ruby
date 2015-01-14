@@ -1,0 +1,8 @@
+require "omise/account"
+require "omise/balance"
+require "omise/card"
+require "omise/charge"
+require "omise/customer"
+require "omise/token"
+require "omise/transaction"
+require "omise/transfer"

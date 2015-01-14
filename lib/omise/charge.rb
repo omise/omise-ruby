@@ -1,4 +1,6 @@
 require "omise/object"
+require "omise/customer"
+require "omise/transaction"
 
 module Omise
   class Charge < OmiseObject

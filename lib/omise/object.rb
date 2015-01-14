@@ -26,6 +26,7 @@ module Omise
 
       def preprocess_attributes!(attributes)
         if attributes[:card].is_a?(Hash)
+          require "omise/token"
           card_attributes = attributes.delete(:card)
           attributes[:card] = Token.create(card: card_attributes).id
         end
