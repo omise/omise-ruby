@@ -5,8 +5,12 @@ module Omise
   class Customer < OmiseObject
     self.endpoint = "/customers"
 
-    def self.retrieve(id, attributes = {})
-      new resource(location(id), attributes).get
+    def self.retrieve(id = nil, attributes = {})
+      if id.nil?
+        List.new resource(location, attributes).get
+      else
+        new resource(location(id), attributes).get
+      end
     end
 
     def self.create(attributes = {})
