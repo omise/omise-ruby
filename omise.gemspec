@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Robin Clart"]
   spec.email         = ["robin@omise.co"]
   spec.summary       = %q{Omise Ruby client}
-  spec.homepage      = "https://www,omise.co/"
+  spec.homepage      = "https://www.omise.co/"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
