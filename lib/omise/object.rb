@@ -20,6 +20,10 @@ module Omise
 
       private
 
+      def collection
+        self
+      end
+
       def singleton!
         include SingletonResource
       end
@@ -43,8 +47,12 @@ module Omise
 
     private
 
+    def collection
+      self.class
+    end
+
     def resource(*args)
-      self.class.resource(location, *args)
+      collection.resource(location, *args)
     end
   end
 end
