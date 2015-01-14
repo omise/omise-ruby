@@ -15,7 +15,7 @@ module Omise
       def resource(path, attributes = {})
         key = attributes.delete(:key) { resource_key }
         preprocess_attributes!(attributes)
-        Resource.new(resource_url, path, key)
+        Omise.resource.new(resource_url, path, key)
       end
 
       private
