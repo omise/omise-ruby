@@ -1,4 +1,5 @@
 require "omise/object"
+require "omise/list"
 require "omise/customer"
 require "omise/transaction"
 
@@ -6,12 +7,12 @@ module Omise
   class Charge < OmiseObject
     self.endpoint = "/charges"
 
-    def self.retrieve(id = nil, attributes = {})
-      if id.nil?
-        List.new resource(location, attributes).get
-      else
-        new resource(location(id), attributes).get
-      end
+    def self.retrieve(id, attributes = {})
+      new resource(location(id), attributes).get
+    end
+
+    def self.list(attributes = {})
+      List.new resource(location, attributes).get
     end
 
     def self.create(attributes = {})

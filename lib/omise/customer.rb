@@ -1,4 +1,5 @@
 require "omise/object"
+require "omise/list"
 require "omise/card_list"
 
 module Omise
@@ -6,11 +7,11 @@ module Omise
     self.endpoint = "/customers"
 
     def self.retrieve(id = nil, attributes = {})
-      if id.nil?
-        List.new resource(location, attributes).get
-      else
-        new resource(location(id), attributes).get
-      end
+      new resource(location(id), attributes).get
+    end
+
+    def self.list(attributes = {})
+      List.new resource(location, attributes).get
     end
 
     def self.create(attributes = {})
