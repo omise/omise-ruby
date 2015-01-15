@@ -5,15 +5,11 @@ module Omise
     self.endpoint = "/transactions"
 
     def self.retrieve(id = nil, attributes = {})
-      if id.nil?
-        List.new resource(location, attributes).get
-      else
-        new resource(location(id), attributes).get
-      end
+      new resource(location(id), attributes).get
     end
 
-    def reload(attributes = {})
-      assign_attributes resource(attributes).get
+    def self.list(attributes = {})
+      List.new resource(location, attributes).get
     end
   end
 end

@@ -2,40 +2,30 @@ require "support"
 
 class TestToken < Minitest::Test
   def setup
-    @card_attributes = {
-      card: {
-        number: "4242424242424242",
-        expiration_year: "2019",
-        expiration_month: "10",
-        name: "ROBIN CLART",
-        security_code: "123"
-      }
-    }
+    @token = Omise::Token.retrieve("tokn_test_4yq8lbecl0q6dsjzxr5")
   end
 
-  def test_that_we_can_create
-    token = Omise::Token.create(@card_attributes)
+  def test_that_we_can_create_a_token
+    token = Omise::Token.create({
+      name: "JOHN DOE",
+      number: "4242424242424242",
+      expiration_month: "1",
+      expiration_year: "2017",
+      security_code: "123"
+    })
 
-    assert_kind_of Omise::OmiseObject, token
     assert_instance_of Omise::Token, token
-    assert_equal "token", token.attributes["object"]
   end
 
-  def test_that_we_can_retrieve
-    token_id = Omise::Token.create(@card_attributes).id
-    token = Omise::Token.retrieve(token_id)
-
-    assert_kind_of Omise::OmiseObject, token
-    assert_instance_of Omise::Token, token
-    assert_equal "token", token.attributes["object"]
+  def test_that_we_can_retrieve_a_token
+    assert_instance_of Omise::Token, @token
+    assert_equal "tokn_test_4yq8lbecl0q6dsjzxr5", @token.id
   end
 
-  def test_that_we_can_reload
-    token = Omise::Token.create(@card_attributes)
-    attributes = token.attributes
-    token.reload
+  def test_that_we_can_reload_a_token
+    @token.attributes.taint
+    @token.reload
 
-    refute_equal attributes.object_id, token.attributes.object_id
-    assert_equal attributes, token.attributes
+    refute @token.attributes.tainted?
   end
 end

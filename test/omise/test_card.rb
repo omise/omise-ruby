@@ -2,71 +2,51 @@ require "support"
 
 class TestCard < Minitest::Test
   def setup
-    @customer = Omise::Customer.create({
-      email: "robin@omise.co",
-      description: "Robin Clart",
-      card: {
-        number: "4242424242424242",
-        expiration_year: "2019",
-        expiration_month: "10",
-        name: "ROBIN CLART",
-        security_code: "123"
-      }
-    })
+    @cards = Omise::Customer.retrieve("cust_test_4yq6txdpfadhbaqnwp3").cards
+    @card = @cards.retrieve("card_test_4yq6tuucl9h4erukfl0")
   end
 
-  def teardown
-    @customer.destroy
+  def test_that_we_can_retrieve_a_card
+    assert_instance_of Omise::Card, @card
+    assert_equal "card_test_4yq6tuucl9h4erukfl0", @card.id
   end
 
-  def test_the_endpoint
-    assert_equal "cards", Omise::Card.endpoint
-  end
-
-  def test_that_we_can_retrieve
-    card = @customer.cards.retrieve(@customer.cards.first.id)
-
-    assert_kind_of Omise::OmiseObject, card
-    assert_instance_of Omise::Card, card
-    assert_equal "card", card.attributes["object"]
-  end
-
-  def test_that_we_can_create
-    card = @customer.cards.create({
+  def test_that_we_can_create_a_card
+    card = @cards.create({
+      name: "JOHN DOE",
       number: "4242424242424242",
-      expiration_year: "2019",
-      expiration_month: "10",
-      name: "ROBIN CLART",
+      expiration_month: "1",
+      expiration_year: "2017",
       security_code: "123"
     })
-    @customer.reload
 
-    assert_equal 2, @customer.cards.total
-    assert_equal "card", card.attributes["object"]
+    assert_instance_of Omise::Card, card
+    assert_equal "card_test_4yq6tuucl9h4erukfl0", card.id
   end
 
-  def test_that_we_can_reload
-    card = @customer.cards.first
-    same_card = @customer.cards.retrieve(card.id)
-    same_card.update(name: "ROBIN J CLART")
-    card.reload
+  def test_that_a_card_can_be_reloaded
+    @card.attributes.taint
+    @card.reload
 
-    refute_equal same_card.object_id, card.object_id
-    assert_equal "ROBIN J CLART", card.name
+    refute @card.attributes.tainted?
   end
 
-  def test_that_we_can_update
-    card = @customer.cards.first
-    card.update(name: "ROBIN J CLART")
-
-    assert_equal "ROBIN J CLART", card.name
-    assert_equal "ROBIN J CLART", @customer.cards.retrieve(card.id).name
+  def test_that_retrieveing_a_non_existing_card_will_raise_an_error
+    assert_raises Omise::Error do
+      @cards.retrieve("404")
+    end
   end
 
-  def test_that_we_can_destroy
-    @customer.cards.first.destroy
-    @customer.reload
+  def test_that_a_card_can_be_updated
+    @card.update(name: "JOHN W. DOE")
 
-    assert_equal 0, @customer.cards.total
+    assert_equal "JOHN W. DOE", @card.name
+  end
+
+  def test_that_a_card_can_be_destroyed
+    @card.destroy
+
+    assert @card.destroyed?
+    assert @card.deleted
   end
 end

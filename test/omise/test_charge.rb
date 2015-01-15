@@ -2,56 +2,51 @@ require "support"
 
 class TestCharge < Minitest::Test
   def setup
-    @charge_attributes = {
-      amount: rand(100000),
-      currency: "thb",
-      return_uri: "https://www.omise.co/",
-      card: {
-        number: "4242424242424242",
-        expiration_year: "2019",
-        expiration_month: "10",
-        name: "ROBIN CLART",
-        security_code: "123"
-      }
-    }
+    @charge = Omise::Charge.retrieve("chrg_test_4yq7duw15p9hdrjp8oq")
   end
 
-  def test_the_endpoint
-    assert_equal "charges", Omise::Charge.endpoint
-  end
+  def test_that_we_can_create_a_charge
+    charge = Omise::Charge.create
 
-  def test_that_we_can_create
-    charge = Omise::Charge.create(@charge_attributes)
-
-    assert_kind_of Omise::OmiseObject, charge
     assert_instance_of Omise::Charge, charge
-    assert_equal "charge", charge.attributes["object"]
+    assert_equal "chrg_test_4yq7duw15p9hdrjp8oq", charge.id
   end
 
-  def test_that_we_can_retrieve
-    charge_id = Omise::Charge.create(@charge_attributes).id
-    charge = Omise::Charge.retrieve(charge_id)
-
-    assert_kind_of Omise::OmiseObject, charge
-    assert_instance_of Omise::Charge, charge
-    assert_equal "charge", charge.attributes["object"]
+  def test_that_we_can_retrieve_a_charge
+    assert_instance_of Omise::Charge, @charge
+    assert_equal "chrg_test_4yq7duw15p9hdrjp8oq", @charge.id
   end
 
-  def test_that_we_can_reload
-    charge = Omise::Charge.create(@charge_attributes)
-    same_charge = Omise::Charge.retrieve(charge.id)
-    same_charge.update(description: "charge for order 1")
-    charge.reload
+  def test_that_we_can_list_all_charge
+    charges = Omise::Charge.list
 
-    refute_equal same_charge.object_id, charge.object_id
-    assert_equal "charge for order 1", charge.description
+    assert_instance_of Omise::List, charges
   end
 
-  def test_that_we_can_update
-    charge = Omise::Charge.create(@charge_attributes)
-    charge.update(description: "charge for order 1")
+  def test_that_we_can_update_a_charge
+    @charge.update(description: "Charge for order 3947 (XXL)")
 
-    assert_equal "charge for order 1", charge.description
-    assert_equal "charge for order 1", Omise::Charge.retrieve(charge.id).description
+    assert_equal @charge.description, "Charge for order 3947 (XXL)"
+  end
+
+  def test_that_we_can_reload_a_charge
+    @charge.attributes.taint
+    @charge.reload
+
+    refute @charge.attributes.tainted?
+  end
+
+  def test_that_retrieveing_a_non_existing_charge_will_raise_an_error
+    assert_raises Omise::Error do
+      Omise::Charge.retrieve("404")
+    end
+  end
+
+  def test_that_a_customer_has_a_transaction
+    assert_instance_of Omise::Transaction, @charge.transaction
+  end
+
+  def test_that_a_customer_has_a_default_card
+    assert_instance_of Omise::Customer, @charge.customer
   end
 end

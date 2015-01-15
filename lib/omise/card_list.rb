@@ -1,4 +1,6 @@
 require "omise/list"
+require "omise/card"
+require "omise/token"
 
 module Omise
   class CardList < List

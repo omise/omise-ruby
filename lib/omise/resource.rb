@@ -3,6 +3,7 @@ require "json"
 require "openssl"
 require "rest-client"
 
+require "omise/config"
 require "omise/error"
 
 module Omise
@@ -23,27 +24,19 @@ module Omise
     end
 
     def get
-      @resource.get { |r| handle_response(r) }
+      @resource.get { |r| Omise.load_response(r) }
     end
 
     def patch(attributes)
-      @resource.patch(attributes) { |r| handle_response(r) }
+      @resource.patch(attributes) { |r| Omise.load_response(r) }
     end
 
     def post(attributes)
-      @resource.post(attributes) { |r| handle_response(r) }
+      @resource.post(attributes) { |r| Omise.load_response(r) }
     end
 
     def delete
-      @resource.delete { |r| handle_response(r) }
-    end
-
-    private
-
-    def handle_response(response)
-      object = JSON.load(response)
-      raise Omise::Error.new(object) if object["object"] == "error"
-      object
+      @resource.delete { |r| Omise.load_response(r) }
     end
   end
 end

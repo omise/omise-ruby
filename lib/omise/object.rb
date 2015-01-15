@@ -1,3 +1,4 @@
+require "omise/config"
 require "omise/attributes"
 require "omise/resource"
 
@@ -25,6 +26,7 @@ module Omise
       end
 
       def singleton!
+        require "omise/singleton_resource"
         include SingletonResource
       end
 

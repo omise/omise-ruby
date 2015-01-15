@@ -23,6 +23,17 @@ module Omise
       klass.new(object)
     end
 
+    def load_response(response)
+      object = JSON.load(response)
+      raise Omise::Error.new(object) if object["object"] == "error"
+      object
+    end
+
+    def test!
+      require "omise/testing/resource"
+      self.resource = Omise::Testing::Resource
+    end
+
     private
 
     def get_key(name)
