@@ -1,3 +1,4 @@
+require "omise/util"
 require "omise/object"
 
 module Omise
@@ -30,7 +31,7 @@ module Omise
     private
 
     def setup_data
-      @data = @attributes["data"].map { |o| Omise.typecast(o) }
+      @data = @attributes["data"].map { |o| Omise::Util.typecast(o) }
     end
   end
 end

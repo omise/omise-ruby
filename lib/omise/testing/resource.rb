@@ -1,5 +1,7 @@
 require "uri"
 
+require "omise/util"
+
 module Omise
   module Testing
     class Resource
@@ -10,19 +12,19 @@ module Omise
       end
 
       def get(attributes = {})
-        Omise.load_response(read_file("get"))
+        Omise::Util.load_response(read_file("get"))
       end
 
       def patch(attributes = {})
-        Omise.load_response(read_file("patch"))
+        Omise::Util.load_response(read_file("patch"))
       end
 
       def delete(attributes = {})
-        Omise.load_response(read_file("delete"))
+        Omise::Util.load_response(read_file("delete"))
       end
 
       def post(attributes = {})
-        Omise.load_response(read_file("post"))
+        Omise::Util.load_response(read_file("post"))
       end
 
       def read_file(verb)

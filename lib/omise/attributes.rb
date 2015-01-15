@@ -1,3 +1,5 @@
+require "omise/util"
+
 module Omise
   module Attributes
     def initialize(attributes = {})
@@ -30,7 +32,7 @@ module Omise
     def [](key)
       value = @attributes[key.to_s]
       if value.is_a?(Hash)
-        @attributes[key.to_s] = Omise.typecast(value)
+        @attributes[key.to_s] = Omise::Util.typecast(value)
       else
         value
       end

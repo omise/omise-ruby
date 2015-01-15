@@ -3,6 +3,7 @@ require "json"
 require "openssl"
 require "rest-client"
 
+require "omise/util"
 require "omise/config"
 require "omise/error"
 
@@ -24,19 +25,19 @@ module Omise
     end
 
     def get
-      @resource.get { |r| Omise.load_response(r) }
+      @resource.get { |r| Omise::Util.load_response(r) }
     end
 
     def patch(attributes)
-      @resource.patch(attributes) { |r| Omise.load_response(r) }
+      @resource.patch(attributes) { |r| Omise::Util.load_response(r) }
     end
 
     def post(attributes)
-      @resource.post(attributes) { |r| Omise.load_response(r) }
+      @resource.post(attributes) { |r| Omise::Util.load_response(r) }
     end
 
     def delete
-      @resource.delete { |r| Omise.load_response(r) }
+      @resource.delete { |r| Omise::Util.load_response(r) }
     end
   end
 end
