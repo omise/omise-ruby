@@ -1,6 +1,7 @@
 require "omise/object"
 require "omise/list"
 require "omise/customer"
+require "omise/refund_list"
 require "omise/transaction"
 
 module Omise
@@ -39,9 +40,14 @@ module Omise
       end
     end
 
+    def refunds
+      @refunds ||= RefundList.new(self, @attributes["refunds"])
+    end
+
     private
 
     def cleanup!
+      @refunds = nil
       @customer = nil
       @transaction = nil
     end
