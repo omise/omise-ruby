@@ -49,4 +49,8 @@ class TestCharge < Minitest::Test
   def test_that_a_customer_has_a_default_card
     assert_instance_of Omise::Customer, @charge.customer
   end
+
+  def test_that_we_can_retrieve_a_list_of_refunds
+    assert_instance_of Omise::RefundList, @charge.refunds
+  end
 end
