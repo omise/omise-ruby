@@ -9,7 +9,7 @@ require "omise/error"
 
 module Omise
   class Resource
-    CA_BUNDLE_PATH = File.expand_path("../../data/ca_certificates.pem", __FILE__)
+    CA_BUNDLE_PATH = File.expand_path("../../../data/ca_certificates.pem", __FILE__)
 
     def initialize(url, path, key)
       @uri = URI.parse(url)
