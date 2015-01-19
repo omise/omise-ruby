@@ -35,7 +35,7 @@ module Omise
     end
 
     def transaction(options = {})
-      if @attributes["customer"]
+      if @attributes["transaction"]
         @transaction ||= Transaction.retrieve(@attributes["transaction"], options)
       end
     end
