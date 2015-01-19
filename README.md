@@ -1,6 +1,8 @@
 # Omise Ruby Client
 
-[![Code Climate](https://codeclimate.com/github/omise/omise-ruby/badges/gpa.svg)](https://codeclimate.com/github/omise/omise-ruby)
+[![CodeClimate](https://img.shields.io/codeclimate/github/omise/omise-ruby.svg?style=flat)](https://codeclimate.com/github/omise/omise-ruby)
+![CircleCI](https://img.shields.io/circleci/project/omise/omise-ruby.svg?style=flat)
+[![Gem](https://img.shields.io/gem/v/omise.svg?style=flat)](https://rubygems.org/gems/omise)
 
 ## Installation
 
