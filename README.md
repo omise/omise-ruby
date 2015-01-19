@@ -4,7 +4,13 @@
 
 ## Installation
 
-Install using bundle (via github only at this time).
+Install using rubgems:
+
+```ruby
+gem 'omise'
+```
+
+Or use the cutting-edge version by installing via github:
 
 ```ruby
 gem 'omise', github: 'omise/omise-ruby'
