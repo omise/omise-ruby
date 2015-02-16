@@ -66,8 +66,8 @@ end
 ```
 
 You can check the complete documentation at
-[docs.omise.co]](https://docs.omise.co/).
+[docs.omise.co](https://docs.omise.co/).
 
-# Development
+## Development
 
 The test suite can be run with `bundle exec rake test`.
