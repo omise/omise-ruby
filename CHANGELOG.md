@@ -6,11 +6,11 @@ An [unreleased] version is not available on rubygems and is subject to changes a
 
 - [Added] Add json dependency in the gemspec.
 
-## [0.1.1] 2015-09-15
+## [0.1.1] 2015-01-19
 
 - [Fixed] Fix a charge object is not able to retrieve its transaction object.
 
-## [0.1.0] 2015-09-15
+## [0.1.0] 2015-01-19
 
 - [Added] Add support for the Refund API.
 - [Added] Add a test suite that can be run locally without the need for a network connection or to set Omise keys.
