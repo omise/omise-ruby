@@ -2,6 +2,10 @@
 
 An [unreleased] version is not available on rubygems and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
+## [unreleased]
+
+- [Added] Add json dependency in the gemspec.
+
 ## [0.1.1] 2015-09-15
 
 - [Fixed] Fix a charge object is not able to retrieve its transaction object.
