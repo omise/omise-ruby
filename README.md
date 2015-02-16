@@ -6,7 +6,7 @@
 
 ## Installation
 
-Install using rubgems:
+Installing via rubgems:
 
 ```ruby
 gem 'omise'
@@ -18,47 +18,56 @@ Or use the cutting-edge version by installing via github:
 gem 'omise', github: 'omise/omise-ruby'
 ```
 
-## Examples
+## Requirements
 
-First configure your api key.
+Requires ruby 1.9.2 or above, the rest-client and json gem.
+
+## Configuration
+
+First configure your secret key:
 
 ```ruby
-Omise.api_key = "skey_test_4xa89ox4z4bcfrikkh2"
+Omise.api_key = "skey_test_xxxxxxxxxxxxxxxxxxx"
 ```
 
-Then you're ready to go. Here's how to create customer:
+If you need to use the Token API you also need to set your public key:
 
 ```ruby
-customer = Omise::Customer.create({
-  description: "John Doe",
-  email: "john.doe@example.com"
+Omise.vault_key = "pkey_test_xxxxxxxxxxxxxxxxxxx"
+```
+
+With this set you'll be able to retrieve tokens or create new ones.
+
+However we recommend using [Omise.js](https://gitub.com/omise/omise.js) to
+create tokens. When creating a token server side you'll need card data
+transiting to and from your server and this requires that your organization be
+PCI compliant.
+
+## Quick Start
+
+After you have implemented [Omise.js](https://gitub.com/omise/omise.js) on your
+frontend you can charge the card by passing the token into the `card` attribute.
+
+```ruby
+# Charge 1000.00 THB
+charge = Omise::Charge.create({
+  amount: 1_000_00,
+  currency: "thb",
+  card: params[:omise_token]
 })
 
-puts customer.attributes
-# {
-#   "object" => "customer",
-#   "id" => "...",
-#   "livemode" => false,
-#   "location" => "/customers/...",
-#   "default_card" => nil,
-#   "email" => "john.doe@example.com",
-#   "description" => "John Doe",
-#   "created" => "2014-09-05T09:03:05Z",
-#   "cards" =>  {
-#     "object": "list",
-#     ...
-#   }
-# }
+if charge.captured
+  # handle success
+  puts "thanks"
+else
+  # handle failure
+  raise charge.failure_code
+end
 ```
 
-Then find, update and destroy that customer.
+You can check the complete documentation at
+[docs.omise.co]](https://docs.omise.co/).
 
-```ruby
-customer = Omise::Customer.find("cust_test_4xald9y2ttb5mvplw0c")
+# Development
 
-customer.update description: "John W. Doe"
-customer.description # => "John W. Doe"
-
-customer.destroy
-customer.destroyed? # => true
-```
+The test suite can be run with `bundle exec rake test`.
