@@ -7,7 +7,7 @@ module Omise
   module Util module_function
     def typecast(object)
       klass = begin
-        const_get(object["object"].capitalize)
+        Omise.const_get(object["object"].capitalize)
       rescue NameError
         OmiseObject
       end
