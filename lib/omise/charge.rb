@@ -1,6 +1,7 @@
 require "omise/object"
 require "omise/list"
 require "omise/customer"
+require "omise/dispute"
 require "omise/refund_list"
 require "omise/transaction"
 
@@ -34,6 +35,12 @@ module Omise
       end
     end
 
+    def dispute(options = {})
+      if @attributes["dispute"]
+        @dispute ||= Dispute.retrieve(@attributes["dispute"], options)
+      end
+    end
+
     def transaction(options = {})
       if @attributes["transaction"]
         @transaction ||= Transaction.retrieve(@attributes["transaction"], options)
@@ -47,8 +54,9 @@ module Omise
     private
 
     def cleanup!
-      @refunds = nil
       @customer = nil
+      @dispute = nil
+      @refunds = nil
       @transaction = nil
     end
   end
