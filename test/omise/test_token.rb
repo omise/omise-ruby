@@ -6,7 +6,7 @@ class TestToken < Minitest::Test
   end
 
   def test_that_we_can_create_a_token
-    token = Omise::Token.create({
+    token = Omise::Token.create(card: {
       name: "JOHN DOE",
       number: "4242424242424242",
       expiration_month: "1",
