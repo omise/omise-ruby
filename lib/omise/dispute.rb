@@ -7,19 +7,8 @@ module Omise
     self.endpoint = "/disputes"
 
     def self.list(attributes = {})
-      List.new resource(location, attributes).get
-    end
-
-    def self.open(attributes = {})
-      List.new resource(location("open"), attributes).get
-    end
-
-    def self.pending(attributes = {})
-      List.new resource(location("pending"), attributes).get
-    end
-
-    def self.closed(attributes = {})
-      List.new resource(location("closed"), attributes).get
+      status = attributes.delete(:status)
+      List.new resource(location(status), attributes).get
     end
 
     def self.retrieve(id = nil, attributes = {})

@@ -24,15 +24,15 @@ module Omise
       })
     end
 
-    def get
-      @resource.get { |r| Omise::Util.load_response(r) }
+    def get(attributes = {})
+      @resource.get(attributes) { |r| Omise::Util.load_response(r) }
     end
 
-    def patch(attributes)
+    def patch(attributes = {})
       @resource.patch(attributes) { |r| Omise::Util.load_response(r) }
     end
 
-    def post(attributes)
+    def post(attributes = {})
       @resource.post(attributes) { |r| Omise::Util.load_response(r) }
     end
 
