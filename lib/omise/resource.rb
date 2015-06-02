@@ -25,7 +25,7 @@ module Omise
     end
 
     def get(attributes = {})
-      @resource.get(attributes) { |r| Omise::Util.load_response(r) }
+      @resource.get(params: attributes) { |r| Omise::Util.load_response(r) }
     end
 
     def patch(attributes = {})
