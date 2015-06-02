@@ -8,15 +8,15 @@ module Omise
 
     def self.list(attributes = {})
       status = attributes.delete(:status)
-      List.new resource(location(status), attributes).get
+      List.new resource(location(status), attributes).get(attributes)
     end
 
     def self.retrieve(id = nil, attributes = {})
-      new resource(location(id), attributes).get
+      new resource(location(id), attributes).get(attributes)
     end
 
     def reload(attributes = {})
-      assign_attributes resource(attributes).get
+      assign_attributes resource(attributes).get(attributes)
     end
 
     def update(attributes = {})

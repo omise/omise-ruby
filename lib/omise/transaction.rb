@@ -6,11 +6,11 @@ module Omise
     self.endpoint = "/transactions"
 
     def self.retrieve(id = nil, attributes = {})
-      new resource(location(id), attributes).get
+      new resource(location(id), attributes).get(attributes)
     end
 
     def self.list(attributes = {})
-      List.new resource(location, attributes).get
+      List.new resource(location, attributes).get(attributes)
     end
   end
 end
