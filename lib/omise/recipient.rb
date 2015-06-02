@@ -1,15 +1,9 @@
 require "omise/object"
 require "omise/bank_account"
-require "omise/list"
-require "omise/recipient"
 
 module Omise
-  class Transfer < OmiseObject
-    self.endpoint = "/transfers"
-
-    def self.create(attributes = {})
-      new resource(location, attributes).post(attributes)
-    end
+  class Recipient < OmiseObject
+    self.endpoint = "/recipients"
 
     def self.retrieve(id, attributes = {})
       new resource(location(id), attributes).get
@@ -17,6 +11,10 @@ module Omise
 
     def self.list(attributes = {})
       List.new resource(location, attributes).get
+    end
+
+    def self.create(attributes = {})
+      new resource(location, attributes).post(attributes)
     end
 
     def reload(attributes = {})
@@ -31,12 +29,6 @@ module Omise
       assign_attributes resource(attributes).delete
     end
 
-    def recipient
-      if @attributes["recipient"]
-        @recipient ||= Recipient.retrieve(@attributes["recipient"])
-      end
-    end
-
     def bank_account
       if @attributes["bank_account"]
         @bank_account ||= BankAccount.new(@attributes["bank_account"])
@@ -47,7 +39,6 @@ module Omise
 
     def cleanup!
       @bank_account = nil
-      @recipient = nil
     end
   end
 end
