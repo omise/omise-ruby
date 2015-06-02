@@ -34,7 +34,7 @@ class TestDispute < Minitest::Test
     assert_equal "dspt_test_5089off452g5m5te7xs", @dispute.id
   end
 
-  def test_that_we_can_update_a_charge
+  def test_that_we_can_update_a_dispute
     @dispute.update(message: "Your dispute message")
 
     assert_equal @dispute.message, "Your dispute message"
