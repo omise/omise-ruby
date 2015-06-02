@@ -11,7 +11,7 @@ module Omise
     end
 
     def reload(attributes = {})
-      assign_attributes resource(attributes).get do
+      assign_attributes resource(attributes).get(attributes) do
         setup_data
       end
     end

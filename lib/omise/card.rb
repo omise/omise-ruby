@@ -5,7 +5,7 @@ module Omise
     self.endpoint = "/cards"
 
     def reload(attributes = {})
-      assign_attributes resource(attributes).get
+      assign_attributes resource(attributes).get(attributes)
     end
 
     def update(attributes = {})

@@ -13,7 +13,7 @@ module Omise
     end
 
     def retrieve(id, attributes = {})
-      Refund.new self.class.resource(location(id), attributes).get
+      Refund.new self.class.resource(location(id), attributes).get(attributes)
     end
   end
 end

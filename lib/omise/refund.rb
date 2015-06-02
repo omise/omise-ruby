@@ -7,7 +7,7 @@ module Omise
     self.endpoint = "/refunds"
 
     def reload(attributes = {})
-      assign_attributes resource(attributes).get
+      assign_attributes resource(attributes).get(attributes)
     end
 
     def charge(options = {})

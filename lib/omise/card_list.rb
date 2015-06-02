@@ -10,7 +10,7 @@ module Omise
     end
 
     def retrieve(id, attributes = {})
-      Card.new self.class.resource(location(id), attributes).get
+      Card.new self.class.resource(location(id), attributes).get(attributes)
     end
 
     def create(attributes = {})
