@@ -2,9 +2,10 @@
 
 An [unreleased] version is not available on rubygems and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
-## [unreleased]
+## [0.1.5] 2015-07-29
 
 - [Added] Add json dependency in the gemspec.
+- [Added] New DigiCert CA certificates.
 
 ## [0.1.1] 2015-01-19
 
