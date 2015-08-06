@@ -20,7 +20,9 @@ module Omise
         ssl_ca_file: CA_BUNDLE_PATH,
         headers: {
           user_agent: "OmiseRuby/#{Omise::VERSION} OmiseAPI/#{Omise.api_version} Ruby/#{RUBY_VERSION}"
-        }
+        },
+        open_timeout: 15, # Connection time
+        read_timeout: 60 # Response time
       })
     end
 
