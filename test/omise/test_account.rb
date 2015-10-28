@@ -1,7 +1,7 @@
 require "support"
 
-class TestAccount < Minitest::Test
-  def setup
+class TestAccount < Omise::Test
+  setup do
     @account = Omise::Account.retrieve
   end
 

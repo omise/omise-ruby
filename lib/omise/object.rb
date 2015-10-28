@@ -56,5 +56,9 @@ module Omise
     def resource(*args)
       collection.resource(location, *args)
     end
+
+    def nested_resource(path, *args)
+      collection.resource([location, path].compact.join("/"), *args)
+    end
   end
 end

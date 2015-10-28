@@ -1,7 +1,7 @@
 require "support"
 
-class TestCharge < Minitest::Test
-  def setup
+class TestCharge < Omise::Test
+  setup do
     @charge = Omise::Charge.retrieve("chrg_test_4yq7duw15p9hdrjp8oq")
   end
 
@@ -15,6 +15,24 @@ class TestCharge < Minitest::Test
   def test_that_we_can_retrieve_a_charge
     assert_instance_of Omise::Charge, @charge
     assert_equal "chrg_test_4yq7duw15p9hdrjp8oq", @charge.id
+  end
+
+  def test_that_unexpanded_resource_are_automatically_expanded
+    assert_instance_of Omise::Charge, @charge
+    assert_instance_of Omise::Customer, @charge.customer
+    assert_instance_of Omise::Transaction, @charge.transaction
+    assert_instance_of Omise::RefundList, @charge.refunds
+  end
+
+  def test_that_we_can_retrieve_an_expanded_charge
+    charge = Omise::Charge.retrieve("chrg_test_4yq7duw15p9hdrjp8oq", expand: true)
+
+    assert_instance_of Omise::Charge, charge
+    assert_equal "chrg_test_4yq7duw15p9hdrjp8oq", @charge.id
+
+    assert_instance_of Omise::Customer, @charge.customer
+    assert_instance_of Omise::Transaction, @charge.transaction
+    assert_instance_of Omise::RefundList, @charge.refunds
   end
 
   def test_that_we_can_list_all_charge
@@ -52,5 +70,31 @@ class TestCharge < Minitest::Test
 
   def test_that_we_can_retrieve_a_list_of_refunds
     assert_instance_of Omise::RefundList, @charge.refunds
+  end
+
+  def test_that_paid_return_the_value_of_captured
+    captured_charge = Omise::Charge.new(JSON.load('{ "captured": true }'))
+    uncaptured_charge = Omise::Charge.new(JSON.load('{ "captured": false }'))
+
+    assert_instance_of TrueClass, captured_charge.captured
+    assert_instance_of TrueClass, captured_charge.paid
+
+    assert_instance_of FalseClass, uncaptured_charge.captured
+    assert_instance_of FalseClass, uncaptured_charge.paid
+  end
+
+  def test_that_captured_return_the_value_of_paid
+    paid_charge = Omise::Charge.new(JSON.load('{ "paid": true }'))
+    unpaid_charge = Omise::Charge.new(JSON.load('{ "paid": false }'))
+
+    assert_instance_of TrueClass, paid_charge.paid
+    assert_instance_of TrueClass, paid_charge.captured
+
+    assert_instance_of FalseClass, unpaid_charge.paid
+    assert_instance_of FalseClass, unpaid_charge.captured
+  end
+
+  def test_that_we_can_send_a_capture_request
+    assert @charge.capture
   end
 end

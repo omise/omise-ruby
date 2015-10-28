@@ -29,35 +29,32 @@ module Omise
       assign_attributes resource(attributes).patch(attributes)
     end
 
+    def capture(options = {})
+      assign_attributes nested_resource("capture", options).post
+    end
+
     def customer(options = {})
-      if @attributes["customer"]
-        @customer ||= Customer.retrieve(@attributes["customer"], options)
-      end
+      expand_attribute Customer, "customer", options
     end
 
     def dispute(options = {})
-      if @attributes["dispute"]
-        @dispute ||= Dispute.retrieve(@attributes["dispute"], options)
-      end
+      expand_attribute Dispute, "dispute", options
     end
 
     def transaction(options = {})
-      if @attributes["transaction"]
-        @transaction ||= Transaction.retrieve(@attributes["transaction"], options)
-      end
+      expand_attribute Transaction, "transaction", options
     end
 
     def refunds
-      @refunds ||= RefundList.new(self, @attributes["refunds"])
+      list_attribute RefundList, "refunds"
     end
 
-    private
+    def captured
+      lookup_attribute_value :captured, :paid
+    end
 
-    def cleanup!
-      @customer = nil
-      @dispute = nil
-      @refunds = nil
-      @transaction = nil
+    def paid
+      lookup_attribute_value :paid, :captured
     end
   end
 end

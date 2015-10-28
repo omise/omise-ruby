@@ -1,7 +1,7 @@
 require "support"
 
-class TestDispute < Minitest::Test
-  def setup
+class TestDispute < Omise::Test
+  setup do
     @dispute = Omise::Dispute.retrieve("dspt_test_5089off452g5m5te7xs")
   end
 

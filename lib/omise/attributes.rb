@@ -3,6 +3,7 @@ require "omise/util"
 module Omise
   module Attributes
     def initialize(attributes = {})
+      @expanded_attributes = {}
       @attributes = attributes
     end
 
@@ -11,8 +12,8 @@ module Omise
     end
 
     def assign_attributes(attributes = {})
-      @attributes = attributes
       cleanup!
+      @attributes = attributes
       yield if block_given?
       self
     end
@@ -32,7 +33,7 @@ module Omise
     def [](key)
       value = @attributes[key.to_s]
       if value.is_a?(Hash)
-        @attributes[key.to_s] = Omise::Util.typecast(value)
+        Omise::Util.typecast(value)
       else
         value
       end
@@ -56,8 +57,24 @@ module Omise
 
     private
 
+    def lookup_attribute_value(*keys)
+      keys.each { |key| return self[key] if key?(key) }
+    end
+
+    def list_attribute(klass, key)
+      klass.new(self, @attributes[key])
+    end
+
+    def expand_attribute(object, key, options = {})
+      if @attributes[key] && @attributes[key].is_a?(String)
+        @expanded_attributes[key] ||= object.retrieve(@attributes[key], options)
+      else
+        self[key]
+      end
+    end
+
     def cleanup!
-      # noop
+      @expanded_attributes = {}
     end
   end
 end

@@ -31,23 +31,12 @@ module Omise
       assign_attributes resource(attributes).delete
     end
 
-    def recipient
-      if @attributes["recipient"]
-        @recipient ||= Recipient.retrieve(@attributes["recipient"])
-      end
+    def recipient(options = {})
+      expand_attribute Recipient, "recipient", options
     end
 
     def bank_account
-      if @attributes["bank_account"]
-        @bank_account ||= BankAccount.new(@attributes["bank_account"])
-      end
-    end
-
-    private
-
-    def cleanup!
-      @bank_account = nil
-      @recipient = nil
+      expand_attribute BankAccount, "bank_account"
     end
   end
 end

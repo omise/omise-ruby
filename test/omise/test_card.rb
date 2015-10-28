@@ -1,7 +1,7 @@
 require "support"
 
-class TestCard < Minitest::Test
-  def setup
+class TestCard < Omise::Test
+  setup do
     @cards = Omise::Customer.retrieve("cust_test_4yq6txdpfadhbaqnwp3").cards
     @card = @cards.retrieve("card_test_4yq6tuucl9h4erukfl0")
   end

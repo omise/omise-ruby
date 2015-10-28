@@ -11,22 +11,11 @@ module Omise
     end
 
     def charge(options = {})
-      if @attributes["charge"]
-        @charge ||= Charge.retrieve(@attributes["charge"], options)
-      end
+      expand_attribute Charge, "charge", options
     end
 
     def transaction(options = {})
-      if @attributes["transaction"]
-        @transaction ||= Transaction.retrieve(@attributes["transaction"], options)
-      end
-    end
-
-    private
-
-    def cleanup!
-      @charge = nil
-      @transaction = nil
+      expand_attribute Transaction, "transaction", options
     end
   end
 end

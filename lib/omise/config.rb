@@ -31,6 +31,5 @@ module Omise
 
   self.api_url = "https://api.omise.co"
   self.vault_url = "https://vault.omise.co"
-  self.api_version = "2014-07-27"
   self.resource = Resource
 end

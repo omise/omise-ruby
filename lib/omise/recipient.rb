@@ -30,15 +30,7 @@ module Omise
     end
 
     def bank_account
-      if @attributes["bank_account"]
-        @bank_account ||= BankAccount.new(@attributes["bank_account"])
-      end
-    end
-
-    private
-
-    def cleanup!
-      @bank_account = nil
+      expand_attribute BankAccount, "bank_account"
     end
   end
 end

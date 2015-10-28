@@ -3,10 +3,26 @@ require "bundler/setup"
 
 Bundler.require(:default, :test)
 
-Omise.test!
-
-# Dummy Keys
-Omise.api_key = "pkey_test_4yq6tct0llin5nyyi5l"
-Omise.vault_key = "skey_test_4yq6tct0lblmed2yp5t"
-
 require "minitest/autorun"
+
+module Omise
+  class Test < Minitest::Test
+    def before_setup
+      Omise.test!
+      Omise.api_key = "pkey_test_4yq6tct0llin5nyyi5l"
+      Omise.vault_key = "skey_test_4yq6tct0lblmed2yp5t"
+      Omise.api_version = nil
+    end
+
+    def setup
+      before_setup
+    end
+
+    def self.setup(&block)
+      define_method :setup do
+        before_setup
+        instance_exec(&block)
+      end
+    end
+  end
+end

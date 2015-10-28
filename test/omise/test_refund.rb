@@ -1,7 +1,7 @@
 require "support"
 
-class TestRefund < Minitest::Test
-  def setup
+class TestRefund < Omise::Test
+  setup do
     @refunds = Omise::Charge.retrieve("chrg_test_4yq7duw15p9hdrjp8oq").refunds
     @refund = @refunds.retrieve("rfnd_test_4yqmv79ahghsiz23y3c")
   end
