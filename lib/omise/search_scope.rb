@@ -3,11 +3,11 @@ require "omise/search"
 module Omise
   class SearchScope
     def initialize(scope, options = {})
-      @scope             = scope.to_s
-      @filters           = options.delete(:filters) { Hash.new }
-      @order             = options.delete(:order)
-      @page              = options.delete(:page)
-      @query             = options.delete(:query)
+      @scope   = scope.to_s
+      @filters = options.delete(:filters) { Hash.new }
+      @order   = options.delete(:order)
+      @page    = options.delete(:page)
+      @query   = options.delete(:query)
     end
 
     attr_reader :scope
