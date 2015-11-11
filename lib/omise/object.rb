@@ -5,6 +5,11 @@ module Omise
   class OmiseObject
     include Attributes
 
+    def initialize(attributes = {}, options = {})
+      @attributes = attributes
+      @options    = options
+    end
+
     class << self
       attr_accessor :endpoint
 
@@ -58,6 +63,14 @@ module Omise
 
     def nested_resource(path, *args)
       collection.resource([location, path].compact.join("/"), *args)
+    end
+
+    def list_nested_resource(klass, key, options = {})
+      if @attributes.key?(key) && options.empty?
+        return list_attribute(klass, key)
+      end
+
+      klass.new(nested_resource(key, options).get, parent: self)
     end
   end
 end

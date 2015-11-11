@@ -1,4 +1,8 @@
 module Omise
+  # {HTTPLogger} is responsible for logging requests and responses coming from
+  # {Resource} to a given logger. If no logger is given during initalization
+  # both {#log_request} and {#log_response} will be noop.
+  #
   class HTTPLogger
     LABEL = "[Omise]".freeze
 
@@ -6,12 +10,20 @@ module Omise
       @logger = logger
     end
 
+    # Returns the original logger.
+    #
     attr_reader :logger
 
+    # Log a request from {Resource} to the logger. Note that the logs are
+    # inserted as `INFO`.
+    #
     def log_request(request)
       info(format_request(request))
     end
 
+    # Log a response from {Resource} to the logger. Note that the logs are
+    # inserted as `INFO`.
+    #
     def log_response(response)
       info(format_response(response))
     end

@@ -3,6 +3,10 @@ require "support"
 module Omise
   class Teapot
     include Attributes
+
+    def initialize(attributes = {})
+      @attributes = attributes
+    end
   end
 end
 

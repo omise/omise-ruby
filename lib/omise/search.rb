@@ -1,7 +1,7 @@
-require "omise/list"
+require "omise/object"
 
 module Omise
-  class Search < List
+  class Search < OmiseObject
     def self.execute(attributes = {})
       new resource("/search", attributes).get(attributes)
     end
