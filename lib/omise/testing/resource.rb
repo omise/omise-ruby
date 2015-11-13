@@ -12,7 +12,7 @@ module Omise
       end
 
       def get(attributes = {})
-        Omise::Util.load_response(read_file("get"))
+        Omise::Util.load_response(read_file("get", attributes))
       end
 
       def patch(attributes = {})
@@ -27,10 +27,20 @@ module Omise
         Omise::Util.load_response(read_file("post"))
       end
 
-      def read_file(verb)
+      private
+
+      def generate_path(verb, attributes)
+        return verb if attributes.empty?
+        params = attributes.to_a.sort { |x,y| x.first <=> x.last }.flatten.join("-")
+        [verb, params].compact.join("-")
+      end
+
+      def read_file(verb, attributes = {})
+        path = generate_path(verb, attributes)
+
         File.read(File.expand_path(File.join(
           Omise::LIB_PATH, "..", "test", "fixtures",
-          [@uri.host, @uri.path, "-#{verb}.json"].join
+          [@uri.host, @uri.path, "-#{path}.json"].join
         )))
       end
     end

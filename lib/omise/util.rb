@@ -7,7 +7,8 @@ module Omise
   module Util module_function
     def typecast(object)
       klass = begin
-        Omise.const_get(object["object"].capitalize)
+        klass_name = object["object"].split("_").map(&:capitalize).join("")
+        Omise.const_get(klass_name)
       rescue NameError
         OmiseObject
       end

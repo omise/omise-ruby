@@ -1,7 +1,7 @@
 require "support"
 
-class TestTransaction < Minitest::Test
-  def setup
+class TestTransaction < Omise::Test
+  setup do
     @transaction = Omise::Transaction.retrieve("trxn_test_4yq7duwb9jts1vxgqua")
   end
 

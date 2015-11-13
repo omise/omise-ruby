@@ -43,6 +43,22 @@ create tokens. When creating a token server side you'll need card data
 transiting to and from your server and this requires that your organization be
 PCI compliant.
 
+### API version
+
+In case you want to enforce API version the application use, you can specify it
+by setting the api_version. The version specified by this settings will override
+the version setting in your account. This is useful if you have multiple
+environments with different API versions (e.g. development on the latest but
+production on the older version).
+
+```ruby
+require "omise"
+Omise.api_version = "2014-07-27"
+```
+
+It is highly recommended to set this version to the current version
+you're using.
+
 ## Quick Start
 
 After you have implemented [Omise.js](https://gitub.com/omise/omise.js) on your
@@ -56,7 +72,7 @@ charge = Omise::Charge.create({
   card: params[:omise_token]
 })
 
-if charge.captured
+if charge.paid
   # handle success
   puts "thanks"
 else

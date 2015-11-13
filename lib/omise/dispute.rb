@@ -24,15 +24,7 @@ module Omise
     end
 
     def charge(options = {})
-      if @attributes["charge"]
-        @charge ||= Charge.retrieve(@attributes["charge"], options)
-      end
-    end
-
-    private
-
-    def cleanup!
-      @charge = nil
+      expand_attribute Charge, "charge", options
     end
   end
 end

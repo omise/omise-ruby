@@ -1,7 +1,7 @@
 require "support"
 
-class TestBalance < Minitest::Test
-  def setup
+class TestBalance < Omise::Test
+  setup do
     @balance = Omise::Balance.retrieve
   end
 

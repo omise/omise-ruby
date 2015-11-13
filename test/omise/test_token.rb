@@ -1,7 +1,7 @@
 require "support"
 
-class TestToken < Minitest::Test
-  def setup
+class TestToken < Omise::Test
+  setup do
     @token = Omise::Token.retrieve("tokn_test_4yq8lbecl0q6dsjzxr5")
   end
 

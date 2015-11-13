@@ -1,7 +1,7 @@
 require "support"
 
-class TestRecipient < Minitest::Test
-  def setup
+class TestRecipient < Omise::Test
+  setup do
     @recipient = Omise::Recipient.retrieve("recp_test_50894vc13y8z4v51iuc")
   end
 

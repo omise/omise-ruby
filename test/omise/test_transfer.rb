@@ -1,7 +1,7 @@
 require "support"
 
-class TestTransfer < Minitest::Test
-  def setup
+class TestTransfer < Omise::Test
+  setup do
     @transfer = Omise::Transfer.retrieve("trsf_test_4yqacz8t3cbipcj766u")
   end
 

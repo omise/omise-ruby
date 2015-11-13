@@ -31,20 +31,11 @@ module Omise
     end
 
     def default_card(options = {})
-      if @attributes["default_card"]
-        @default_card ||= cards.retrieve(@attributes["default_card"], options)
-      end
+      expand_attribute cards, "default_card", options
     end
 
     def cards
-      @cards ||= CardList.new(self, @attributes["cards"])
-    end
-
-    private
-
-    def cleanup!
-      @default_card = nil
-      @cards = nil
+      list_attribute CardList, "cards"
     end
   end
 end

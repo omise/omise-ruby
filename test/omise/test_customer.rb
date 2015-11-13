@@ -1,7 +1,7 @@
 require "support"
 
-class TestCustomer < Minitest::Test
-  def setup
+class TestCustomer < Omise::Test
+  setup do
     @customer = Omise::Customer.retrieve("cust_test_4yq6txdpfadhbaqnwp3")
   end
 
