@@ -2,7 +2,7 @@
 
 An [unreleased] version is not available on rubygems and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
-## [unreleased]
+## [0.2.0] 2015-11-13
 
 - [Added] Add Omise-Version header to request.
 - [Fixed] Fix auto expanding attribute does not play well with expand=true.
