@@ -53,6 +53,11 @@ class TestCustomer < Omise::Test
     assert_instance_of Omise::CardList, @customer.cards
   end
 
+  def test_that_a_customer_can_fetch_a_list_of_ordered_cards
+    cards = @customer.cards(order: "chronological")
+    assert_instance_of Omise::CardList, cards
+  end
+
   def test_that_a_customer_has_a_default_card
     assert_instance_of Omise::Card, @customer.default_card
   end

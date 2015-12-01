@@ -34,8 +34,13 @@ module Omise
       expand_attribute cards, "default_card", options
     end
 
-    def cards
-      list_attribute CardList, "cards"
+    def cards(options = {})
+      if options.empty?
+        list_attribute CardList, "cards"
+      else
+        response = collection.resource(location("cards")).get(options)
+        CardList.new(self, response)
+      end
     end
   end
 end
