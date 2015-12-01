@@ -2,6 +2,10 @@
 
 An [unreleased] version is not available on rubygems and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
+## [0.2.1] 2015-12-01
+
+- [Added] Add fetching options to customer cards (6ef31e6)
+
 ## [0.2.0] 2015-11-13
 
 - [Added] Add Omise-Version header to request.
