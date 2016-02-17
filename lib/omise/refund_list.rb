@@ -3,11 +3,6 @@ require "omise/refund"
 
 module Omise
   class RefundList < List
-    def initialize(charge, attributes = {})
-      super(attributes)
-      @charge = charge
-    end
-
     def create(attributes = {})
       Refund.new self.class.resource(location, attributes).post(attributes)
     end

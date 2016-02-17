@@ -2,9 +2,10 @@ require "omise/util"
 
 module Omise
   module Attributes
-    def initialize(attributes = {})
+    def initialize(attributes = {}, options = {})
+      @attributes          = attributes
+      @options             = options
       @expanded_attributes = {}
-      @attributes = attributes
     end
 
     def attributes
@@ -62,7 +63,7 @@ module Omise
     end
 
     def list_attribute(klass, key)
-      klass.new(self, @attributes[key])
+      klass.new(@attributes[key], parent: self)
     end
 
     def list_nested_resource(klass, key, options = {})
@@ -70,7 +71,7 @@ module Omise
         return list_attribute(klass, key)
       end
 
-      klass.new(self, nested_resource(key, options).get)
+      klass.new(nested_resource(key, options).get, parent: self)
     end
 
     def expand_attribute(object, key, options = {})

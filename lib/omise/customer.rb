@@ -49,7 +49,7 @@ module Omise
         list_attribute CardList, "cards"
       else
         response = collection.resource(location("cards")).get(options)
-        CardList.new(self, response)
+        CardList.new(response, parent: self)
       end
     end
   end

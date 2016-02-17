@@ -8,8 +8,6 @@ class TestSearchScope < Omise::Test
   def test_that_we_can_initialize_a_new_search_scope
     assert_instance_of Omise::SearchScope, @scope
     assert_equal "charge", @scope.scope
-    assert_instance_of Array, @scope.available_filters
-    assert_equal %w[created status], @scope.available_filters
     assert_nil @scope.to_attributes[:query]
     refute @scope.to_attributes.key?(:filters)
     assert_nil @scope.to_attributes[:filters]
@@ -17,7 +15,7 @@ class TestSearchScope < Omise::Test
     assert_nil @scope.to_attributes[:page]
   end
 
-  def test_that_we_can_initialize_a_new_search_scope
+  def test_that_we_can_execute_a_new_search_scope
     assert_instance_of Omise::Search, @scope.execute
   end
 

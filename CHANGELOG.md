@@ -9,6 +9,7 @@ An [unreleased] version is not available on rubygems and is subject to changes a
 - [Added] Add link API
 - [Added] Add tests for attributes
 - [Added] Add charge method on customer
+- [Added] Add pagination on list
 
 ## [0.4.0] 2016-06-01
 

@@ -8,7 +8,7 @@ class TestTransfer < Omise::Test
   def test_that_we_can_create_a_transfer
     transfer = Omise::Transfer.create
 
-    assert_instance_of Omise::Transfer, @transfer
+    assert_instance_of Omise::Transfer, transfer
   end
 
   def test_that_we_can_retrieve_a_transfer

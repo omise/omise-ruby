@@ -31,7 +31,7 @@ module Omise
 
       def generate_path(verb, attributes)
         return verb if attributes.empty?
-        params = attributes.to_a.sort { |x,y| x.first <=> x.last }.flatten.join("-")
+        params = attributes.to_a.sort { |x,y| x.first.to_s <=> y.first.to_s }.flatten.join("-")
         [verb, params].compact.join("-")
       end
 

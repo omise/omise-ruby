@@ -25,8 +25,13 @@ module Omise
       assign_attributes resource(attributes).get(attributes)
     end
 
-    def charges
-      list_attribute ChargeList, "charges"
+    def charges(options = {})
+      if options.empty?
+        list_attribute ChargeList, "charges"
+      else
+        response = collection.resource(location("charges")).get(options)
+        ChargeList.new(self, response)
+      end
     end
   end
 end
