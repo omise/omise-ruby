@@ -1,5 +1,7 @@
 # Omise Ruby Client
 
+[![Join the chat at https://gitter.im/omise/omise-ruby](https://badges.gitter.im/omise/omise-ruby.svg)](https://gitter.im/omise/omise-ruby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![CodeClimate](https://img.shields.io/codeclimate/github/omise/omise-ruby.svg?style=flat)](https://codeclimate.com/github/omise/omise-ruby)
 ![CircleCI](https://img.shields.io/circleci/project/omise/omise-ruby.svg?style=flat)
 [![Gem](https://img.shields.io/gem/v/omise.svg?style=flat)](https://rubygems.org/gems/omise)
