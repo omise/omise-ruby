@@ -28,19 +28,31 @@ module Omise
         set_resource
       end
 
-      @resource.get { |r| Omise::Util.load_response(r) }
+      @resource.get do |response, request|
+        log(request, response)
+        Omise::Util.load_response(response)
+      end
     end
 
     def patch(attributes = {})
-      @resource.patch(attributes) { |r| Omise::Util.load_response(r) }
+      @resource.patch(attributes) do |response, request|
+        log(request, response)
+        Omise::Util.load_response(response)
+      end
     end
 
     def post(attributes = {})
-      @resource.post(attributes) { |r| Omise::Util.load_response(r) }
+      @resource.post(attributes) do |response, request|
+        log(request, response)
+        Omise::Util.load_response(response)
+      end
     end
 
     def delete
-      @resource.delete { |r| Omise::Util.load_response(r) }
+      @resource.delete do |response, request|
+        log(request, response)
+        Omise::Util.load_response(response)
+      end
     end
 
     private
@@ -52,6 +64,11 @@ module Omise
         ssl_ca_file: CA_BUNDLE_PATH,
         headers: @headers,
       })
+    end
+
+    def log(request, response)
+      Omise.http_logger.log_request(request)
+      Omise.http_logger.log_response(response)
     end
 
     def prepare_uri(url, path)

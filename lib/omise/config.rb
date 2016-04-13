@@ -1,8 +1,12 @@
+require "omise/logger"
+require "omise/resource"
+
 module Omise
   LIB_PATH = File.expand_path("../../", __FILE__)
 
   class << self
     attr_accessor :api_url, :vault_url, :api_version, :resource
+    attr_reader :logger
 
     attr_writer :secret_api_key, :public_api_key
 
@@ -21,6 +25,15 @@ module Omise
     alias_method :api_key=,   :secret_api_key=
     alias_method :vault_key,  :public_api_key
     alias_method :vault_key=, :public_api_key=
+
+    def logger=(log)
+      @http_logger = Omise::Logger.new(log)
+      @logger = log
+    end
+
+    def http_logger
+      @http_logger ||= Omise::Logger.new
+    end
 
     def test!
       if !defined?(Omise::Testing::Resource)
