@@ -6,7 +6,7 @@
 
 ## Installation
 
-Installing via rubgems:
+Installing via rubygems:
 
 ```ruby
 gem 'omise'
@@ -20,7 +20,7 @@ gem 'omise', github: 'omise/omise-ruby'
 
 ## Requirements
 
-Requires ruby 1.9.2 or above, the rest-client and json gem.
+Requires ruby 1.9.2 or above, the rest-client and json gems.
 
 ## Configuration
 
@@ -46,7 +46,7 @@ PCI compliant.
 ### API version
 
 In case you want to enforce API version the application use, you can specify it
-by setting the api_version. The version specified by this settings will override
+by setting the `api_version`. The version specified by this settings will override
 the version setting in your account. This is useful if you have multiple
 environments with different API versions (e.g. development on the latest but
 production on the older version).
@@ -58,6 +58,18 @@ Omise.api_version = "2014-07-27"
 
 It is highly recommended to set this version to the current version
 you're using.
+
+### Logging
+
+To enable log you can set `Omise.logger` with a Ruby logger. All HTTP requests and responses will be logged.
+
+To disable log, just configure `Omise.logger` to `nil`. Default is disabled.
+
+An example configuring Rails logger:
+
+```ruby
+Omise.logger = Rails.logger
+```
 
 ## Quick Start
 
