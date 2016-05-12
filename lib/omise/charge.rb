@@ -33,6 +33,10 @@ module Omise
       assign_attributes nested_resource("capture", options).post
     end
 
+    def reverse(options = {})
+      assign_attributes nested_resource("reverse", options).post
+    end
+
     def customer(options = {})
       expand_attribute Customer, "customer", options
     end
