@@ -97,4 +97,8 @@ class TestCharge < Omise::Test
   def test_that_we_can_send_a_capture_request
     assert @charge.capture
   end
+
+  def test_that_we_can_send_a_reverse_request
+    assert @charge.reverse
+  end
 end
