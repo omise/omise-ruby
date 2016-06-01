@@ -2,6 +2,11 @@
 
 An [unreleased] version is not available on rubygems and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
+## [0.4.0] 2016-06-01
+
+- [Added] Add charge reversal method (@zentetsukenz)
+- [Updated] Update Rest-Client version (@zacksiri)
+
 ## [0.3.0] 2016-02-18
 
 - [Added] Add Events API
