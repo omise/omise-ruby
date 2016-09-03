@@ -1,12 +1,10 @@
 module Omise
   class Error < StandardError
-    def initialize(attributes = {})
+    def initialize(attributes)
       @code = attributes["code"]
-      @message = attributes["message"]
+      super("#{attributes["message"]} (#{@code})")
     end
 
-    def to_s
-      "#{@message} (#{@code})"
-    end
+    attr_reader :code
   end
 end

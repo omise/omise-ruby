@@ -3,11 +3,32 @@ require "omise/list"
 require "omise/customer"
 require "omise/dispute"
 require "omise/refund_list"
+require "omise/search_scope"
 require "omise/transaction"
 
 module Omise
   class Charge < OmiseObject
     self.endpoint = "/charges"
+
+    AVAILABLE_SEARCH_FILTERS = %w[
+      amount
+      authorized
+      capture
+      captured
+      card_last_digits
+      created
+      customer_present
+      failure_code
+      failure_message
+      refund_amount
+      refunded
+      reversed
+      status
+    ]
+
+    def self.search
+      SearchScope.new(:charge, AVAILABLE_SEARCH_FILTERS)
+    end
 
     def self.retrieve(id, attributes = {})
       new resource(location(id), attributes).get(attributes)

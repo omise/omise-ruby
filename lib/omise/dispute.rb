@@ -1,10 +1,22 @@
 require "omise/object"
 require "omise/charge"
 require "omise/list"
+require "omise/search_scope"
 
 module Omise
   class Dispute < OmiseObject
     self.endpoint = "/disputes"
+
+    AVAILABLE_SEARCH_FILTERS = %w[
+      card_last_digits
+      created
+      reason_code
+      status
+    ]
+
+    def self.search
+      SearchScope.new(:dispute, AVAILABLE_SEARCH_FILTERS)
+    end
 
     def self.list(attributes = {})
       status = attributes.delete(:status)

@@ -12,26 +12,26 @@ module Omise
   class Resource
     CA_BUNDLE_PATH = File.expand_path("../../../data/ca_certificates.pem", __FILE__)
     DEFAULT_HEADERS = {
-      user_agent: "OmiseRuby/#{Omise::VERSION} Ruby/#{RUBY_VERSION}"
+      user_agent: "OmiseRuby/#{Omise::VERSION} Ruby/#{RUBY_VERSION}",
     }
 
     def initialize(url, path, key)
-      @uri = prepare_uri(url, path)
+      @uri     = prepare_uri(url, path)
       @headers = prepare_headers
-      @key = key
+      @key     = key
 
-      @resource = RestClient::Resource.new(@uri, {
-        user: key,
-        verify_ssl: OpenSSL::SSL::VERIFY_PEER,
-        ssl_ca_file: CA_BUNDLE_PATH,
-        headers: @headers,
-      })
+      set_resource
     end
 
     attr_reader :uri, :headers, :key
 
     def get(attributes = {})
-      @resource.get(params: attributes) { |r| Omise::Util.load_response(r) }
+      if attributes.any?
+        @uri.query = Omise::Util.generate_query(attributes)
+        set_resource
+      end
+
+      @resource.get { |r| Omise::Util.load_response(r) }
     end
 
     def patch(attributes = {})
@@ -48,10 +48,24 @@ module Omise
 
     private
 
+    def set_resource
+      @resource = RestClient::Resource.new(@uri.to_s, {
+        user: @key,
+        verify_ssl: OpenSSL::SSL::VERIFY_PEER,
+        ssl_ca_file: CA_BUNDLE_PATH,
+        headers: @headers,
+      })
+    end
+
     def prepare_uri(url, path)
-      uri = URI.parse(url)
-      uri.path = [uri.path, path].join
-      uri.to_s
+      URI.parse(url).tap do |uri|
+        path  = URI.parse(path)
+        query = path.query
+
+        path.query = nil
+        uri.path   = [uri.path, path.to_s].join
+        uri.query  = query
+      end
     end
 
     def prepare_headers
