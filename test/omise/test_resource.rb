@@ -24,8 +24,9 @@ class TestResource < Omise::Test
 
   def test_that_the_path_is_set
     resource = Omise::Resource.new(Omise.api_url, "/charges", "skey_xxx")
+    uri = URI.parse("https://api.omise.co/charges")
 
-    assert_equal "https://api.omise.co/charges", resource.uri
+    assert_equal uri, resource.uri
   end
 
   def test_that_the_key_is_set

@@ -9,8 +9,8 @@ module Omise
   class Test < Minitest::Test
     def before_setup
       Omise.test!
-      Omise.api_key = "pkey_test_4yq6tct0llin5nyyi5l"
-      Omise.vault_key = "skey_test_4yq6tct0lblmed2yp5t"
+      Omise.vault_key   = "pkey_test_4yq6tct0llin5nyyi5l"
+      Omise.api_key     = "skey_test_4yq6tct0lblmed2yp5t"
       Omise.api_version = nil
     end
 

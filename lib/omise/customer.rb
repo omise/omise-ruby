@@ -2,10 +2,19 @@ require "omise/object"
 require "omise/card_list"
 require "omise/charge"
 require "omise/list"
+require "omise/search_scope"
 
 module Omise
   class Customer < OmiseObject
     self.endpoint = "/customers"
+
+    AVAILABLE_SEARCH_FILTERS = %w[
+      created
+    ]
+
+    def self.search
+      SearchScope.new(:customer, AVAILABLE_SEARCH_FILTERS)
+    end
 
     def self.retrieve(id = nil, attributes = {})
       new resource(location(id), attributes).get(attributes)

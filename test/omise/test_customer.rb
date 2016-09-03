@@ -67,4 +67,10 @@ class TestCustomer < Omise::Test
   def test_that_a_customer_has_a_default_card
     assert_instance_of Omise::Card, @customer.default_card
   end
+
+  def test_that_search_returns_a_scoped_search
+    assert_instance_of Omise::SearchScope, Omise::Customer.search
+    assert_equal "customer", Omise::Customer.search.scope
+    assert_equal Omise::Customer::AVAILABLE_SEARCH_FILTERS, Omise::Customer.search.available_filters
+  end
 end

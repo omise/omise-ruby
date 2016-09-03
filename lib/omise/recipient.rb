@@ -1,9 +1,18 @@
 require "omise/object"
 require "omise/bank_account"
+require "omise/search_scope"
 
 module Omise
   class Recipient < OmiseObject
     self.endpoint = "/recipients"
+
+    AVAILABLE_SEARCH_FILTERS = %w[
+      type
+    ]
+
+    def self.search
+      SearchScope.new(:recipient, AVAILABLE_SEARCH_FILTERS)
+    end
 
     def self.retrieve(id, attributes = {})
       new resource(location(id), attributes).get(attributes)

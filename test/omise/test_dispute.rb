@@ -43,4 +43,10 @@ class TestDispute < Omise::Test
   def test_that_we_can_retrieve_a_list_of_documents
     assert_instance_of Omise::DocumentList, @dispute.documents
   end
+
+  def test_that_search_returns_a_scoped_search
+    assert_instance_of Omise::SearchScope, Omise::Dispute.search
+    assert_equal "dispute", Omise::Dispute.search.scope
+    assert_equal Omise::Dispute::AVAILABLE_SEARCH_FILTERS, Omise::Dispute.search.available_filters
+  end
 end

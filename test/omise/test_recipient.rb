@@ -39,4 +39,10 @@ class TestRecipient < Omise::Test
   def test_that_a_recipient_has_a_bank_account
     assert_instance_of Omise::BankAccount, @recipient.bank_account
   end
+
+  def test_that_search_returns_a_scoped_search
+    assert_instance_of Omise::SearchScope, Omise::Recipient.search
+    assert_equal "recipient", Omise::Recipient.search.scope
+    assert_equal Omise::Recipient::AVAILABLE_SEARCH_FILTERS, Omise::Recipient.search.available_filters
+  end
 end
