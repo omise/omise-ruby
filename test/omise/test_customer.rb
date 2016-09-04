@@ -43,6 +43,12 @@ class TestCustomer < Omise::Test
     refute @customer.attributes.tainted?
   end
 
+  def test_that_we_can_charge_a_customer
+    charge = @customer.charge(amount: 100000, currency: "THB")
+
+    assert_instance_of Omise::Charge, charge
+  end
+
   def test_that_retrieveing_a_non_existing_customer_will_raise_an_error
     assert_raises Omise::Error do
       Omise::Customer.retrieve("404")

@@ -1,6 +1,7 @@
 require "omise/object"
-require "omise/list"
 require "omise/card_list"
+require "omise/charge"
+require "omise/list"
 
 module Omise
   class Customer < OmiseObject
@@ -28,6 +29,10 @@ module Omise
 
     def destroy(attributes = {})
       assign_attributes resource(attributes).delete
+    end
+
+    def charge(attributes = {})
+      Charge.create(attributes.merge(customer: id))
     end
 
     def default_card(options = {})
