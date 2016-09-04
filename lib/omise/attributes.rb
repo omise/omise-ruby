@@ -65,6 +65,14 @@ module Omise
       klass.new(self, @attributes[key])
     end
 
+    def list_nested_resource(klass, key, options = {})
+      if @attributes.key?(key) && options.empty?
+        return list_attribute(klass, key)
+      end
+
+      klass.new(self, nested_resource(key, options).get)
+    end
+
     def expand_attribute(object, key, options = {})
       if @attributes[key] && @attributes[key].is_a?(String)
         @expanded_attributes[key] ||= object.retrieve(@attributes[key], options)
