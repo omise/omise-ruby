@@ -1,5 +1,6 @@
 require "omise/object"
 require "omise/charge"
+require "omise/document_list"
 require "omise/list"
 
 module Omise
@@ -25,6 +26,10 @@ module Omise
 
     def charge(options = {})
       expand_attribute Charge, "charge", options
+    end
+
+    def documents(options = {})
+      list_nested_resource DocumentList, "documents", options
     end
   end
 end
