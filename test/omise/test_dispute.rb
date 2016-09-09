@@ -39,4 +39,8 @@ class TestDispute < Omise::Test
 
     assert_equal @dispute.message, "Your dispute message"
   end
+
+  def test_that_we_can_retrieve_a_list_of_documents
+    assert_instance_of Omise::DocumentList, @dispute.documents
+  end
 end
