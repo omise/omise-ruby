@@ -31,22 +31,39 @@ module Omise
     attr_reader :uri, :headers, :key
 
     def get(attributes = {})
-      @resource.get(params: attributes) { |r| Omise::Util.load_response(r) }
+      @resource.get(params: attributes) do |response, request|
+        log(request, response)
+        Omise::Util.load_response(response)
+      end
     end
 
     def patch(attributes = {})
-      @resource.patch(attributes) { |r| Omise::Util.load_response(r) }
+      @resource.patch(attributes) do |response, request|
+        log(request, response)
+        Omise::Util.load_response(response)
+      end
     end
 
     def post(attributes = {})
-      @resource.post(attributes) { |r| Omise::Util.load_response(r) }
+      @resource.post(attributes) do |response, request|
+        log(request, response)
+        Omise::Util.load_response(response)
+      end
     end
 
     def delete
-      @resource.delete { |r| Omise::Util.load_response(r) }
+      @resource.delete do |response, request|
+        log(request, response)
+        Omise::Util.load_response(response)
+      end
     end
 
     private
+
+    def log(request, response)
+      Omise.http_logger.log_request(request)
+      Omise.http_logger.log_response(response)
+    end
 
     def prepare_uri(url, path)
       uri = URI.parse(url)
