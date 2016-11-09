@@ -16,9 +16,9 @@ module Omise
     }
 
     def initialize(url, path, key)
-      @uri = prepare_uri(url, path)
+      @uri     = prepare_uri(url, path)
       @headers = prepare_headers
-      @key = key
+      @key     = key
 
       @resource = RestClient::Resource.new(@uri, {
         user: key,

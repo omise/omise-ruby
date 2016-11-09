@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "omise"
+
+Omise.api_key = ENV["OMISE_API_KEY"]
+
+require "pry"
+Pry.start

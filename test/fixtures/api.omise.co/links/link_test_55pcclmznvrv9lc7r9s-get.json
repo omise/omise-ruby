@@ -1,0 +1,82 @@
+{
+  "object": "link",
+  "id": "link_test_55pcclmznvrv9lc7r9s",
+  "livemode": false,
+  "location": "/links/link_test_55pcclmznvrv9lc7r9s",
+  "amount": 10000,
+  "currency": "thb",
+  "used": true,
+  "multiple": false,
+  "title": "Lunch",
+  "description": "Pay me back for lunch",
+  "charges": {
+    "object": "list",
+    "from": "1970-01-01T00:00:00+00:00",
+    "to": "2016-11-09T03:28:42+00:00",
+    "offset": 0,
+    "limit": 20,
+    "total": 1,
+    "order": null,
+    "location": "/links/link_test_55pcclmznvrv9lc7r9s/charges",
+    "data": [
+      {
+        "object": "charge",
+        "id": "chrg_test_55pcd9rn4dz1r8rtokz",
+        "livemode": false,
+        "location": "/charges/chrg_test_55pcd9rn4dz1r8rtokz",
+        "amount": 10000,
+        "currency": "thb",
+        "description": "Lunch\n\nPay me back for lunch",
+        "status": "successful",
+        "capture": true,
+        "authorized": true,
+        "reversed": false,
+        "paid": true,
+        "transaction": "trxn_test_55pcd9t5vh5m7rflo7x",
+        "refunded": 0,
+        "refunds": {
+          "object": "list",
+          "from": "1970-01-01T00:00:00+00:00",
+          "to": "2016-11-09T03:28:42+00:00",
+          "offset": 0,
+          "limit": 20,
+          "total": 0,
+          "order": null,
+          "location": "/charges/chrg_test_55pcd9rn4dz1r8rtokz/refunds",
+          "data": [
+
+          ]
+        },
+        "return_uri": "https://link.omise.co/AC6BD2FD/complete",
+        "reference": "paym_test_55pcd9rzzt5hsko5loq",
+        "authorize_uri": "http://api.omise.co/payments/paym_test_55pcd9rzzt5hsko5loq/authorize",
+        "failure_code": null,
+        "failure_message": null,
+        "card": {
+          "object": "card",
+          "id": "card_test_55pcd8si7fqp1zuihwk",
+          "livemode": false,
+          "country": "us",
+          "city": null,
+          "postal_code": null,
+          "financing": "",
+          "bank": "",
+          "last_digits": "4242",
+          "brand": "Visa",
+          "expiration_month": 7,
+          "expiration_year": 2019,
+          "fingerprint": "hdEymlzWwHtOipbRxVUp3Ek7q13+1KUtwIvkkwz2cqE=",
+          "name": "sanjeev",
+          "security_code_check": true,
+          "created": "2016-10-18T06:56:47Z"
+        },
+        "customer": null,
+        "ip": "101.127.195.82",
+        "dispute": null,
+        "created": "2016-10-18T06:56:51Z"
+      }
+    ]
+  },
+  "payment_uri": "https://link.omise.co/AC6BD2FD",
+  "created": "2016-10-18T06:54:57Z"
+}
