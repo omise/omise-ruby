@@ -7,7 +7,7 @@ module Omise
     end
 
     def resource_key
-      Omise.vault_key
+      Omise.public_api_key
     end
   end
 end

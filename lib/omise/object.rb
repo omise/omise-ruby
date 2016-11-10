@@ -42,7 +42,7 @@ module Omise
       end
 
       def resource_key
-        Omise.api_key
+        Omise.secret_api_key
       end
     end
 

@@ -2,16 +2,25 @@ module Omise
   LIB_PATH = File.expand_path("../../", __FILE__)
 
   class << self
-    attr_writer :api_key, :vault_key
     attr_accessor :api_url, :vault_url, :api_version, :resource
 
-    def api_key
-      get_key :api
+    attr_writer :secret_api_key, :public_api_key
+
+    def secret_api_key
+      get_key :secret_api_key
     end
 
-    def vault_key
-      get_key :vault
+    def public_api_key
+      get_key :public_api_key
     end
+
+    # Backward compatibility with old API Keys naming conventions
+    #
+    # Will be removed in 1.0
+    alias_method :api_key,    :secret_api_key
+    alias_method :api_key=,   :secret_api_key=
+    alias_method :vault_key,  :public_api_key
+    alias_method :vault_key=, :public_api_key=
 
     def test!
       if !defined?(Omise::Testing::Resource)
@@ -24,10 +33,10 @@ module Omise
     private
 
     def get_key(name)
-      if key = instance_variable_get("@#{name}_key")
+      if key = instance_variable_get("@#{name}")
         key
       else
-        raise "Set Omise.#{name}_key to use this feature"
+        raise "Set Omise.#{name} to use this feature"
       end
     end
   end
