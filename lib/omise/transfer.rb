@@ -7,6 +7,10 @@ module Omise
   class Transfer < OmiseObject
     self.endpoint = "/transfers"
 
+    def self.search
+      SearchScope.new(:transfer)
+    end
+
     def self.create(attributes = {})
       new resource(location, attributes).post(attributes)
     end

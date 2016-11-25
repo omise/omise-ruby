@@ -5,6 +5,10 @@ module Omise
   class Link < OmiseObject
     self.endpoint = "/links"
 
+    def self.search
+      SearchScope.new(:link)
+    end
+
     def self.retrieve(id, attributes = {})
       new resource(location(id), attributes).get(attributes)
     end

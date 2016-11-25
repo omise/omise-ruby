@@ -2,25 +2,17 @@ require "omise/search"
 
 module Omise
   class SearchScope
-    def initialize(scope, available_filters = [], options = {})
+    def initialize(scope, options = {})
       @scope             = scope.to_s
-      @available_filters = available_filters
       @filters           = options.delete(:filters) { Hash.new }
       @order             = options.delete(:order)
       @page              = options.delete(:page)
       @query             = options.delete(:query)
     end
 
-    attr_reader :scope, :available_filters
+    attr_reader :scope
 
     def filter(filters = {})
-      filters.each do |key, value|
-        break if @available_filters.empty?
-        if !@available_filters.include?(key.to_s)
-          raise "#{key} is not a recognized filter for #{@scope}"
-        end
-      end
-
       renew(filters: @filters.merge(filters))
     end
 
@@ -56,7 +48,7 @@ module Omise
     private
 
     def renew(attributes)
-      self.class.new(@scope, @available_filters, {
+      self.class.new(@scope, {
         query:   @query,
         filters: @filters,
         order:   @order,

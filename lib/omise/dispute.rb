@@ -8,15 +8,8 @@ module Omise
   class Dispute < OmiseObject
     self.endpoint = "/disputes"
 
-    AVAILABLE_SEARCH_FILTERS = %w[
-      card_last_digits
-      created
-      reason_code
-      status
-    ]
-
     def self.search
-      SearchScope.new(:dispute, AVAILABLE_SEARCH_FILTERS)
+      SearchScope.new(:dispute)
     end
 
     def self.list(attributes = {})

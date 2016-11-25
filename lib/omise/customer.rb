@@ -8,12 +8,8 @@ module Omise
   class Customer < OmiseObject
     self.endpoint = "/customers"
 
-    AVAILABLE_SEARCH_FILTERS = %w[
-      created
-    ]
-
     def self.search
-      SearchScope.new(:customer, AVAILABLE_SEARCH_FILTERS)
+      SearchScope.new(:customer)
     end
 
     def self.retrieve(id = nil, attributes = {})

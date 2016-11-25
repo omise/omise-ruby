@@ -6,6 +6,10 @@ module Omise
   class Refund < OmiseObject
     self.endpoint = "/refunds"
 
+    def self.search
+      SearchScope.new(:refund)
+    end
+
     def reload(attributes = {})
       assign_attributes resource(attributes).get(attributes)
     end

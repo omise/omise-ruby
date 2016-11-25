@@ -6,12 +6,8 @@ module Omise
   class Recipient < OmiseObject
     self.endpoint = "/recipients"
 
-    AVAILABLE_SEARCH_FILTERS = %w[
-      type
-    ]
-
     def self.search
-      SearchScope.new(:recipient, AVAILABLE_SEARCH_FILTERS)
+      SearchScope.new(:recipient)
     end
 
     def self.retrieve(id, attributes = {})
