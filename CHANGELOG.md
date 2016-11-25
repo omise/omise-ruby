@@ -2,7 +2,7 @@
 
 An [unreleased] version is not available on rubygems and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
-## [unreleased]
+## [0.5.0] 2016-11-26
 
 - [Added] Add search object and filtering api
 - [Added] Add support for document uploading
