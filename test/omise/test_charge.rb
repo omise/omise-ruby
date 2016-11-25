@@ -105,6 +105,5 @@ class TestCharge < Omise::Test
   def test_that_search_returns_a_scoped_search
     assert_instance_of Omise::SearchScope, Omise::Charge.search
     assert_equal "charge", Omise::Charge.search.scope
-    assert_equal Omise::Charge::AVAILABLE_SEARCH_FILTERS, Omise::Charge.search.available_filters
   end
 end
