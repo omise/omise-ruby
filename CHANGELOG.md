@@ -2,6 +2,14 @@
 
 An [unreleased] version is not available on rubygems and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
+## [unreleased]
+
+- [Added] Add search object and filtering api
+- [Added] Add support for document uploading
+- [Added] Add link API
+- [Added] Add tests for attributes
+- [Added] Add charge method on customer
+
 ## [0.4.0] 2016-06-01
 
 - [Added] Add charge reversal method (@zentetsukenz)
