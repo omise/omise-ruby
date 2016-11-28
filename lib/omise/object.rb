@@ -1,6 +1,5 @@
 require "omise/config"
 require "omise/attributes"
-require "omise/resource"
 
 module Omise
   class OmiseObject

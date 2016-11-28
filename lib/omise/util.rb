@@ -1,7 +1,6 @@
 require "cgi"
 require "json"
 
-require "omise/object"
 require "omise/error"
 
 module Omise

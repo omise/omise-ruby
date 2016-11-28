@@ -1,5 +1,7 @@
 require "omise/object"
+require "omise/list"
 require "omise/charge_list"
+require "omise/search_scope"
 
 module Omise
   class Link < OmiseObject

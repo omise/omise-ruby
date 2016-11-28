@@ -1,7 +1,6 @@
 require "omise/object"
 require "omise/bank_account"
-require "omise/list"
-require "omise/recipient"
+require "omise/search_scope"
 
 module Omise
   class Transfer < OmiseObject
@@ -36,10 +35,18 @@ module Omise
     end
 
     def recipient(options = {})
+      if !defined?(Recipient)
+        require "omise/recipient"
+      end
+
       expand_attribute Recipient, "recipient", options
     end
 
     def bank_account
+      if !defined?(BankAccount)
+        require "omise/bank_account"
+      end
+
       expand_attribute BankAccount, "bank_account"
     end
   end

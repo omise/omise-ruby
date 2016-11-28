@@ -1,6 +1,5 @@
 require "omise/object"
-require "omise/charge"
-require "omise/transaction"
+require "omise/search_scope"
 
 module Omise
   class Refund < OmiseObject
@@ -15,10 +14,18 @@ module Omise
     end
 
     def charge(options = {})
+      if !defined?(Charge)
+        require "omise/charge"
+      end
+
       expand_attribute Charge, "charge", options
     end
 
     def transaction(options = {})
+      if !defined?(Transaction)
+        require "omise/transaction"
+      end
+
       expand_attribute Transaction, "transaction", options
     end
   end

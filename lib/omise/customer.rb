@@ -1,7 +1,6 @@
 require "omise/object"
-require "omise/card_list"
-require "omise/charge"
 require "omise/list"
+require "omise/card_list"
 require "omise/search_scope"
 
 module Omise
@@ -37,6 +36,10 @@ module Omise
     end
 
     def charge(attributes = {})
+      if !defined?(Charge)
+        require "omise/charge"
+      end
+
       Charge.create(attributes.merge(customer: id))
     end
 
