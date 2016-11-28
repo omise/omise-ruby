@@ -1,10 +1,7 @@
 require "omise/object"
 require "omise/list"
-require "omise/customer"
-require "omise/dispute"
 require "omise/refund_list"
 require "omise/search_scope"
-require "omise/transaction"
 
 module Omise
   class Charge < OmiseObject
@@ -43,14 +40,26 @@ module Omise
     end
 
     def customer(options = {})
+      if !defined?(Customer)
+        require "omise/customer"
+      end
+
       expand_attribute Customer, "customer", options
     end
 
     def dispute(options = {})
+      if !defined?(Dispute)
+        require "omise/dispute"
+      end
+
       expand_attribute Dispute, "dispute", options
     end
 
     def transaction(options = {})
+      if !defined?(Transaction)
+        require "omise/transaction"
+      end
+
       expand_attribute Transaction, "transaction", options
     end
 

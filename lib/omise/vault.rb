@@ -1,5 +1,3 @@
-require "omise/config"
-
 module Omise
   module Vault
     private

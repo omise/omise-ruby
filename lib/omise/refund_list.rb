@@ -1,5 +1,4 @@
 require "omise/list"
-require "omise/refund"
 
 module Omise
   class RefundList < List

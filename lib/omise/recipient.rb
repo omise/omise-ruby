@@ -1,5 +1,5 @@
 require "omise/object"
-require "omise/bank_account"
+require "omise/list"
 require "omise/search_scope"
 
 module Omise
@@ -35,6 +35,10 @@ module Omise
     end
 
     def bank_account
+      if !defined?(BankAccount)
+        require "omise/bank_account"
+      end
+
       expand_attribute BankAccount, "bank_account"
     end
   end

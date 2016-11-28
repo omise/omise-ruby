@@ -1,11 +1,8 @@
 require "uri"
-require "json"
 require "openssl"
 require "rest-client"
 
 require "omise/util"
-require "omise/config"
-require "omise/error"
 require "omise/version"
 
 module Omise

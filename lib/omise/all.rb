@@ -1,5 +1,6 @@
 require "omise/account"
 require "omise/balance"
+require "omise/bank_account"
 require "omise/card"
 require "omise/charge"
 require "omise/customer"

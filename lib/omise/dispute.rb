@@ -1,7 +1,6 @@
 require "omise/object"
-require "omise/charge"
-require "omise/document_list"
 require "omise/list"
+require "omise/document_list"
 require "omise/search_scope"
 
 module Omise
@@ -30,6 +29,10 @@ module Omise
     end
 
     def charge(options = {})
+      if !defined?(Charge)
+        require "omise/charge"
+      end
+
       expand_attribute Charge, "charge", options
     end
 
