@@ -39,8 +39,8 @@ Omise.vault_key = "pkey_test_xxxxxxxxxxxxxxxxxxx"
 
 With this set you'll be able to retrieve tokens or create new ones.
 
-However we recommend using [Omise.js](https://gitub.com/omise/omise.js) to
-create tokens. When creating a token server side you'll need card data
+However we recommend using [Omise.js](https://github.com/omise/omise.js) to
+[collect cards](https://www.omise.co/collecting-card-information). When creating a token server side you'll need card data
 transiting to and from your server and this requires that your organization be
 PCI compliant.
 
