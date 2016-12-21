@@ -24,5 +24,20 @@ module Omise
         instance_exec(&block)
       end
     end
+
+    private
+
+    def without_keys
+      original_vault_key = Omise.vault_key
+      original_api_key   = Omise.api_key
+
+      Omise.vault_key = nil
+      Omise.api_key   = nil
+
+      yield
+
+      Omise.vault_key = original_vault_key
+      Omise.api_key   = original_api_key
+    end
   end
 end

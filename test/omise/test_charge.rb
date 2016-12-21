@@ -12,6 +12,15 @@ class TestCharge < Omise::Test
     assert_equal "chrg_test_4yq7duw15p9hdrjp8oq", charge.id
   end
 
+  def test_that_we_can_create_a_charge_even_if_api_key_is_nil
+    without_keys do
+      charge = Omise::Charge.create(key: "skey_test_4yq6tct0lblmed2yp5t")
+
+      assert_instance_of Omise::Charge, charge
+      assert_equal "chrg_test_4yq7duw15p9hdrjp8oq", charge.id
+    end
+  end
+
   def test_that_we_can_retrieve_a_charge
     assert_instance_of Omise::Charge, @charge
     assert_equal "chrg_test_4yq7duw15p9hdrjp8oq", @charge.id
