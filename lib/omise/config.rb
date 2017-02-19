@@ -1,4 +1,4 @@
-require "omise/logger"
+require "omise/http_logger"
 require "omise/resource"
 
 module Omise
@@ -6,7 +6,6 @@ module Omise
 
   class << self
     attr_accessor :api_url, :vault_url, :api_version, :resource
-    attr_reader :logger
 
     attr_writer :secret_api_key, :public_api_key
 
@@ -26,13 +25,12 @@ module Omise
     alias_method :vault_key,  :public_api_key
     alias_method :vault_key=, :public_api_key=
 
-    def logger=(log)
-      @http_logger = Omise::Logger.new(log)
-      @logger = log
+    def logger=(logger)
+      @http_logger = Omise::HTTPLogger.new(logger)
     end
 
     def http_logger
-      @http_logger ||= Omise::Logger.new
+      @http_logger ||= Omise::HTTPLogger.new
     end
 
     def test!
@@ -53,8 +51,6 @@ module Omise
       end
     end
   end
-
-  require "omise/resource"
 
   self.api_url   = "https://api.omise.co"
   self.vault_url = "https://vault.omise.co"

@@ -1,19 +1,19 @@
 require "support"
 
-class TestLogger < Omise::Test
+class TestHTTPLogger < Omise::Test
   def test_we_can_initialize_a_logger_with_default_log
-    logger = Omise::Logger.new
+    http_logger = Omise::HTTPLogger.new
 
-    assert_instance_of Omise::Logger, logger
-    assert_nil logger.log
+    assert_instance_of Omise::HTTPLogger, http_logger
+    assert_nil http_logger.logger
   end
 
   def test_we_can_initialize_a_logger_setting_a_log
-    log = Logger.new(STDOUT)
-    logger = Omise::Logger.new(log)
+    logger = Logger.new(STDOUT)
+    http_logger = Omise::HTTPLogger.new(logger)
 
-    assert_instance_of Omise::Logger, logger
-    assert_same log, logger.log
+    assert_instance_of Omise::HTTPLogger, http_logger
+    assert_same logger, http_logger.logger
   end
 
   def setup
@@ -35,7 +35,7 @@ class TestLogger < Omise::Test
     expected_log_message = "[Omise] Request: POST http://api.omise.co/path\nHeader: value\n\nvar1=value1&var2=value2\n"
     @log_mock.expect(:info, nil, [expected_log_message])
 
-    Omise::Logger.new(@log_mock).log_request(request)
+    Omise::HTTPLogger.new(@log_mock).log_request(request)
 
     assert @log_mock.verify
   end
@@ -62,7 +62,7 @@ class TestLogger < Omise::Test
     expected_log_message = "[Omise] Response: HTTP/1.1 200 OK\nHeader: value\n\nWork my body over\n"
     @log_mock.expect(:info, nil, [expected_log_message])
 
-    Omise::Logger.new(@log_mock).log_response(response)
+    Omise::HTTPLogger.new(@log_mock).log_response(response)
 
     assert @log_mock.verify
   end

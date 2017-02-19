@@ -7,16 +7,15 @@ class TestConfig < Omise::Test
   end
 
   def test_that_default_http_logger_is_set
-    assert_instance_of Omise::Logger, Omise.http_logger
-    assert_nil Omise.http_logger.log
+    assert_instance_of Omise::HTTPLogger, Omise.http_logger
+    assert_nil Omise.http_logger.logger
   end
 
   def test_that_we_can_set_a_logger
     logger = Logger.new(STDOUT)
     Omise.logger = logger
 
-    assert_same logger, Omise.logger
-    assert_same logger, Omise.http_logger.log
+    assert_same logger, Omise.http_logger.logger
   end
 
   def teardown
