@@ -2,6 +2,12 @@
 
 An [unreleased] version is not available on rubygems and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
+## [unreleased]
+
+- [Added] Support to log HTTP requests and responses.
+- [Added] Rename keys with better names while supporting old methods
+- [Fix] Avoid circular require warnings when running tests
+
 ## [0.5.0] 2016-11-26
 
 - [Added] Add search object and filtering api
