@@ -28,7 +28,7 @@ Requires ruby 1.9.2 or above, the rest-client and json gems.
 First configure your secret key:
 
 ```ruby
-Omise.secret_api_key = "skey_test_xxxxxxxxxxxxxxxxxxx"
+Omise.api_key = "skey_test_xxxxxxxxxxxxxxxxxxx"
 ```
 
 If you need to use the Token API you also need to set your public key:
