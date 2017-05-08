@@ -2,6 +2,7 @@ require "omise/object"
 require "omise/list"
 require "omise/refund_list"
 require "omise/search_scope"
+require "omise/scheduler"
 
 module Omise
   class Charge < OmiseObject
@@ -9,6 +10,10 @@ module Omise
 
     def self.search
       SearchScope.new(:charge)
+    end
+
+    def self.schedule(attributes = {})
+      Scheduler.new(:charge, attributes)
     end
 
     def self.retrieve(id, attributes = {})

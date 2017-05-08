@@ -42,4 +42,14 @@ class TestTransfer < Omise::Test
   def test_that_a_transfer_has_a_bank_account
     assert_instance_of Omise::BankAccount, @transfer.bank_account
   end
+
+  def test_that_search_returns_a_scoped_search
+    assert_instance_of Omise::SearchScope, Omise::Transfer.search
+    assert_equal "transfer", Omise::Transfer.search.scope
+  end
+
+  def test_that_schedule_returns_a_scheduler
+    assert_instance_of Omise::Scheduler, Omise::Transfer.schedule
+    assert_equal "transfer", Omise::Transfer.schedule.type
+  end
 end

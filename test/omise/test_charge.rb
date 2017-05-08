@@ -115,4 +115,9 @@ class TestCharge < Omise::Test
     assert_instance_of Omise::SearchScope, Omise::Charge.search
     assert_equal "charge", Omise::Charge.search.scope
   end
+
+  def test_that_schedule_returns_a_scheduler
+    assert_instance_of Omise::Scheduler, Omise::Charge.schedule
+    assert_equal "charge", Omise::Charge.schedule.type
+  end
 end

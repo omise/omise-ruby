@@ -1,0 +1,20 @@
+{
+  "object": "schedule",
+  "location": "/schedules/schd_test_4yq7duw15p9hdrjp8oq",
+  "id": "schd_test_4yq7duw15p9hdrjp8oq",
+  "occurrences": {
+    "object": "list",
+    "from": "1970-01-01T00:00:00+00:00",
+    "to": "2015-01-15T05:04:30+00:00",
+    "offset": 0,
+    "limit": 20,
+    "total": 1,
+    "data": [
+      {
+        "object": "occurrence",
+        "location": "/occurrences/occu_test_57s33hmja9t3fs4wmop",
+        "id": "occu_test_57s33hmja9t3fs4wmop"
+      }
+    ]
+  }
+}

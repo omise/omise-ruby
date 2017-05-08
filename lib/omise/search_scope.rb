@@ -34,15 +34,13 @@ module Omise
     end
 
     def to_attributes
-      attributes = {}
-
-      attributes[:scope]   = @scope
-      attributes[:filters] = @filters if @filters.any?
-      attributes[:query]   = @query if @query
-      attributes[:order]   = @order if @order
-      attributes[:page]    = @page if @page
-
-      attributes
+      {}.tap do |a|
+        a[:scope]   = @scope
+        a[:filters] = @filters if @filters.any?
+        a[:query]   = @query if @query
+        a[:order]   = @order if @order
+        a[:page]    = @page if @page
+      end
     end
 
     private

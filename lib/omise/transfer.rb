@@ -10,6 +10,10 @@ module Omise
       SearchScope.new(:transfer)
     end
 
+    def self.schedule(attributes = {})
+      Scheduler.new(:transfer, attributes)
+    end
+
     def self.create(attributes = {})
       new resource(location, attributes).post(attributes)
     end
