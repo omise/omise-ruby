@@ -30,10 +30,6 @@ module Omise
     end
 
     def execute
-      Search.execute(to_attributes)
-    end
-
-    def to_attributes
       attributes = {}
 
       attributes[:scope]   = @scope
@@ -42,7 +38,7 @@ module Omise
       attributes[:order]   = @order if @order
       attributes[:page]    = @page if @page
 
-      attributes
+      Search.execute(attributes)
     end
 
     private
