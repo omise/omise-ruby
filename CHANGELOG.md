@@ -2,6 +2,10 @@
 
 An [unreleased] version is not available on rubygems and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
+## [unreleased]
+
+- [Added] Schedule and Occurence
+
 ## [0.5.1] 2017-04-16
 
 - [Added] Support to log HTTP requests and responses.
