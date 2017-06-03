@@ -113,6 +113,22 @@ class TestScheduler < Omise::Test
     assert_equal "2018-01-01", scheduler.to_attributes[:end_date]
   end
 
+  def test_we_can_set_start_date
+    scheduler = @scheduler.start_date("2018-01-01")
+
+    assert_scheduler_attributes(@scheduler)
+    refute_equal scheduler.object_id, @scheduler.object_id
+    assert_equal "2018-01-01", scheduler.to_attributes[:start_date]
+  end
+
+  def test_we_can_set_start_date_in_other_formats
+    scheduler = @scheduler.start_date("1st January 2018")
+
+    assert_scheduler_attributes(@scheduler)
+    refute_equal scheduler.object_id, @scheduler.object_id
+    assert_equal "2018-01-01", scheduler.to_attributes[:start_date]
+  end
+
   def that_we_can_parse_it_all_in_one
     scheduler = @scheduler.parse("every 1 month on the 28th until May 1st, 2018")
 

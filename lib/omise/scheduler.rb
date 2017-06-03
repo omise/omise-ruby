@@ -17,6 +17,7 @@ module Omise
       @period     = options[:period]
       @on         = options[:on]
       @end_date   = options[:end_date]
+      @start_date = options[:start_date]
     end
 
     def type
@@ -58,6 +59,11 @@ module Omise
       end
     end
     alias_method :month, :months
+
+    def start_date(date)
+      date = Date.parse(date.to_s)
+      renew(start_date: date.iso8601)
+    end
 
     def end_date(date)
       date = Date.parse(date.to_s)
@@ -109,11 +115,12 @@ module Omise
 
     def to_attributes
       {}.tap do |a|
-        a[@type]     = @attributes
-        a[:every]    = @every if @every
-        a[:period]   = @period if @period
-        a[:on]       = @on if @on
-        a[:end_date] = @end_date if @end_date
+        a[@type]       = @attributes
+        a[:every]      = @every if @every
+        a[:period]     = @period if @period
+        a[:on]         = @on if @on
+        a[:end_date]   = @end_date if @end_date
+        a[:start_date] = @start_date if @start_date
       end
     end
 
@@ -139,10 +146,11 @@ module Omise
 
     def renew(attributes)
       self.class.new(@type, @attributes, {
-        every:    @every,
-        period:   @period,
-        on:       @on,
-        end_date: @end_date,
+        every:      @every,
+        period:     @period,
+        on:         @on,
+        end_date:   @end_date,
+        start_date: @start_date,
       }.merge(attributes))
     end
   end
