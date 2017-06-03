@@ -72,4 +72,11 @@ class TestCustomer < Omise::Test
     assert_instance_of Omise::SearchScope, Omise::Customer.search
     assert_equal "customer", Omise::Customer.search.scope
   end
+
+  def test_that_we_can_fetch_a_schedule_list_for_a_given_customer
+    schedules = @customer.schedules
+
+    assert schedules
+    assert_instance_of Omise::List, schedules
+  end
 end

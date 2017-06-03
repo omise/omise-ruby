@@ -35,6 +35,10 @@ module Omise
       assign_attributes resource(attributes).delete
     end
 
+    def schedules(attributes = {})
+      List.new nested_resource("schedules", attributes).get(attributes)
+    end
+
     def charge(attributes = {})
       if !defined?(Charge)
         require "omise/charge"
