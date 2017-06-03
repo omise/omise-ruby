@@ -5,6 +5,7 @@ An [unreleased] version is not available on rubygems and is subject to changes a
 ## [unreleased]
 
 - [Added] Schedule and Occurence
+- [Added] Method to fetch all refunds
 
 ## [0.5.1] 2017-04-16
 

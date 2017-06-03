@@ -11,6 +11,14 @@ class TestRefund < Omise::Test
     assert_equal "rfnd_test_4yqmv79ahghsiz23y3c", @refund.id
   end
 
+  def test_that_we_can_list_all_refunds
+    refunds = Omise::Refund.list
+
+    assert refunds
+    assert_instance_of Omise::List, refunds
+    assert_instance_of Omise::Refund, refunds.first
+  end
+
   def test_that_we_can_create_a_refund
     refund = @refunds.create(amount: 10000)
 
