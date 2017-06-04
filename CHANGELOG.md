@@ -2,11 +2,17 @@
 
 An [unreleased] version is not available on rubygems and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
-## [unreleased]
+## [0.7.0] 2017-06-04
+
+- [Added] Support for start_date in Scheduler
+- [Added] Method to fetch schedules for a customer
+- [Added] Method to fetch all refunds
+- [Added] Support for predicate methods
+- [Added] Support for retrieving exchange rates
+
+## [0.6.0]  2017-05-31
 
 - [Added] Schedule and Occurence
-- [Added] Method to fetch all refunds
-- [Added] Support for retrieving exchange rates
 
 ## [0.5.1] 2017-04-16
 
