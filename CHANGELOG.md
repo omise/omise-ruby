@@ -6,6 +6,7 @@ An [unreleased] version is not available on rubygems and is subject to changes a
 
 - [Added] Schedule and Occurence
 - [Added] Method to fetch all refunds
+- [Added] Support for retrieving exchange rates
 
 ## [0.5.1] 2017-04-16
 
