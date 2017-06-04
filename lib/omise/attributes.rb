@@ -44,12 +44,32 @@ module Omise
       @attributes.key?(key.to_s)
     end
 
-    def respond_to?(method_name)
-      key?(method_name) || super
+    def predicate?(method_name)
+      method_name   = method_name.to_s
+      question_mark = method_name.chars.last == "?"
+      key           = method_name.chomp("?")
+
+      if question_mark && key?(key)
+        true
+      else
+        false
+      end
+    end
+
+    def respond_to_missing?(method_name, *args, &block)
+      if predicate?(method_name)
+        true
+      elsif key?(method_name)
+        true
+      else
+        super
+      end
     end
 
     def method_missing(method_name, *args, &block)
-      if key?(method_name)
+      if predicate?(method_name)
+        !!self[method_name.to_s.chomp("?")]
+      elsif key?(method_name)
         self[method_name]
       else
         super

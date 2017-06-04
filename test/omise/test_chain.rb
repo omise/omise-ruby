@@ -34,7 +34,7 @@ class TestChain < Omise::Test
 
     @chain.revoke
 
-    assert @chain.revoked
+    assert @chain.revoked?
     refute @chain.attributes.tainted?
   end
 end

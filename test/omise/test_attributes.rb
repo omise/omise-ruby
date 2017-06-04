@@ -48,12 +48,24 @@ class TestAttributes < Omise::Test
 
   def test_that_we_can_tell_if_a_teapot_has_not_been_destroyed
     refute @teapot.destroyed?
+    refute @teapot.deleted?
   end
 
   def test_that_we_can_tell_if_a_teapot_has_been_destroyed
     @teapot.assign_attributes(@attributes.merge("deleted" => true))
 
     assert @teapot.destroyed?
+    assert @teapot.deleted?
+  end
+
+  def test_we_can_predicate_any_key
+    assert @teapot.child?
+  end
+
+  def test_we_cannot_predicate_a_key_not_present
+    assert_raises NoMethodError do
+      @teapot.color?
+    end
   end
 
   def test_that_we_get_the_location_of_the_teapot
@@ -75,5 +87,10 @@ class TestAttributes < Omise::Test
   def test_that_a_teapot_respond_correctly_to_dynamic_method_names
     assert @teapot.respond_to?("name")
     refute @teapot.respond_to?("color")
+  end
+
+  def test_that_a_teap_respond_correctly_to_dynamic_predicates
+    assert @teapot.respond_to?("deleted?")
+    refute @teapot.respond_to?("revoked?")
   end
 end
