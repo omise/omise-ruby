@@ -94,6 +94,25 @@ else
 end
 ```
 
+### Override Global API Key
+
+If you have multiple merchants accepting payments, it is also possible to use their specific API key for making transactions for those merchants.
+
+You will need to pass their SECRET_KEY as last argument in API calls. See example below:
+
+#### Create customer with token
+
+```ruby
+args = { card: TOKEN,
+         email: 'jagdeepsingh@example.com',
+         description: 'This account belongs to Jagdeep Singh' }
+
+# Add merchant's SECRET_KEY to args
+args[:key] = SECRET_KEY
+
+Omise::Customer.create(args)
+```
+
 You can check the complete documentation at
 [docs.omise.co](https://docs.omise.co/).
 
