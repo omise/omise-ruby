@@ -73,11 +73,7 @@ module Omise
     end
 
     def captured
-      lookup_attribute_value :captured, :paid
-    end
-
-    def paid
-      lookup_attribute_value :paid, :captured
+      paid
     end
   end
 end
