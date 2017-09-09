@@ -9,12 +9,13 @@ module Omise
   class Resource
     CA_BUNDLE_PATH = File.expand_path("../../../data/ca_certificates.pem", __FILE__)
     DEFAULT_HEADERS = {
-      user_agent: "OmiseRuby/#{Omise::VERSION} Ruby/#{RUBY_VERSION}",
+      omise_version: "2015-11-17",
+      user_agent:    "OmiseRuby/#{Omise::VERSION} Ruby/#{RUBY_VERSION}",
     }
 
     def initialize(url, path, key)
       @uri     = prepare_uri(url, path)
-      @headers = prepare_headers
+      @headers = {}.merge(DEFAULT_HEADERS)
       @key     = key
 
       set_resource
@@ -80,16 +81,6 @@ module Omise
         uri.path   = [uri.path, path.to_s].join
         uri.query  = query
       end
-    end
-
-    def prepare_headers
-      headers = {}.merge(DEFAULT_HEADERS)
-
-      if Omise.api_version
-        headers = headers.merge(omise_version: Omise.api_version)
-      end
-
-      headers
     end
   end
 end

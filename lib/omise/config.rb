@@ -5,7 +5,7 @@ module Omise
   LIB_PATH = File.expand_path("../../", __FILE__)
 
   class << self
-    attr_accessor :api_url, :vault_url, :api_version, :resource
+    attr_accessor :api_url, :vault_url, :resource
 
     attr_writer :secret_api_key, :public_api_key
 

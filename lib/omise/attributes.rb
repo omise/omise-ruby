@@ -78,10 +78,6 @@ module Omise
 
     private
 
-    def lookup_attribute_value(*keys)
-      keys.each { |key| return self[key] if key?(key) }
-    end
-
     def list_attribute(klass, key)
       klass.new(@attributes[key], parent: self)
     end

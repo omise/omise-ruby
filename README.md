@@ -44,22 +44,6 @@ However we recommend using [Omise.js](https://github.com/omise/omise.js) to
 transiting to and from your server and this requires that your organization be
 PCI compliant.
 
-### API version
-
-In case you want to enforce API version the application use, you can specify it
-by setting the `api_version`. The version specified by this settings will override
-the version setting in your account. This is useful if you have multiple
-environments with different API versions (e.g. development on the latest but
-production on the older version).
-
-```ruby
-require "omise"
-Omise.api_version = "2014-07-27"
-```
-
-It is highly recommended to set this version to the current version
-you're using.
-
 ### Logging
 
 To enable log you can set `Omise.logger` with a Ruby logger. All HTTP requests and responses will be logged.

@@ -81,17 +81,6 @@ class TestCharge < Omise::Test
     assert_instance_of Omise::RefundList, @charge.refunds
   end
 
-  def test_that_paid_return_the_value_of_captured
-    captured_charge = Omise::Charge.new(JSON.load('{ "captured": true }'))
-    uncaptured_charge = Omise::Charge.new(JSON.load('{ "captured": false }'))
-
-    assert_instance_of TrueClass, captured_charge.captured
-    assert_instance_of TrueClass, captured_charge.paid
-
-    assert_instance_of FalseClass, uncaptured_charge.captured
-    assert_instance_of FalseClass, uncaptured_charge.paid
-  end
-
   def test_that_captured_return_the_value_of_paid
     paid_charge = Omise::Charge.new(JSON.load('{ "paid": true }'))
     unpaid_charge = Omise::Charge.new(JSON.load('{ "paid": false }'))
