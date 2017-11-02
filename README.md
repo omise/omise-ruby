@@ -39,7 +39,7 @@ Omise.public_api_key = "pkey_test_xxxxxxxxxxxxxxxxxxx"
 
 With this set you'll be able to retrieve tokens or create new ones.
 
-However we recommend using [Omise.js](https://github.com/omise/omise.js) to
+However we recommend using [Omise.js](https://www.omise.co/omise-js-api) to
 [collect cards](https://www.omise.co/collecting-card-information). When creating a token server side you'll need card data
 transiting to and from your server and this requires that your organization be
 PCI compliant.
@@ -74,7 +74,7 @@ Omise.logger = Rails.logger
 
 ## Quick Start
 
-After you have implemented [Omise.js](https://gitub.com/omise/omise.js) on your
+After you have implemented [Omise.js](https://www.omise.co/omise-js-api) on your
 frontend you can charge the card by passing the token into the `card` attribute.
 
 ```ruby
@@ -95,7 +95,7 @@ end
 ```
 
 You can check the complete documentation at
-[docs.omise.co](https://docs.omise.co/).
+[omise.co/docs](https://omise.co/docs).
 
 ## Development
 
