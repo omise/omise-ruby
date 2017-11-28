@@ -89,6 +89,10 @@ module Omise
         headers = headers.merge(omise_version: Omise.api_version)
       end
 
+      if Omise.user_agent_suffix
+        headers[:user_agent] += ' ' + Omise.user_agent_suffix
+      end
+
       headers
     end
   end
