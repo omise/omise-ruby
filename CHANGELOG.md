@@ -2,6 +2,10 @@
 
 An [unreleased] version is not available on rubygems and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
+## [0.7.1] 2017-12-13
+
+- [Added] Ability to add a suffix to the user agent
+
 ## [0.7.0] 2017-06-04
 
 - [Added] Support for start_date in Scheduler
