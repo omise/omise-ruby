@@ -40,6 +40,14 @@ class TestSchedule < Omise::Test
     assert @schedule.destroyed?
   end
 
+  def test_that_we_can_get_correct_schedule_status_when_it_destroyed
+    refute @schedule.destroyed?
+
+    @schedule.destroy
+
+    assert @schedule.destroyed?
+  end
+
   def test_that_we_can_list_occurences
     occurrences = @schedule.occurrences
 
