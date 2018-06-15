@@ -25,5 +25,9 @@ module Omise
     def destroy(attributes = {})
       assign_attributes resource(attributes).delete
     end
+
+    def destroyed?
+      self.status == "deleted" ? true : false
+    end
   end
 end
