@@ -1,6 +1,7 @@
 {
   "object": "schedule",
   "location": "/schedules/schd_test_4yq7duw15p9hdrjp8oq",
+  "status": "active",
   "id": "schd_test_4yq7duw15p9hdrjp8oq",
   "occurrences": {
     "object": "list",
