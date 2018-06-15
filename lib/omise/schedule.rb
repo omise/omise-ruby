@@ -27,7 +27,7 @@ module Omise
     end
 
     def destroyed?
-      self.status == "deleted" ? true : false
+      status == "deleted"
     end
   end
 end
