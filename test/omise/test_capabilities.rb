@@ -3,7 +3,7 @@ require "support"
 class TestCapabilities < Omise::Test
   setup do
     @capabilities = Omise::Capabilities.retrieve
-    backends = @capabilities.backends
+    backends = @capabilities.payment_backends
     p backends.select{ |b| b['type'] == 'installment' }
   end
 

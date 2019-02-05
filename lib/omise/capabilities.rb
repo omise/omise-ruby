@@ -5,8 +5,8 @@ module Omise
     self.endpoint = "/capability"
     singleton!
 
-    def backends
-    	self.payment_backends.map{ |backend| backend.values[0].merge({_id: backend.keys[0]}) }
+    def payment_backends
+    	self.attributes['payment_backends'].map{ |backend| backend.values[0].merge({'id' => backend.keys[0]}) }
     end
 
     def self.resource_key
