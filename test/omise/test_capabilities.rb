@@ -6,7 +6,7 @@ class TestCapabilities < Omise::Test
     @payment_backends = @capabilities.payment_backends
   end
 
-  def test_that_we_can_retrieve_the_account
+  def test_that_we_can_retrieve_capabilities
     assert_instance_of Omise::Capabilities, @capabilities
     assert_equal "/capability", @capabilities.location
   end
