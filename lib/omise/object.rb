@@ -7,15 +7,19 @@ module Omise
 
     class << self
       attr_accessor :endpoint
+      attr_accessor :options
 
       def location(id = nil)
         [endpoint, id].compact.join("/")
       end
 
       def resource(path, attributes = {})
-        key = attributes.delete(:key) { resource_key }
+        @options = {
+          key: attributes.delete(:key) { resource_key }
+        }
+
         preprocess_attributes!(attributes)
-        Omise.resource.new(resource_url, path, key)
+        Omise.resource.new(resource_url, path, @options[:key])
       end
 
       private
@@ -53,11 +57,18 @@ module Omise
     end
 
     def resource(*args)
-      collection.resource(location, *args)
+      collection.resource(location, *prepare_args(args))
     end
 
     def nested_resource(path, *args)
-      collection.resource([location, path].compact.join("/"), *args)
+      collection.resource([location, path].compact.join("/"), *prepare_args(args))
+    end
+
+    # Update args to include current object#options
+    def prepare_args(args)
+      args[0] = @options.merge(args[0])
+
+      args
     end
   end
 end

@@ -4,7 +4,7 @@ module Omise
   module Attributes
     def initialize(attributes = {}, options = {})
       @attributes          = attributes
-      @options             = options
+      @options             = initialize_options(options)
       @expanded_attributes = {}
     end
 
@@ -96,10 +96,18 @@ module Omise
 
     def expand_attribute(object, key, options = {})
       if @attributes[key] && @attributes[key].is_a?(String)
-        @expanded_attributes[key] ||= object.retrieve(@attributes[key], options)
+        @expanded_attributes[key] ||= object.retrieve(@attributes[key], @options.merge(options))
       else
         self[key]
       end
+    end
+
+    # When instantiating a new instance, we'll include class's options
+    # so new object instance could use the correct api key (from parent's settings)
+    def initialize_options(options)
+      return options unless defined?(self.class.options) && !self.class.options.nil?
+
+      self.class.options.merge(options)
     end
 
     def cleanup!
