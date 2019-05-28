@@ -21,7 +21,7 @@ module Omise
     end
 
     def self.list(attributes = {})
-      List.new resource(location, attributes).get(attributes)
+      List.new resource(location, attributes).get(attributes), options
     end
 
     def self.create(attributes = {})

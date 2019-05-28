@@ -1,18 +1,28 @@
 require "support"
 
+module Omise
+  LIST_DATA = JSON.parse(JSON.generate({
+    object:   "list",
+    location: "/charges",
+    offset:   0,
+    limit:    20,
+    total:    40,
+    data:     20.times.map { |i| { object: "charge", id: "chrg_#{i}" } },
+  }))
+
+  class Stove < OmiseObject
+    def self.list(attributes = {})
+      resource(location, attributes)
+
+      List.new(LIST_DATA, options)
+    end
+  end
+end
+
 class TestList < Omise::Test
   setup do
-    attributes = JSON.parse(JSON.generate({
-      object:   "list",
-      location: "/charges",
-      offset:   0,
-      limit:    20,
-      total:    40,
-      data:     20.times.map { |i| { object: "charge", id: "chrg_#{i}" } },
-    }))
-
     @parent = Object.new
-    @list   = Omise::List.new(attributes, parent: @parent)
+    @list   = Omise::List.new(Omise::LIST_DATA, parent: @parent)
   end
 
   def test_that_we_can_initialize_a_list
@@ -82,6 +92,44 @@ class TestList < Omise::Test
 
   def test_that_we_can_get_the_last_element_of_the_array
     assert_equal "chrg_19", @list.last.id
+  end
+
+  def test_that_subsequent_call_should_retain_api_key
+    expected = { key: "pkey_test" }
+    list     = Omise::Stove.list(expected.dup)
+    list.next_page
+
+    assert_equal expected, list.instance_variable_get(:@options)
+  end
+
+  def test_that_different_list_instance_should_use_its_own_key
+    expected = { key: "pkey_test_1" }
+    list     = Omise::Stove.list(expected.dup)
+    list.next_page
+
+    assert_equal expected, list.instance_variable_get(:@options)
+
+    # new list change key
+    expected = { key: "pkey_test_2" }
+    list     = Omise::Stove.list(expected.dup)
+    list.next_page
+
+    assert_equal expected, list.instance_variable_get(:@options)
+  end
+
+  def test_that_it_should_use_original_key_when_not_specified
+    expected = { key: "pkey_test_1" }
+    list     = Omise::Stove.list(expected.dup)
+    list.next_page
+
+    assert_equal expected, list.instance_variable_get(:@options)
+
+    # new list, don't specify key, use original key
+    expected = { key: Omise.secret_api_key }
+    list     = Omise::Stove.list()
+    list.next_page
+
+    assert_equal expected, list.instance_variable_get(:@options)
   end
 
   private

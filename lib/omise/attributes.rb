@@ -83,7 +83,7 @@ module Omise
     end
 
     def list_attribute(klass, key)
-      klass.new(@attributes[key], parent: self)
+      klass.new(@attributes[key], @options.merge(parent: self))
     end
 
     def list_nested_resource(klass, key, options = {})
@@ -91,7 +91,7 @@ module Omise
         return list_attribute(klass, key)
       end
 
-      klass.new(nested_resource(key, options).get, parent: self)
+      klass.new(nested_resource(key, options).get, @options.merge(parent: self))
     end
 
     def expand_attribute(object, key, options = {})

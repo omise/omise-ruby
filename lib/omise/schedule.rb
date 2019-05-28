@@ -7,7 +7,7 @@ module Omise
     self.endpoint = "/schedules"
 
     def self.list(attributes = {})
-      List.new resource(location, attributes).get(attributes)
+      List.new resource(location, attributes).get(attributes), options
     end
 
     def self.retrieve(id, attributes = {})

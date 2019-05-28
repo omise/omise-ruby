@@ -16,7 +16,7 @@ module Omise
     end
 
     def self.list(attributes = {})
-      List.new resource(location, attributes).get(attributes)
+      List.new resource(location, attributes).get(attributes), options
     end
 
     def self.create(attributes = {})
@@ -36,7 +36,7 @@ module Omise
     end
 
     def schedules(attributes = {})
-      List.new nested_resource("schedules", attributes).get(attributes)
+      List.new nested_resource("schedules", attributes).get(attributes), @options
     end
 
     def charge(attributes = {})

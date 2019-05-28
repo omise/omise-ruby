@@ -13,7 +13,7 @@ module Omise
 
     def self.list(attributes = {})
       status = attributes.delete(:status)
-      List.new resource(location(status), attributes).get(attributes)
+      List.new resource(location(status), attributes).get(attributes), options
     end
 
     def self.retrieve(id = nil, attributes = {})
