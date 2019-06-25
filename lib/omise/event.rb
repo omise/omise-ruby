@@ -29,8 +29,8 @@ module Omise
     # Returns a new {Event} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.retrieve(id, attributes = {})
-      new resource(location(id), attributes).get(attributes)
+    def self.retrieve(id, params = {})
+      account.get(location(id), params: params)
     end
 
     # Retrieves a list of events objects.
@@ -58,8 +58,8 @@ module Omise
     # Returns a new {List} instance if successful and raises an {Error} if the
     # request fails.
     #
-    def self.list(attributes = {})
-      List.new resource(location, attributes).get(attributes)
+    def self.list(params = {})
+      account.get(location, params: params)
     end
 
     # Reloads an existing event.
@@ -76,8 +76,8 @@ module Omise
     # Returns the same {Event} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def reload(attributes = {})
-      assign_attributes resource(attributes).get(attributes)
+    def reload(params = {})
+      assign_attributes account.get(location, params: params, as: Hash)
     end
   end
 end

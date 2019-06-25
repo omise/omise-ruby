@@ -42,8 +42,8 @@ module Omise
     # Returns a new {Recipient} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.retrieve(id, attributes = {})
-      new resource(location(id), attributes).get(attributes)
+    def self.retrieve(id, params = {})
+      account.get(location(id), params: params)
     end
 
     # Retrieves a list of recipient objects.
@@ -71,8 +71,8 @@ module Omise
     # Returns a new {List} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.list(attributes = {})
-      List.new resource(location, attributes).get(attributes)
+    def self.list(params = {})
+      account.get(location, params: params)
     end
 
     # Creates a new recipient.
@@ -97,8 +97,8 @@ module Omise
     # Returns a new {Recipient} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.create(attributes = {})
-      new resource(location, attributes).post(attributes)
+    def self.create(params = {})
+      account.post(location, params: params)
     end
 
     # Reloads an existing recipient.
@@ -115,8 +115,8 @@ module Omise
     # Returns the same {Recipient} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def reload(attributes = {})
-      assign_attributes resource(attributes).get(attributes)
+    def reload(params = {})
+      assign_attributes account.get(location, params: params, as: Hash)
     end
 
     # Updates an existing recipient.
@@ -133,8 +133,8 @@ module Omise
     # Returns the same {Recipient} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def update(attributes = {})
-      assign_attributes resource(attributes).patch(attributes)
+    def update(params = {})
+      assign_attributes account.patch(location, params: params, as: Hash)
     end
 
     # Destroys an existing recipient.
@@ -152,8 +152,8 @@ module Omise
     # Returns the same {Recipient} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def destroy(attributes = {})
-      assign_attributes resource(attributes).delete
+    def destroy
+      assign_attributes account.delete(location, as: Hash)
     end
 
     # Typecasts the bank account attached to the recipient.

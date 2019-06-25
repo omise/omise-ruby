@@ -24,8 +24,8 @@ module Omise
     # Returns a new {Charge} instance if successful and raises an {Error} if the
     # request fails.
     #
-    def retrieve(id, attributes = {})
-      Charge.retrieve(id, attributes)
+    def retrieve(id, params = {})
+      account.get(Charge.location(id), params: params)
     end
   end
 end

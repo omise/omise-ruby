@@ -30,8 +30,8 @@ module Omise
     # Returns a new {Refund} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def create(attributes = {})
-      Refund.new self.class.resource(location, attributes).post(attributes)
+    def create(params = {})
+      account.post(location, params: params)
     end
 
     # Retrieves a refund object.
@@ -48,8 +48,8 @@ module Omise
     # Returns a new {Refund} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def retrieve(id, attributes = {})
-      Refund.new self.class.resource(location(id), attributes).get(attributes)
+    def retrieve(id, params = {})
+      account.get(location(id), params: params)
     end
   end
 end

@@ -25,9 +25,16 @@ module Omise
   class Balance < OmiseObject
     self.endpoint = "/balance"
 
-    # Make this class a singleton resource. See `omise/singleton_resource.rb`
-    # for more information to see which methods are available.
-    #
-    singleton!
+    def self.retrieve(params = {})
+      account.get(location, params: params)
+    end
+
+    def reload(params = {})
+      assign_attributes account.get(location, params: params, as: Hash)
+    end
+
+    def location
+      self.class.location
+    end
   end
 end

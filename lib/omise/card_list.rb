@@ -34,12 +34,12 @@ module Omise
     # Returns a new {Card} instance if successful and raises an {Error} if the
     # request fails.
     #
-    def retrieve(id, attributes = {})
+    def retrieve(id, params = {})
       if !defined?(Card)
         require "omise/card"
       end
 
-      Card.new self.class.resource(location(id), attributes).get(attributes)
+      account.get(location(id), params: params)
     end
 
     # Creates a card object that will belong to the customer object that
@@ -66,12 +66,12 @@ module Omise
     # Returns a new {Card} instance if successful and raises an {Error} if one
     # of the requests fails.
     #
-    def create(attributes = {})
+    def create(params = {})
       if !defined?(Token)
         require "omise/token"
       end
 
-      token = Token.create(card: attributes)
+      token = Token.create(card: params)
       parent.update(card: token.id)
       retrieve(token.card.id)
     end

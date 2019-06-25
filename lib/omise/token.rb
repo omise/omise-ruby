@@ -1,26 +1,19 @@
 require "omise/object"
-require "omise/vault"
 
 module Omise
   class Token < OmiseObject
     self.endpoint = "/tokens"
 
-    extend Vault
-
-    def self.retrieve(id, attributes = {})
-      new resource(location(id), attributes).get(attributes)
+    def self.retrieve(id, params = {})
+      account.get(location(id), params: params, scope: :vault)
     end
 
-    def self.create(attributes = {})
-      new resource(location, attributes).post(attributes)
+    def self.create(params = {})
+      account.post(location, params: params, scope: :vault)
     end
 
-    def reload(attributes = {})
-      assign_attributes resource(attributes).get(attributes)
-    end
-
-    def self.preprocess_attributes!(attributes)
-      # noop
+    def reload(params = {})
+      assign_attributes account.get(location, params: params, as: Hash, scope: :vault)
     end
   end
 end

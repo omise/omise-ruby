@@ -31,12 +31,12 @@ module Omise
     # Returns a new {Document} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def retrieve(id, attributes = {})
+    def retrieve(id, params = {})
       if !defined?(Document)
         require "omise/document"
       end
 
-      Document.new self.class.resource(location(id), attributes).get(attributes)
+      account.get(location(id), params: params)
     end
 
     # Upload a document object and attach it to the parent dispute object.
@@ -59,8 +59,8 @@ module Omise
         require "omise/document"
       end
 
-      attributes = { file: file }
-      Document.new self.class.resource(location, attributes).post(attributes)
+      params = { file: file }
+      account.post(location, params: params)
     end
   end
 end

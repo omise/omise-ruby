@@ -43,8 +43,8 @@ module Omise
     # Returns a new {Customer} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.retrieve(id = nil, attributes = {})
-      new resource(location(id), attributes).get(attributes)
+    def self.retrieve(id, params = {})
+      account.get(location(id), params: params)
     end
 
     # Retrieves a list of customer objects.
@@ -72,8 +72,8 @@ module Omise
     # Returns a new {List} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.list(attributes = {})
-      List.new resource(location, attributes).get(attributes)
+    def self.list(params = {})
+      account.get(location, params: params)
     end
 
     # Creates a new customer.
@@ -92,8 +92,8 @@ module Omise
     # Returns a new {Customer} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.create(attributes = {})
-      new resource(location, attributes).post(attributes)
+    def self.create(params = {})
+      account.post(location, params: params)
     end
 
     # Reloads an existing customer.
@@ -110,8 +110,8 @@ module Omise
     # Returns the same {Customer} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def reload(attributes = {})
-      assign_attributes resource(attributes).get(attributes)
+    def reload(params = {})
+      assign_attributes account.get(location, params: params, as: Hash)
     end
 
     # Updates an existing customer.
@@ -128,8 +128,8 @@ module Omise
     # Returns the same {Customer} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def update(attributes = {})
-      assign_attributes resource(attributes).patch(attributes)
+    def update(params = {})
+      assign_attributes account.patch(location, params: params, as: Hash)
     end
 
     # Destroys an existing customer.
@@ -147,8 +147,8 @@ module Omise
     # Returns the same {Customer} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def destroy(attributes = {})
-      assign_attributes resource(attributes).delete
+    def destroy
+      assign_attributes account.delete(location, as: Hash)
     end
 
     # List schedules attached to this customer.
@@ -165,8 +165,8 @@ module Omise
     #
     # Returns a new {List} instance or raises an {Error} if the request fails.
     #
-    def schedules(attributes = {})
-      List.new nested_resource("schedules", attributes).get(attributes)
+    def schedules(params = {})
+      account.get(location("schedules"), params: params)
     end
 
     # Charges the customer.
@@ -184,12 +184,12 @@ module Omise
     # Returns a new {Charge} instance if successful or raises an {Error} if the
     # request fails.
     #
-    def charge(attributes = {})
+    def charge(params = {})
       if !defined?(Charge)
         require "omise/charge"
       end
 
-      Charge.create(attributes.merge(customer: id))
+      account.post(Charge.location, params: params.merge(customer: id))
     end
 
     # Typecasts or expands the default card attached to a customer if
@@ -208,8 +208,8 @@ module Omise
     # Returns a new {Card} instance if successful, nil if there's no card or
     # raises an {Error} if the request fails.
     #
-    def default_card(options = {})
-      expand_attribute cards, "default_card", options
+    def default_card(params = {})
+      expand_attribute cards, "default_card", params
     end
 
     # List cards attached to this customer.
@@ -232,8 +232,8 @@ module Omise
     # Returns a new {CardList} instance or raises an {Error} if the
     # request fails.
     #
-    def cards(options = {})
-      list_nested_resource CardList, "cards", options
+    def cards(params = {})
+      list_nested_resource CardList, "cards", params
     end
   end
 end

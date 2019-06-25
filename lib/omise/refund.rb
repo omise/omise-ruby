@@ -53,8 +53,8 @@ module Omise
     # Returns a new {List} instance if successful and raises an {Error} if the
     # request fails.
     #
-    def self.list(attributes = {})
-      List.new resource(location, attributes).get(attributes)
+    def self.list(params = {})
+      account.get(location, params: params)
     end
 
     # Reloads an existing refund.
@@ -72,8 +72,8 @@ module Omise
     # Returns the same {Refund} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def reload(attributes = {})
-      assign_attributes resource(attributes).get(attributes)
+    def reload(params = {})
+      assign_attributes account.get(location, params: params, as: Hash)
     end
 
     # Typecasts or expands the charge attached to a refund.
@@ -92,12 +92,12 @@ module Omise
     # Returns a new {Charge} instance if successful or raises an {Error} if the
     # request fails.
     #
-    def charge(options = {})
+    def charge(params = {})
       if !defined?(Charge)
         require "omise/charge"
       end
 
-      expand_attribute Charge, "charge", options
+      expand_attribute Charge, "charge", params
     end
 
     # Typecasts or expands the transaction attached to a refund.
@@ -116,12 +116,12 @@ module Omise
     # Returns a new {Transaction} instance if successful or raises an {Error}
     # if the request fails.
     #
-    def transaction(options = {})
+    def transaction(params = {})
       if !defined?(Transaction)
         require "omise/transaction"
       end
 
-      expand_attribute Transaction, "transaction", options
+      expand_attribute Transaction, "transaction", params
     end
   end
 end

@@ -24,8 +24,8 @@ module Omise
     # Returns a new {Occurence} instance if successful and raises an {Error}
     # if the request fails.
     #
-    def retrieve(id, attributes = {})
-      Occurrence.retrieve(id, attributes)
+    def retrieve(id, params = {})
+      account.get(Occurrence.location(id), params: params)
     end
   end
 end

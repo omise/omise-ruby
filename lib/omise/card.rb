@@ -31,8 +31,8 @@ module Omise
     # Returns the same {Card} instance with updated attributes if successful and
     # raises an {Error} if the request fails.
     #
-    def reload(attributes = {})
-      assign_attributes resource(attributes).get(attributes)
+    def reload(params = {})
+      assign_attributes account.get(location, params: params, as: Hash)
     end
 
     # Update the card object. Calling this method will issue a single
@@ -52,8 +52,8 @@ module Omise
     # Returns the same {Card} instance with updated attributes if successful and
     # raises an {Error} if the request fails.
     #
-    def update(attributes = {})
-      assign_attributes resource(attributes).patch(attributes)
+    def update(params = {})
+      assign_attributes account.patch(location, params: params, as: Hash)
     end
 
     # Delete the card object. Calling this method will issue a single
@@ -73,8 +73,8 @@ module Omise
     # Returns the same {Card} instance with updated attributes if successful and
     # raises an {Error} if the request fails.
     #
-    def destroy(attributes = {})
-      assign_attributes resource(attributes).delete
+    def destroy
+      assign_attributes account.delete(location, as: Hash)
     end
   end
 end

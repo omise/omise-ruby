@@ -18,8 +18,8 @@ module Omise
     # Returns a new {Chain} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.retrieve(id, attributes = {})
-      new resource(location(id), attributes).get(attributes)
+    def self.retrieve(id, params = {})
+      account.get(location(id), params: params)
     end
 
     # Retrieves a list of chains objects.
@@ -47,8 +47,8 @@ module Omise
     # Returns a new {List} instance if successful and raises an {Error} if the
     # request fails.
     #
-    def self.list(attributes = {})
-      List.new resource(location, attributes).get(attributes)
+    def self.list(params = {})
+      account.get(location, params: params)
     end
 
     # Reloads an existing chain.
@@ -65,8 +65,8 @@ module Omise
     # Returns the same {Chain} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def reload(attributes = {})
-      assign_attributes resource(attributes).get(attributes)
+    def reload(params = {})
+      assign_attributes account.get(location, params: params)
     end
 
     # Revokes an existing chain.
@@ -83,8 +83,8 @@ module Omise
     # Returns the same {Chain} instance with the `revoked` attribute set to true
     # if successful and raises an {Error} if the request fails.
     #
-    def revoke(attributes = {})
-      assign_attributes nested_resource("revoke", attributes).post(attributes)
+    def revoke(params = {})
+      assign_attributes account.post(location("revoke"), params: params)
     end
   end
 end

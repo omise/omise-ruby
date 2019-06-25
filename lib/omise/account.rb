@@ -1,4 +1,5 @@
 require "omise/object"
+require "omise/resource"
 
 module Omise
   # {Account} allows you to retrieve an Omise account. Note that the `/account`

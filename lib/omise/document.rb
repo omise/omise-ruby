@@ -26,8 +26,8 @@ module Omise
     # Returns the same {Document} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def reload(attributes = {})
-      assign_attributes resource(attributes).get(attributes)
+    def reload(params = {})
+      assign_attributes account.get(location, params: params, as: Hash)
     end
 
     # Destroys an existing document.
@@ -46,8 +46,8 @@ module Omise
     # Returns the same {Document} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def destroy(attributes = {})
-      assign_attributes resource(attributes).delete
+    def destroy
+      assign_attributes account.delete(location, as: Hash)
     end
   end
 end

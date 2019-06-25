@@ -42,8 +42,8 @@ module Omise
     #
     # Returns a {Scheduler} instance.
     #
-    def self.schedule(attributes = {})
-      Scheduler.new(:charge, attributes)
+    def self.schedule(params = {})
+      Scheduler.new(:charge, params: params)
     end
 
     # Retrieves a charge object.
@@ -59,8 +59,8 @@ module Omise
     # Returns a new {Charge} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.retrieve(id, attributes = {})
-      new resource(location(id), attributes).get(attributes)
+    def self.retrieve(id, params = {})
+      account.get(location(id), params: params)
     end
 
     # Retrieves a list of charge objects.
@@ -88,8 +88,8 @@ module Omise
     # Returns a new {List} instance if successful and raises an {Error} if the
     # request fails.
     #
-    def self.list(attributes = {})
-      List.new resource(location, attributes).get(attributes)
+    def self.list(params = {})
+      account.get(location, params: params)
     end
 
     # Creates a new charge.
@@ -110,8 +110,8 @@ module Omise
     # Returns a new {Charge} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.create(attributes = {})
-      new resource(location, attributes).post(attributes)
+    def self.create(params = {})
+      account.post(location, params: params)
     end
 
     # Reloads an existing charge.
@@ -128,8 +128,8 @@ module Omise
     # Returns the same {Charge} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def reload(attributes = {})
-      assign_attributes resource(attributes).get(attributes)
+    def reload(params = {})
+      assign_attributes account.get(location, params: params, as: Hash)
     end
 
     # Updates an existing charge.
@@ -146,8 +146,8 @@ module Omise
     # Returns the same {Charge} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def update(attributes = {})
-      assign_attributes resource(attributes).patch(attributes)
+    def update(params = {})
+      assign_attributes account.patch(location, params: params, as: Hash)
     end
 
     # Captures a charge that is in authorized state *only*.
@@ -164,8 +164,8 @@ module Omise
     # Returns the same {Charge} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def capture(options = {})
-      assign_attributes nested_resource("capture", options).post
+    def capture
+      assign_attributes account.post(location("capture"), as: Hash)
     end
 
     # Reverses a charge that is in authorized state *only*.
@@ -182,8 +182,8 @@ module Omise
     # Returns the same {Charge} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def reverse(options = {})
-      assign_attributes nested_resource("reverse", options).post
+    def reverse
+      assign_attributes account.post(location("reverse"), as: Hash)
     end
 
     # Typecasts or expands the customer attached to a charge if it's present.
@@ -201,12 +201,12 @@ module Omise
     # Returns a new {Customer} instance if successful, nil if there's no
     # customer or raises an {Error} if the request fails.
     #
-    def customer(options = {})
+    def customer(params = {})
       if !defined?(Customer)
         require "omise/customer"
       end
 
-      expand_attribute Customer, "customer", options
+      expand_attribute Customer, "customer", params
     end
 
     # Typecasts or expands the dispute attached to a charge if it's present.
@@ -224,12 +224,12 @@ module Omise
     # Returns a new {Dispute} instance if successful, nil if there's no dispute 
     # or raises an {Error} if the request fails.
     #
-    def dispute(options = {})
+    def dispute(params = {})
       if !defined?(Dispute)
         require "omise/dispute"
       end
 
-      expand_attribute Dispute, "dispute", options
+      expand_attribute Dispute, "dispute", params
     end
 
     # Typecasts or expands the transaction attached to a charge if it's present.
@@ -247,12 +247,12 @@ module Omise
     # Returns a new {Transaction} instance if successful, nil if there's no
     # transaction or raises an {Error} if the request fails.
     #
-    def transaction(options = {})
+    def transaction(params = {})
       if !defined?(Transaction)
         require "omise/transaction"
       end
 
-      expand_attribute Transaction, "transaction", options
+      expand_attribute Transaction, "transaction", params
     end
 
     # List refunds attached to this charge.
@@ -275,8 +275,8 @@ module Omise
     # Returns a new {RefundList} instance or raises an {Error} if the
     # request fails.
     #
-    def refunds(options = {})
-      list_nested_resource RefundList, "refunds", options
+    def refunds(params = {})
+      list_nested_resource RefundList, "refunds", params
     end
 
     # Tells wether or not the charge was paid. This method will return the

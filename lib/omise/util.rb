@@ -5,27 +5,6 @@ require "omise/error"
 
 module Omise
   module Util module_function
-    def typecast(object)
-      klass = begin
-        klass_name = object["object"].split("_").map(&:capitalize).join("")
-        Omise.const_get(klass_name)
-      rescue NameError
-        OmiseObject
-      end
-
-      klass.new(object)
-    end
-
-    def load_response(response)
-      object = JSON.load(response)
-
-      if object["object"] == "error"
-        raise Omise::Error, object
-      end
-
-      object
-    end
-
     def generate_query(object, namespace = nil)
       if object.is_a?(Hash)
         return object.map do |key, value|

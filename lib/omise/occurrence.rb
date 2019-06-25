@@ -27,8 +27,8 @@ module Omise
     # Returns a new {Occurrence} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.retrieve(id, attributes = {})
-      new resource(location(id), attributes).get(attributes)
+    def self.retrieve(id, params = {})
+      account.get(location(id), params: params)
     end
 
     # Typecasts or expands the schedule attached to an occurrence if
@@ -47,12 +47,12 @@ module Omise
     # Returns a new {Schedule} instance if successful, nil if there's no
     # schedule or raises an {Error} if the request fails.
     #
-    def schedule(options = {})
+    def schedule(params = {})
       if !defined?(Schedule)
         require "omise/schedule"
       end
 
-      expand_attribute Schedule, "schedule", options
+      expand_attribute Schedule, "schedule", params
     end
 
     # Reloads an existing occurrence.
@@ -69,8 +69,8 @@ module Omise
     # Returns the same {Occurrence} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def reload(attributes = {})
-      assign_attributes resource(attributes).get(attributes)
+    def reload(params = {})
+      assign_attributes account.get(location, params: params, as: Hash)
     end
   end
 end

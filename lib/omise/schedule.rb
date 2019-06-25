@@ -31,8 +31,8 @@ module Omise
     # Returns a new {List} instance if successful and raises an {Error} if the
     # request fails.
     #
-    def self.list(attributes = {})
-      List.new resource(location, attributes).get(attributes)
+    def self.list(params = {})
+      account.get(location, params: params)
     end
 
     # Retrieves a schedule object.
@@ -48,8 +48,8 @@ module Omise
     # Returns a new {Schedule} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.retrieve(id, attributes = {})
-      new resource(location(id), attributes).get(attributes)
+    def self.retrieve(id, params = {})
+      account.get(location(id), params: params)
     end
 
     # Creates a new schedule.
@@ -74,8 +74,8 @@ module Omise
     # Returns a new {Charge} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.create(attributes = {})
-      new resource(location, attributes).post(attributes)
+    def self.create(params = {})
+      account.post(location, params: params)
     end
 
     # Delete the schedule.
@@ -92,8 +92,8 @@ module Omise
     # Returns the same {Schedule} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def destroy(attributes = {})
-      assign_attributes resource(attributes).delete
+    def destroy
+      assign_attributes account.delete(location, as: Hash)
     end
 
     def destroyed?
@@ -120,8 +120,8 @@ module Omise
     # Returns a new {OccurrenceList} instance or raises an {Error} if the
     # request fails.
     #
-    def occurrences(options = {})
-      list_nested_resource OccurrenceList, "occurrences", options
+    def occurrences(params = {})
+      list_nested_resource OccurrenceList, "occurrences", params
     end
   end
 end

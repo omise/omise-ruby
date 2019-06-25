@@ -10,7 +10,7 @@ class TestAccount < Omise::Test
     assert_equal "/account", @account.location
   end
 
-  def test_that_we_can_reload_a_customer
+  def test_that_we_can_reload_an_account
     @account.attributes.taint
     @account.reload
 

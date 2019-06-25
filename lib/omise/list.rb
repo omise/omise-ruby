@@ -5,21 +5,13 @@ module Omise
   class List < OmiseObject
     include Enumerable
 
-    def initialize(attributes = {}, options = {})
-      super(attributes, options)
-    end
-
-    def reload(attributes = {})
+    def reload(params = {})
       @data = nil
-      assign_attributes resource(attributes).get(attributes)
-    end
-
-    def parent
-      @options[:parent]
+      assign_attributes account.get(location, params: params)
     end
 
     def data
-      @data ||= @attributes["data"].map { |o| Omise::Util.typecast(o) }
+      @data ||= @attributes["data"].map { |o| typecast(o, account: account, parent: self) }
     end
 
     def first_page?

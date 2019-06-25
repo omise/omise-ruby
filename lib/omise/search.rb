@@ -2,8 +2,8 @@ require "omise/object"
 
 module Omise
   class Search < OmiseObject
-    def self.execute(attributes = {})
-      new resource("/search", attributes).get(attributes)
+    def self.execute(params = {})
+      account.get("/search", params: params)
     end
   end
 end

@@ -43,8 +43,8 @@ module Omise
     # Returns a new {Dispute} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.retrieve(id = nil, attributes = {})
-      new resource(location(id), attributes).get(attributes)
+    def self.retrieve(id = nil, params = {})
+      account.get(location(id), params: params)
     end
 
     # Retrieves a list of dispute objects.
@@ -72,9 +72,9 @@ module Omise
     # Returns a new {List} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.list(attributes = {})
-      status = attributes.delete(:status)
-      List.new resource(location(status), attributes).get(attributes)
+    def self.list(params = {})
+      status = params.delete(:status)
+      account.get(location(status), params: params)
     end
 
     # Reloads an existing dispute.
@@ -91,8 +91,8 @@ module Omise
     # Returns the same {Dispute} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def reload(attributes = {})
-      assign_attributes resource(attributes).get(attributes)
+    def reload(params = {})
+      assign_attributes account.get(location, params: params, as: Hash)
     end
 
     # Updates an existing dispute.
@@ -109,8 +109,8 @@ module Omise
     # Returns the same {Dispute} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def update(attributes = {})
-      assign_attributes resource(attributes).patch(attributes)
+    def update(params = {})
+      assign_attributes account.patch(location, params: params, as: Hash)
     end
 
     # Typecasts or expands the charge attached to a dispute.
@@ -128,12 +128,12 @@ module Omise
     # Returns a new {Charge} instance if successful or raises an {Error} if the
     # request fails.
     #
-    def charge(options = {})
+    def charge(params = {})
       if !defined?(Charge)
         require "omise/charge"
       end
 
-      expand_attribute Charge, "charge", options
+      expand_attribute Charge, "charge", params
     end
 
     # List documents attached to this dispute.
@@ -156,8 +156,8 @@ module Omise
     # Returns a new {DocumentList} instance or raises an {Error} if the
     # request fails.
     #
-    def documents(options = {})
-      list_nested_resource DocumentList, "documents", options
+    def documents(params = {})
+      list_nested_resource DocumentList, "documents", params
     end
   end
 end

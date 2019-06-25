@@ -42,8 +42,8 @@ module Omise
     # Returns a new {Link} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.retrieve(id, attributes = {})
-      new resource(location(id), attributes).get(attributes)
+    def self.retrieve(id, params = {})
+      account.get(location(id), params: params)
     end
 
     # Retrieves a list of links objects.
@@ -71,8 +71,8 @@ module Omise
     # Returns a new {List} instance if successful and raises an {Error} if the
     # request fails.
     #
-    def self.list(attributes = {})
-      List.new resource(location, attributes).get(attributes)
+    def self.list(params = {})
+      account.get(location, params: params)
     end
 
     # Creates a new link.
@@ -93,8 +93,8 @@ module Omise
     # Returns a new {Link} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.create(attributes = {})
-      new resource(location, attributes).post(attributes)
+    def self.create(params = {})
+      account.post(location, params: params)
     end
 
     # Reloads an existing link.
@@ -111,8 +111,8 @@ module Omise
     # Returns the same {Link} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def reload(attributes = {})
-      assign_attributes resource(attributes).get(attributes)
+    def reload(params = {})
+      assign_attributes account.get(location, params: params, as: Hash)
     end
 
     # List charges attached to a link.
@@ -135,8 +135,8 @@ module Omise
     # Returns a new {ChargeList} instance or raises an {Error} if the
     # request fails.
     #
-    def charges(options = {})
-      list_nested_resource ChargeList, "charges", options
+    def charges(params = {})
+      list_nested_resource ChargeList, "charges", params
     end
   end
 end

@@ -32,8 +32,8 @@ module Omise
     # Returns a new {Forex} instance if successful and raises an {Error} if
     # the request fails.
     #
-    def self.from(currency, attributes = {})
-      new resource(location(currency.to_s.downcase), attributes).get(attributes)
+    def self.from(currency, params = {})
+      account.get(location(currency.to_s.downcase), params: params)
     end
 
     # Reloads an existing forex between the `from` currency and your account
@@ -54,8 +54,8 @@ module Omise
     # Returns the same {Forex} instance with its attributes updated if
     # successful and raises an {Error} if the request fails.
     #
-    def reload(attributes = {})
-      assign_attributes resource(attributes).get(attributes)
+    def reload(params = {})
+      assign_attributes account.get(location, params: params, as: Hash)
     end
   end
 end
