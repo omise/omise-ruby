@@ -138,7 +138,7 @@ module Omise
 
     def month_with_weekday(day)
       unless MONTH_WEEKDAYS.include?(day)
-        raise "#{day} does not match #{WEEKDAY_OF_MONTH.inspect}"
+        raise "#{day} does not match #{MONTH_WEEKDAYS.inspect}"
       end
 
       renew(period: "month", on: { weekday_of_month: day })
