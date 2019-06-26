@@ -61,7 +61,7 @@ module Omise
 
     # Retrieves the current {Account}.
     #
-    # Returns an {Account} instance if successful and raises an {Error} if the 
+    # Returns an {Account} instance if successful and raises an {Error} if the
     # request fails.
     #
     def self.retrieve(params = {})

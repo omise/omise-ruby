@@ -2,6 +2,29 @@ require "omise/object"
 require "omise/list"
 
 module Omise
+  # A {Chain} object is a composite object that represent an overlap between
+  # your own account (the merchant account) and a sub account which has given
+  # you permission to create charges in their account. You can use the key
+  # present in this object to create charges on the behalf of the submerchant.
+  # Tokens and customers can be fetched from your own account. However the sub 
+  # account won't have access to that customer object.
+  #
+  # Example:
+  #
+  #     chain = Omise::Chain.retrieve(chain_id)
+  #     customer = Omise::Customer.retrieve(customer_id)
+  #     Omise.use_account(secret_api_key: key) do
+  #       Omise::Charge.create({
+  #         amount: 100000,
+  #         currency: THB,
+  #         customer: customer.id
+  #       })
+  #     end
+  #
+  # See https://www.omise.co/chains-api for more information regarding the
+  # chain attributes, the available endpoints and the different parameters each
+  # endpoint accepts.
+  #
   class Chain < OmiseObject
     self.endpoint = "/chains"
 

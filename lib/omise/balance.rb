@@ -25,14 +25,37 @@ module Omise
   class Balance < OmiseObject
     self.endpoint = "/balance"
 
+    # Retrieves the current {Balance}.
+    #
+    # Returns a {Balance} instance if successful and raises an {Error} if the
+    # request fails.
+    #
     def self.retrieve(params = {})
       account.get(location, params: params)
     end
 
+    # Reload the balance object. Calling this method will issue a single
+    # HTTP request:
+    #
+    #   - GET https://api.omise.co/balance
+    #
+    # Example:
+    #
+    #     balance = Omise::Balance.retrieve
+    #     balance.reload
+    #
+    # Returns the same {Balance} instance with updated attributes if successful
+    # and raises an {Error} if the request fails.
+    #
     def reload(params = {})
       assign_attributes account.get(location, params: params, as: Hash)
     end
 
+    # Gets the location of the balance which will always be equal to the
+    # {Balance.endpoint}.
+    #
+    # Returns a {String}.
+    #
     def location
       self.class.location
     end
