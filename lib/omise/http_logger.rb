@@ -14,14 +14,14 @@ module Omise
     #
     attr_reader :logger
 
-    # Log a request from {Resource} to the logger. Note that the logs are
+    # Log a request from {Account} to the logger. Note that the logs are
     # inserted as `INFO`.
     #
     def log_request(request)
       info(format_request(request))
     end
 
-    # Log a response from {Resource} to the logger. Note that the logs are
+    # Log a response from {Account} to the logger. Note that the logs are
     # inserted as `INFO`.
     #
     def log_response(response)

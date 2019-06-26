@@ -2,14 +2,32 @@ require "omise/http_logger"
 
 module Omise
   module Config
+    # Gets the currently configured account. If none have been set, the first
+    # call to this method will instantiate an empty account which will defaults
+    # its configuration and credentials to this class. You can override this
+    # by instantiating a new account with a new configuration and credentials 
+    # and set it as the default account by calling `Omise.account = account`.
+    #
+    # Returns an {Account}.
+    #
     def account
       Thread.current[:omise_account] ||= Account.new
     end
 
+    # Sets a new account.
+    #
+    # Returns an {Account}.
+    #
     def account=(account)
       Thread.current[:omise_account] = account
     end
 
+    # Swap account for the duration of the given block. You can either pass an
+    # instance of {Account} or a Hash containing two keys: `:secret_api_key` and
+    # `:public_api_key`.
+    #
+    # Returns the result of the block.
+    #
     def use_account(new_account)
       if new_account.is_a?(Hash)
         new_account = Account.with_credentials(new_account)
