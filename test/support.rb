@@ -26,16 +26,16 @@ module Omise
     private
 
     def without_keys
-      original_vault_key = Omise.vault_key
-      original_api_key   = Omise.api_key
+      original_public_api_key = Omise.public_api_key
+      original_secret_api_key = Omise.secret_api_key
 
-      Omise.vault_key = nil
-      Omise.api_key   = nil
+      Omise.public_api_key = nil
+      Omise.secret_api_key = nil
 
       yield
 
-      Omise.vault_key = original_vault_key
-      Omise.api_key   = original_api_key
+      Omise.public_api_key = original_public_api_key
+      Omise.secret_api_key = original_secret_api_key
     end
   end
 

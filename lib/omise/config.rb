@@ -53,26 +53,6 @@ module Omise
     #
     attr_accessor :public_api_key
 
-    # @deprecated Backward compatibility for the old API Keys naming
-    #   conventions. This will be removed in 1.0.
-    #
-    alias_method :api_key, :secret_api_key
-
-    # @deprecated Backward compatibility for the old API Keys naming
-    #   conventions. This will be removed in 1.0.
-    #
-    alias_method :api_key=, :secret_api_key=
-
-    # @deprecated Backward compatibility for the old API Keys naming
-    #   conventions. This will be removed in 1.0.
-    #
-    alias_method :vault_key, :public_api_key
-
-    # @deprecated Backward compatibility for the old API Keys naming
-    #   conventions. This will be removed in 1.0.
-    #
-    alias_method :vault_key=, :public_api_key=
-
     # Sets a logger to be used by the HTTP Logger.
     #
     # Returns a new {HTTPLogger} that wraps the given logger.
