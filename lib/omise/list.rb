@@ -11,7 +11,7 @@ module Omise
     end
 
     def data
-      @data ||= @attributes["data"].map { |o| typecast(o, account: account, parent: self) }
+      @data ||= @attributes["data"].map { |o| typecast(o) }
     end
 
     def first_page?

@@ -43,19 +43,19 @@ module Omise
     undef :get, :post, :patch, :delete
 
     def get(path, params: {}, as: nil, scope: :api)
-      typecast(read_file(scope, "get", path, params), klass: as, account: self)
+      typecast(read_file(scope, "get", path, params), klass: as)
     end
 
     def post(path, params: {}, as: nil, scope: :api)
-      typecast(read_file(scope, "post", path), klass: as, account: self)
+      typecast(read_file(scope, "post", path), klass: as)
     end
 
     def patch(path, params: {}, as: nil, scope: :api)
-      typecast(read_file(scope, "patch", path), klass: as, account: self)
+      typecast(read_file(scope, "patch", path), klass: as)
     end
 
     def delete(path, as: nil, scope: :api)
-      typecast(read_file(scope, "delete", path), klass: as, account: self)
+      typecast(read_file(scope, "delete", path), klass: as)
     end
 
     private

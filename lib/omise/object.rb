@@ -60,7 +60,7 @@ module Omise
       value = @attributes[key.to_s]
 
       if value.is_a?(Hash)
-        typecast(value, account: account, parent: self)
+        typecast(value)
       else
         value
       end
@@ -124,7 +124,7 @@ module Omise
 
     private
 
-    def typecast(object, klass: nil, account: nil, parent: nil)
+    def typecast(object, klass: nil)
       if object.is_a?(String)
         object = JSON.load(object)
       end
@@ -146,7 +146,7 @@ module Omise
         end
       end
 
-      klass.new(object, account: account, parent: parent)
+      klass.new(object, account: account, parent: self)
     end
 
     def list_attribute(klass, key)
@@ -174,11 +174,7 @@ module Omise
         return list_attribute(klass, key)
       end
 
-      typecast(account.get(location(key), params: params, as: Hash), {
-        klass: klass,
-        parent: self,
-        account: account,
-      })
+      typecast(account.get(location(key), params: params, as: Hash), klass: klass)
     end
 
     def account

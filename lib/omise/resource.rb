@@ -22,28 +22,28 @@ module Omise
 
       resource(scope, path).get do |response, request|
         log(request, response)
-        typecast(response, klass: as, account: self)
+        typecast(response, klass: as)
       end
     end
 
     def patch(path, params: {}, as: nil, scope: :api)
       resource(scope, path).patch(params) do |response, request|
         log(request, response)
-        typecast(response, klass: as, account: self)
+        typecast(response, klass: as)
       end
     end
 
     def post(path, params: {}, as: nil, scope: :api)
       resource(scope, path).post(params) do |response, request|
         log(request, response)
-        typecast(response, klass: as, account: self)
+        typecast(response, klass: as)
       end
     end
 
     def delete(path, as: nil, scope: :api)
       resource(scope, path).delete do |response, request|
         log(request, response)
-        typecast(response, klass: as, account: self)
+        typecast(response, klass: as)
       end
     end
 
