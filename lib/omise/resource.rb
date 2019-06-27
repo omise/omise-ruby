@@ -13,6 +13,26 @@ module Omise
       user_agent:    "OmiseRuby/#{Omise::VERSION} Ruby/#{RUBY_VERSION}",
     }
 
+    # Issues a single GET request.
+    #
+    # The full URL will be built based on the scope which can either be `:api`
+    # or `:vault` and the path given as first argument. The scope determines
+    # which configuration url from the account is used. If the scope is `:api`,
+    # then the `api_url` will be used. On the other hand, if the `:vault` scope
+    # is used, then the vault_url will be used. Those two URLs can be
+    # configured either when instantiating a new account or directly on the
+    # {Omise} module.
+    #
+    # You can pass an `as:` option to this method to coerce the response into a
+    # specific class. The default is nil, which will automatically typecast the
+    # response if possible. Otherwise a barebone `OmiseObject` will be
+    # returned. You can also pass Hash if you want a raw ruby hash.
+    #
+    # The account which initiated the request will be injected into the
+    # response object unless the response object is a Hash.
+    #
+    # The params will be converted to a query string.
+    #
     def get(path, params: {}, as: nil, scope: :api)
       if params.any?
         uri = URI.parse(path)
@@ -26,13 +46,26 @@ module Omise
       end
     end
 
-    def patch(path, params: {}, as: nil, scope: :api)
-      resource(scope, path).patch(params) do |response, request|
-        log(request, response)
-        typecast(response, klass: as)
-      end
-    end
-
+    # Issues a single POST request.
+    #
+    # The full URL will be built based on the scope which can either be `:api`
+    # or `:vault` and the path given as first argument. The scope determines
+    # which configuration url from the account is used. If the scope is `:api`,
+    # then the `api_url` will be used. On the other hand, if the `:vault` scope
+    # is used, then the vault_url will be used. Those two URLs can be
+    # configured either when instantiating a new account or directly on the
+    # {Omise} module.
+    #
+    # You can pass an `as:` option to this method to coerce the response into a
+    # specific class. The default is nil, which will automatically typecast the
+    # response if possible. Otherwise a barebone `OmiseObject` will be
+    # returned. You can also pass Hash if you want a raw ruby hash.
+    #
+    # The account which initiated the request will be injected into the
+    # response object unless the response object is a Hash.
+    #
+    # The params will sent as JSON in the body of the request.
+    #
     def post(path, params: {}, as: nil, scope: :api)
       resource(scope, path).post(params) do |response, request|
         log(request, response)
@@ -40,6 +73,53 @@ module Omise
       end
     end
 
+    # Issues a single PATCH request.
+    #
+    # The full URL will be built based on the scope which can either be `:api`
+    # or `:vault` and the path given as first argument. The scope determines
+    # which configuration url from the account is used. If the scope is `:api`,
+    # then the `api_url` will be used. On the other hand, if the `:vault` scope
+    # is used, then the vault_url will be used. Those two URLs can be
+    # configured either when instantiating a new account or directly on the
+    # {Omise} module.
+    #
+    # The params will sent as JSON in the body of the request.
+    #
+    # You can pass an `as:` option to this method to coerce the response into a
+    # specific class. The default is nil, which will automatically typecast the
+    # response if possible. Otherwise a barebone `OmiseObject` will be
+    # returned. You can also pass Hash if you want a raw ruby hash.
+    #
+    # The account which initiated the request will be injected into the
+    # response object unless the response object is a Hash.
+    #
+    def patch(path, params: {}, as: nil, scope: :api)
+      resource(scope, path).patch(params) do |response, request|
+        log(request, response)
+        typecast(response, klass: as)
+      end
+    end
+
+    # Issues a single DELETE request.
+    #
+    # The full URL will be built based on the scope which can either be `:api`
+    # or `:vault` and the path given as first argument. The scope determines
+    # which configuration url from the account is used. If the scope is `:api`,
+    # then the `api_url` will be used. On the other hand, if the `:vault` scope
+    # is used, then the vault_url will be used. Those two URLs can be
+    # configured either when instantiating a new account or directly on the
+    # {Omise} module.
+    #
+    # You can pass an `as:` option to this method to coerce the response into a
+    # specific class. The default is nil, which will automatically typecast the
+    # response if possible. Otherwise a barebone `OmiseObject` will be
+    # returned. You can also pass Hash if you want a raw ruby hash.
+    #
+    # The account which initiated the request will be injected into the
+    # response object unless the response object is a Hash.
+    #
+    # No params can be sent using this method.
+    #
     def delete(path, as: nil, scope: :api)
       resource(scope, path).delete do |response, request|
         log(request, response)

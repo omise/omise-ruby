@@ -24,7 +24,9 @@ module Omise
     #
     attr_reader :attributes
 
-    # Replaces the existing attributes and cleanup the object.
+    # Replaces the existing attributes and cleanup the object. The cleanup
+    # process can be tweaked in each class by reimplementing the {cleanup!}
+    # private method.
     #
     # Returns self.
     #
@@ -54,7 +56,7 @@ module Omise
     # the value is a `Hash`, the value will be typecasted to one of the
     # {OmiseObject} subclasses (see {typecast}).
     #
-    # Returns an object.
+    # Returns any object.
     #
     def [](key)
       value = @attributes[key.to_s]
@@ -69,10 +71,17 @@ module Omise
     # Returns true if the key is present in the object attributes,
     # false otherwise.
     #
+    # Returns a boolean.
+    #
     def key?(key)
       @attributes.key?(key.to_s)
     end
 
+    # Returns true if the name given as argument is a predicate (ends with a
+    # question mark) and a key exist with the same name in the attributes hash.
+    #
+    # Returns a boolean.
+    #
     def predicate?(method_name)
       method_name   = method_name.to_s
       question_mark = method_name.chars.last == "?"
@@ -85,7 +94,10 @@ module Omise
       end
     end
 
-    # Returns true if we are able to dynamically respond to a given method call.
+    # Responds true if we are able to dynamically respond to a given method
+    # call. False otherwise.
+    #
+    # Returns a boolean.
     #
     def respond_to_missing?(method_name, *args, &block)
       if predicate?(method_name)
@@ -114,10 +126,16 @@ module Omise
     # Returns the hash representation of the object to be turned into a
     # JSON object.
     #
+    # Returns a {Hash}.
+    #
     def as_json(*)
       @attributes
     end
 
+    # The parent of this object.
+    #
+    # Returns an {OmiseObject}-like object or nil.
+    #
     def parent
       @options[:parent]
     end
