@@ -240,7 +240,7 @@ module Omise
     end
 
     def get_credential(name)
-      key = (@credentials["#{name}_api_key".to_sym] || Omise.send("#{name}_api_key"))
+      key = @credentials["#{name}_api_key".to_sym] || Omise.send("#{name}_api_key")
 
       unless key
         raise "Set Omise.#{name} to use this feature"
