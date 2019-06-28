@@ -29,16 +29,8 @@ module Omise
     include Resource
 
     def initialize(attributes = {}, options = {})
-      @credentials = {
-        secret_api_key: options.delete(:secret_api_key),
-        public_api_key: options.delete(:public_api_key),
-      }
-      @configuration = {
-        api_url: options.delete(:api_url),
-        vault_url: options.delete(:vault_url),
-        user_agent_suffix: options.delete(:user_agent_suffix),
-        http_logger: options.delete(:http_logger),
-      }
+      @credentials = extract_credentials!(options)
+      @configuration = extract_configuration!(options)
 
       super(attributes, options)
     end
@@ -103,6 +95,22 @@ module Omise
     end
 
     private
+
+    def extract_credentials!(options)
+      {
+        secret_api_key: options.delete(:secret_api_key),
+        public_api_key: options.delete(:public_api_key),
+      }
+    end
+
+    def extract_configuration!(options)
+      {
+        api_url: options.delete(:api_url),
+        vault_url: options.delete(:vault_url),
+        user_agent_suffix: options.delete(:user_agent_suffix),
+        http_logger: options.delete(:http_logger),
+      }
+    end
 
     def get_configuration(name)
       @configuration[name] || Omise.send(name)
