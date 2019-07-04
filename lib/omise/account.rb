@@ -17,11 +17,12 @@ module Omise
   #     account = Omise::Account.retrieve
   #
   # Alternatively if you have mutliple accounts you can retrieve all of them
-  # separately by passing the `key:` option:
+  # separately by using {Account.with_credentials} then calling reload. Note
+  # that {with_credentials} won't automatically fetch the attributes for you.
   #
   #     accounts = keys.map do |key|
   #       begin
-  #         Omise::Account.retrieve(key: key)
+  #         Omise::Account.with_credentials(secret_api_key: key).reload
   #       rescue Omise::Error => e
   #         # deal with exception accordingly
   #         nil

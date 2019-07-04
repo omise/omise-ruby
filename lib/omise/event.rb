@@ -79,5 +79,17 @@ module Omise
     def reload(params = {})
       assign_attributes account.get(location, params: params, as: Hash)
     end
+
+    # The event data as a hash.
+    #
+    # The method is defined manually, because otherwise the object would be
+    # automatically typecasted. Which we don't want since we can't predict in
+    # which version of the API the event data was captured.
+    #
+    # Returns a Hash.
+    #
+    def data
+      @attributes["data"]
+    end
   end
 end

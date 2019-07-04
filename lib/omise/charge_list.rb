@@ -2,7 +2,7 @@ require "omise/list"
 require "omise/charge"
 
 module Omise
-  # {CardList} represents a list of charges. It inherits from {List} and as
+  # {ChargeList} represents a list of charges. It inherits from {List} and as
   # such can be paginated. This class exposes one additional method to help
   # you retrieve a charge.
   #
