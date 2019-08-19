@@ -7,7 +7,6 @@ require "omise/version"
 
 module Omise
   class Resource
-    CA_BUNDLE_PATH = File.expand_path("../../../data/ca_certificates.pem", __FILE__)
     DEFAULT_HEADERS = {
       user_agent: "OmiseRuby/#{Omise::VERSION} Ruby/#{RUBY_VERSION}",
     }
@@ -61,7 +60,6 @@ module Omise
       @resource = RestClient::Resource.new(@uri.to_s, {
         user: @key,
         verify_ssl: OpenSSL::SSL::VERIFY_PEER,
-        ssl_ca_file: CA_BUNDLE_PATH,
         headers: @headers,
       })
     end
