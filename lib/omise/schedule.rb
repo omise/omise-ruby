@@ -96,6 +96,10 @@ module Omise
       assign_attributes account.delete(location, as: Hash)
     end
 
+    # Checks whether or not the schedule has been destroyed.
+    #
+    # Returns a boolean.
+    #
     def destroyed?
       status == "deleted"
     end
