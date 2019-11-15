@@ -1,0 +1,12 @@
+{
+  "object": "integration",
+  "id": "integration_test_5h24qlv37qyx537p1ub",
+  "kind": "shopify",
+  "created": "2019-08-29T10:19:19Z",
+  "public_key": "pkey_test_5bfvlxufuuqkrhmzfj1",
+  "secret_key": "skey_test_5hw809m30rlnp4but0m",
+  "data": {
+    "account_id": "integration_test_5h24qlv37qyx537p1ub",
+    "secret": "e4de752bf06483e4949263928757b137"
+  }
+}

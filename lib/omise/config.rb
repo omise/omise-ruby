@@ -7,7 +7,7 @@ module Omise
   class << self
     attr_accessor :api_url, :vault_url, :api_version, :resource, :user_agent_suffix
 
-    attr_writer :secret_api_key, :public_api_key
+    attr_writer :secret_api_key, :public_api_key, :app_key
 
     def secret_api_key
       get_key :secret_api_key
@@ -15,6 +15,10 @@ module Omise
 
     def public_api_key
       get_key :public_api_key
+    end
+
+    def app_key
+      get_key :app_key
     end
 
     # Backward compatibility with old API Keys naming conventions
