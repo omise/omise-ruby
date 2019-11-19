@@ -15,8 +15,8 @@ module Omise
         [endpoint, id].compact.join("/")
       end
 
-      def account
-        Omise.account
+      def client
+        Omise.client
       end
     end
 
@@ -164,11 +164,11 @@ module Omise
         end
       end
 
-      klass.new(object, account: account, parent: self)
+      klass.new(object, client: client, parent: self)
     end
 
     def list_attribute(klass, key)
-      klass.new(@attributes[key], parent: self, account: account)
+      klass.new(@attributes[key], parent: self, client: client)
     end
 
     def expand_attribute(klass, key, params = {})
@@ -192,11 +192,11 @@ module Omise
         return list_attribute(klass, key)
       end
 
-      typecast(account.get(location(key), params: params, as: Hash), klass: klass)
+      typecast(client.get(location(key), params: params, as: Hash), klass: klass)
     end
 
-    def account
-      @options[:account] || Omise.account
+    def client
+      @options[:client] || Omise.client
     end
   end
 end

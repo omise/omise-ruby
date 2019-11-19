@@ -32,7 +32,7 @@ module Omise
     # request fails.
     #
     def self.list(params = {})
-      account.get(location, params: params)
+      client.get(location, params: params)
     end
 
     # Retrieves a schedule object.
@@ -49,7 +49,7 @@ module Omise
     # the request fails.
     #
     def self.retrieve(id, params = {})
-      account.get(location(id), params: params)
+      client.get(location(id), params: params)
     end
 
     # Creates a new schedule.
@@ -75,7 +75,7 @@ module Omise
     # the request fails.
     #
     def self.create(params = {})
-      account.post(location, params: params)
+      client.post(location, params: params)
     end
 
     # Delete the schedule.
@@ -93,7 +93,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def destroy
-      assign_attributes account.delete(location, as: Hash)
+      assign_attributes client.delete(location, as: Hash)
     end
 
     # Checks whether or not the schedule has been destroyed.

@@ -31,7 +31,7 @@ module Omise
     # request fails.
     #
     def self.retrieve(params = {})
-      account.get(location, params: params)
+      client.get(location, params: params)
     end
 
     # Reload the balance object. Calling this method will issue a single
@@ -48,7 +48,7 @@ module Omise
     # and raises an {Error} if the request fails.
     #
     def reload(params = {})
-      assign_attributes account.get(location, params: params, as: Hash)
+      assign_attributes client.get(location, params: params, as: Hash)
     end
 
     # Gets the location of the balance which will always be equal to the

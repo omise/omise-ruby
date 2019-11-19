@@ -25,7 +25,7 @@ module Omise
     # request fails.
     #
     def retrieve(id, params = {})
-      account.get(Charge.location(id), params: params)
+      client.get(Charge.location(id), params: params)
     end
   end
 end

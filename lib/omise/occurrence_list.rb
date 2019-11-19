@@ -25,7 +25,7 @@ module Omise
     # if the request fails.
     #
     def retrieve(id, params = {})
-      account.get(Occurrence.location(id), params: params)
+      client.get(Occurrence.location(id), params: params)
     end
   end
 end

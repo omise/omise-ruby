@@ -39,7 +39,7 @@ module Omise
         require "omise/card"
       end
 
-      account.get(location(id), params: params)
+      client.get(location(id), params: params)
     end
 
     # Creates a card object that will belong to the customer object that

@@ -54,7 +54,7 @@ module Omise
     # request fails.
     #
     def self.list(params = {})
-      account.get(location, params: params)
+      client.get(location, params: params)
     end
 
     # Reloads an existing refund.
@@ -73,7 +73,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def reload(params = {})
-      assign_attributes account.get(location, params: params, as: Hash)
+      assign_attributes client.get(location, params: params, as: Hash)
     end
 
     # Typecasts or expands the charge attached to a refund.

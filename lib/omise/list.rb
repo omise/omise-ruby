@@ -7,7 +7,7 @@ module Omise
 
     def reload(params = {})
       @data = nil
-      assign_attributes account.get(location, params: params)
+      assign_attributes client.get(location, params: params)
     end
 
     def data

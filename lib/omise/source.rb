@@ -5,11 +5,11 @@ module Omise
     self.endpoint = "/sources"
 
     def self.retrieve(id, params = {})
-      account.get(location(id), params: params)
+      client.get(location(id), params: params)
     end
 
     def self.create(params = {})
-      account.post(location, params: params)
+      client.post(location, params: params)
     end
   end
 end

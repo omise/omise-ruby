@@ -44,7 +44,7 @@ module Omise
     # the request fails.
     #
     def self.retrieve(id, params = {})
-      account.get(location(id), params: params)
+      client.get(location(id), params: params)
     end
 
     # Retrieves a list of customer objects.
@@ -73,7 +73,7 @@ module Omise
     # the request fails.
     #
     def self.list(params = {})
-      account.get(location, params: params)
+      client.get(location, params: params)
     end
 
     # Creates a new customer.
@@ -93,7 +93,7 @@ module Omise
     # the request fails.
     #
     def self.create(params = {})
-      account.post(location, params: params)
+      client.post(location, params: params)
     end
 
     # Reloads an existing customer.
@@ -111,7 +111,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def reload(params = {})
-      assign_attributes account.get(location, params: params, as: Hash)
+      assign_attributes client.get(location, params: params, as: Hash)
     end
 
     # Updates an existing customer.
@@ -129,7 +129,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def update(params = {})
-      assign_attributes account.patch(location, params: params, as: Hash)
+      assign_attributes client.patch(location, params: params, as: Hash)
     end
 
     # Destroys an existing customer.
@@ -148,7 +148,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def destroy
-      assign_attributes account.delete(location, as: Hash)
+      assign_attributes client.delete(location, as: Hash)
     end
 
     # List schedules attached to this customer.
@@ -166,7 +166,7 @@ module Omise
     # Returns a new {List} instance or raises an {Error} if the request fails.
     #
     def schedules(params = {})
-      account.get(location("schedules"), params: params)
+      client.get(location("schedules"), params: params)
     end
 
     # Charges the customer.
@@ -189,7 +189,7 @@ module Omise
         require "omise/charge"
       end
 
-      account.post(Charge.location, params: params.merge(customer: id))
+      client.post(Charge.location, params: params.merge(customer: id))
     end
 
     # Typecasts or expands the default card attached to a customer if

@@ -15,27 +15,27 @@ module Omise
     end
 
     def self.create(params = {})
-      account.post(location, params: params)
+      client.post(location, params: params)
     end
 
     def self.retrieve(id, params = {})
-      account.get(location(id), params: params)
+      client.get(location(id), params: params)
     end
 
     def self.list(params = {})
-      account.get(location, params: params)
+      client.get(location, params: params)
     end
 
     def reload(params = {})
-      assign_attributes account.get(location, params: params)
+      assign_attributes client.get(location, params: params)
     end
 
     def update(params = {})
-      assign_attributes account.patch(location, params: params)
+      assign_attributes client.patch(location, params: params)
     end
 
     def destroy
-      assign_attributes account.delete(location)
+      assign_attributes client.delete(location)
     end
 
     def recipient(params = {})

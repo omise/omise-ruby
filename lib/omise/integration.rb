@@ -5,7 +5,7 @@ module Omise
     self.endpoint = "/integrations"
 
     def self.retrieve(id, params = {})
-      account.get(location(id), params: params)
+      client.get(location(id), params: params)
     end
   end
 end

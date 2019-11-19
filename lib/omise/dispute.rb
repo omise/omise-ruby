@@ -44,7 +44,7 @@ module Omise
     # the request fails.
     #
     def self.retrieve(id = nil, params = {})
-      account.get(location(id), params: params)
+      client.get(location(id), params: params)
     end
 
     # Retrieves a list of dispute objects.
@@ -74,7 +74,7 @@ module Omise
     #
     def self.list(params = {})
       status = params.delete(:status)
-      account.get(location(status), params: params)
+      client.get(location(status), params: params)
     end
 
     # Reloads an existing dispute.
@@ -92,7 +92,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def reload(params = {})
-      assign_attributes account.get(location, params: params, as: Hash)
+      assign_attributes client.get(location, params: params, as: Hash)
     end
 
     # Updates an existing dispute.
@@ -110,7 +110,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def update(params = {})
-      assign_attributes account.patch(location, params: params, as: Hash)
+      assign_attributes client.patch(location, params: params, as: Hash)
     end
 
     # Typecasts or expands the charge attached to a dispute.

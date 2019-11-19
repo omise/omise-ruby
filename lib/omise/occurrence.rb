@@ -28,7 +28,7 @@ module Omise
     # the request fails.
     #
     def self.retrieve(id, params = {})
-      account.get(location(id), params: params)
+      client.get(location(id), params: params)
     end
 
     # Typecasts or expands the schedule attached to an occurrence if
@@ -70,7 +70,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def reload(params = {})
-      assign_attributes account.get(location, params: params, as: Hash)
+      assign_attributes client.get(location, params: params, as: Hash)
     end
   end
 end

@@ -31,7 +31,7 @@ module Omise
     # the request fails.
     #
     def create(params = {})
-      account.post(location, params: params)
+      client.post(location, params: params)
     end
 
     # Retrieves a refund object.
@@ -49,7 +49,7 @@ module Omise
     # the request fails.
     #
     def retrieve(id, params = {})
-      account.get(location(id), params: params)
+      client.get(location(id), params: params)
     end
   end
 end

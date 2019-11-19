@@ -3,9 +3,9 @@ require "omise/list"
 require "omise/search_scope"
 
 module Omise
-  # A {Recipient} represents a person who holds one bank account. Recipient can
+  # A {Recipient} represents a person who holds one bank client. Recipient can
   # be passed to the {Transfer.create} method in order to transfer some amount
-  # of money to the recipient's bank account.
+  # of money to the recipient's bank client.
   #
   # See https://www.omise.co/recipients-api for more information regarding
   # the recipient attributes, the available endpoints and the different
@@ -43,7 +43,7 @@ module Omise
     # the request fails.
     #
     def self.retrieve(id, params = {})
-      account.get(location(id), params: params)
+      client.get(location(id), params: params)
     end
 
     # Retrieves a list of recipient objects.
@@ -72,7 +72,7 @@ module Omise
     # the request fails.
     #
     def self.list(params = {})
-      account.get(location, params: params)
+      client.get(location, params: params)
     end
 
     # Creates a new recipient.
@@ -98,7 +98,7 @@ module Omise
     # the request fails.
     #
     def self.create(params = {})
-      account.post(location, params: params)
+      client.post(location, params: params)
     end
 
     # Reloads an existing recipient.
@@ -116,7 +116,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def reload(params = {})
-      assign_attributes account.get(location, params: params, as: Hash)
+      assign_attributes client.get(location, params: params, as: Hash)
     end
 
     # Updates an existing recipient.
@@ -134,7 +134,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def update(params = {})
-      assign_attributes account.patch(location, params: params, as: Hash)
+      assign_attributes client.patch(location, params: params, as: Hash)
     end
 
     # Destroys an existing recipient.
@@ -153,7 +153,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def destroy
-      assign_attributes account.delete(location, as: Hash)
+      assign_attributes client.delete(location, as: Hash)
     end
 
     # Typecasts the bank account attached to the recipient.
@@ -162,7 +162,7 @@ module Omise
     # object will always be auto expanded by default.
     #
     # Since it is not possible for recipient to be created without a valid bank
-    # account this method should always return a bank account.
+    # account this method should always return a bank client.
     #
     # Example:
     #

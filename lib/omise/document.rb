@@ -27,7 +27,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def reload(params = {})
-      assign_attributes account.get(location, params: params, as: Hash)
+      assign_attributes client.get(location, params: params, as: Hash)
     end
 
     # Destroys an existing document.
@@ -47,7 +47,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def destroy
-      assign_attributes account.delete(location, as: Hash)
+      assign_attributes client.delete(location, as: Hash)
     end
   end
 end

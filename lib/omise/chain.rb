@@ -4,9 +4,9 @@ require "omise/list"
 module Omise
   # A {Chain} object is a composite object that represent an overlap between
   # your own account (the merchant account) and a sub account which has given
-  # you permission to create charges in their account. You can use the key
+  # you permission to create charges in their client. You can use the key
   # present in this object to create charges on the behalf of the submerchant.
-  # Tokens and customers can be fetched from your own account. However the sub 
+  # Tokens and customers can be fetched from your own client. However the sub 
   # account won't have access to that customer object.
   #
   # Example:
@@ -42,7 +42,7 @@ module Omise
     # the request fails.
     #
     def self.retrieve(id, params = {})
-      account.get(location(id), params: params)
+      client.get(location(id), params: params)
     end
 
     # Retrieves a list of chains objects.
@@ -71,7 +71,7 @@ module Omise
     # request fails.
     #
     def self.list(params = {})
-      account.get(location, params: params)
+      client.get(location, params: params)
     end
 
     # Reloads an existing chain.
@@ -89,7 +89,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def reload(params = {})
-      assign_attributes account.get(location, params: params)
+      assign_attributes client.get(location, params: params)
     end
 
     # Revokes an existing chain.
@@ -107,7 +107,7 @@ module Omise
     # if successful and raises an {Error} if the request fails.
     #
     def revoke(params = {})
-      assign_attributes account.post(location("revoke"), params: params)
+      assign_attributes client.post(location("revoke"), params: params)
     end
   end
 end

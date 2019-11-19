@@ -3,7 +3,7 @@ require "omise/list"
 
 module Omise
   # An {Event} is created every time an action is carried out inside of your
-  # Omise account. Those events can be send out to a URL of your choice if you
+  # Omise client. Those events can be send out to a URL of your choice if you
   # setup a Webhook URL in the dashboard.
   #
   # See https://www.omise.co/api-webhooks to learn more about how webhooks
@@ -30,7 +30,7 @@ module Omise
     # the request fails.
     #
     def self.retrieve(id, params = {})
-      account.get(location(id), params: params)
+      client.get(location(id), params: params)
     end
 
     # Retrieves a list of events objects.
@@ -59,7 +59,7 @@ module Omise
     # request fails.
     #
     def self.list(params = {})
-      account.get(location, params: params)
+      client.get(location, params: params)
     end
 
     # Reloads an existing event.
@@ -77,7 +77,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def reload(params = {})
-      assign_attributes account.get(location, params: params, as: Hash)
+      assign_attributes client.get(location, params: params, as: Hash)
     end
 
     # The event data as a hash.

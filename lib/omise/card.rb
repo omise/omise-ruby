@@ -32,7 +32,7 @@ module Omise
     # raises an {Error} if the request fails.
     #
     def reload(params = {})
-      assign_attributes account.get(location, params: params, as: Hash)
+      assign_attributes client.get(location, params: params, as: Hash)
     end
 
     # Update the card object. Calling this method will issue a single
@@ -53,7 +53,7 @@ module Omise
     # raises an {Error} if the request fails.
     #
     def update(params = {})
-      assign_attributes account.patch(location, params: params, as: Hash)
+      assign_attributes client.patch(location, params: params, as: Hash)
     end
 
     # Delete the card object. Calling this method will issue a single
@@ -74,7 +74,7 @@ module Omise
     # raises an {Error} if the request fails.
     #
     def destroy
-      assign_attributes account.delete(location, as: Hash)
+      assign_attributes client.delete(location, as: Hash)
     end
   end
 end

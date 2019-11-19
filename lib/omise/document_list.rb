@@ -36,7 +36,7 @@ module Omise
         require "omise/document"
       end
 
-      account.get(location(id), params: params)
+      client.get(location(id), params: params)
     end
 
     # Upload a document object and attach it to the parent dispute object.
@@ -60,7 +60,7 @@ module Omise
       end
 
       params = { file: file }
-      account.post(location, params: params)
+      client.post(location, params: params)
     end
   end
 end

@@ -1,42 +1,43 @@
 require "omise/http_logger"
+require "omise/client"
 
 module Omise
   module Config
-    # Gets the currently configured account. If none have been set, the first
-    # call to this method will instantiate an empty account which will defaults
+    # Gets the currently configured client. If none have been set, the first
+    # call to this method will instantiate an empty client which will defaults
     # its configuration and credentials to this class. You can override this
-    # by instantiating a new account with a new configuration and credentials 
-    # and set it as the default account by calling `Omise.account = account`.
+    # by instantiating a new client with a new configuration and credentials 
+    # and set it as the default client by calling `Omise.client = client`.
     #
-    # Returns an {Account}.
+    # Returns an {Client}.
     #
-    def account
-      Thread.current[:omise_account] ||= Account.new
+    def client
+      Thread.current[:omise_client] ||= Client.new
     end
 
-    # Sets a new account.
+    # Sets a new client.
     #
-    # Returns an {Account}.
+    # Returns an {Client}.
     #
-    def account=(account)
-      Thread.current[:omise_account] = account
+    def client=(client)
+      Thread.current[:omise_client] = client
     end
 
-    # Swap account for the duration of the given block. You can either pass an
-    # instance of {Account} or a Hash containing two keys: `:secret_api_key` and
+    # Swap client for the duration of the given block. You can either pass an
+    # instance of {Client} or a Hash containing two keys: `:secret_api_key` and
     # `:public_api_key`.
     #
     # Returns the result of the block.
     #
-    def use_account(new_account)
-      if new_account.is_a?(Hash)
-        new_account = Account.with_credentials(new_account)
+    def use_client(new_client)
+      if new_client.is_a?(Hash)
+        new_client = Client.with_credentials(new_client)
       end
 
-      old_account, ::Omise.account = ::Omise.account, new_account
+      old_client, ::Omise.client = ::Omise.client, new_client
       yield
     ensure
-      ::Omise.account = old_account
+      ::Omise.client = old_client
     end
 
     # Getter and setter for the base URL of the main API.

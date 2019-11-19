@@ -40,7 +40,7 @@ module Omise
     end
   end
 
-  class Account
+  class Client
     undef :get, :post, :patch, :delete
 
     def get(path, params: {}, as: nil, scope: :api)

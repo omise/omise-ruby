@@ -33,7 +33,7 @@ module Omise
     # the request fails.
     #
     def self.from(currency, params = {})
-      account.get(location(currency.to_s.downcase), params: params)
+      client.get(location(currency.to_s.downcase), params: params)
     end
 
     # Reloads an existing forex between the `from` currency and your account
@@ -55,7 +55,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def reload(params = {})
-      assign_attributes account.get(location, params: params, as: Hash)
+      assign_attributes client.get(location, params: params, as: Hash)
     end
   end
 end

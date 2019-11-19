@@ -60,7 +60,7 @@ module Omise
     # the request fails.
     #
     def self.retrieve(id, params = {})
-      account.get(location(id), params: params)
+      client.get(location(id), params: params)
     end
 
     # Retrieves a list of charge objects.
@@ -89,7 +89,7 @@ module Omise
     # request fails.
     #
     def self.list(params = {})
-      account.get(location, params: params)
+      client.get(location, params: params)
     end
 
     # Creates a new charge.
@@ -111,7 +111,7 @@ module Omise
     # the request fails.
     #
     def self.create(params = {})
-      account.post(location, params: params)
+      client.post(location, params: params)
     end
 
     # Reloads an existing charge.
@@ -129,7 +129,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def reload(params = {})
-      assign_attributes account.get(location, params: params, as: Hash)
+      assign_attributes client.get(location, params: params, as: Hash)
     end
 
     # Updates an existing charge.
@@ -147,7 +147,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def update(params = {})
-      assign_attributes account.patch(location, params: params, as: Hash)
+      assign_attributes client.patch(location, params: params, as: Hash)
     end
 
     # Captures a charge that is in authorized state *only*.
@@ -165,7 +165,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def capture
-      assign_attributes account.post(location("capture"), as: Hash)
+      assign_attributes client.post(location("capture"), as: Hash)
     end
 
     # Reverses a charge that is in authorized state *only*.
@@ -183,7 +183,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def reverse
-      assign_attributes account.post(location("reverse"), as: Hash)
+      assign_attributes client.post(location("reverse"), as: Hash)
     end
 
     # Typecasts or expands the customer attached to a charge if it's present.

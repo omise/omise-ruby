@@ -43,7 +43,7 @@ module Omise
     # the request fails.
     #
     def self.retrieve(id, params = {})
-      account.get(location(id), params: params)
+      client.get(location(id), params: params)
     end
 
     # Retrieves a list of links objects.
@@ -72,7 +72,7 @@ module Omise
     # request fails.
     #
     def self.list(params = {})
-      account.get(location, params: params)
+      client.get(location, params: params)
     end
 
     # Creates a new link.
@@ -94,7 +94,7 @@ module Omise
     # the request fails.
     #
     def self.create(params = {})
-      account.post(location, params: params)
+      client.post(location, params: params)
     end
 
     # Reloads an existing link.
@@ -112,7 +112,7 @@ module Omise
     # successful and raises an {Error} if the request fails.
     #
     def reload(params = {})
-      assign_attributes account.get(location, params: params, as: Hash)
+      assign_attributes client.get(location, params: params, as: Hash)
     end
 
     # List charges attached to a link.
