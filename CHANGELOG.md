@@ -2,6 +2,14 @@
 
 An [unreleased] version is not available on rubygems and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
+## [0.8.0] 2019-11-04
+
+- [Added] Capability object
+
+## [0.7.2] 2019-09-30
+
+- [Changed] Removed CA certificate pining
+
 ## [0.7.1] 2017-12-13
 
 - [Added] Ability to add a suffix to the user agent

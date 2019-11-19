@@ -10,6 +10,7 @@ module Omise
     def before_setup
       Omise.public_api_key = "pkey_test_4yq6tct0llin5nyyi5l"
       Omise.secret_api_key = "skey_test_4yq6tct0lblmed2yp5t"
+      Omise.app_key = "app_test_4yq6tct0lblmed2yp5t"
     end
 
     def setup

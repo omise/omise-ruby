@@ -1,0 +1,29 @@
+{
+  "object": "capability",
+  "location": "/capability",
+  "payment_methods": [
+    {
+      "object": "payment_method",
+      "name": "card",
+      "currencies": [
+        "THB",
+        "JPY",
+        "USD",
+        "EUR",
+        "GBP",
+        "SGD",
+        "AUD",
+        "CHF",
+        "CNY",
+        "DKK",
+        "HKD"
+      ],
+      "card_brands": [
+        "JCB",
+        "Visa",
+        "MasterCard"
+      ],
+      "installment_terms": null
+    }
+  ]
+}

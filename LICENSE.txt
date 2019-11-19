@@ -1,4 +1,4 @@
-Copyright (c) 2014 Omise
+Copyright (c) 2019 Omise
 
 MIT License
 
