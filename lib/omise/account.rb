@@ -32,7 +32,6 @@ module Omise
   class Account < OmiseObject
     self.endpoint = "/account"
 
-    CA_BUNDLE_PATH = File.expand_path("../../../data/ca_certificates.pem", __FILE__)
     DEFAULT_HEADERS = {
       omise_version: "2015-11-17",
       user_agent:    "OmiseRuby/#{Omise::VERSION} Ruby/#{RUBY_VERSION}",
@@ -271,7 +270,6 @@ module Omise
       RestClient::Resource.new(uri(base_url, path).to_s, {
         user: key,
         verify_ssl: OpenSSL::SSL::VERIFY_PEER,
-        ssl_ca_file: CA_BUNDLE_PATH,
         headers: headers,
       })
     end
