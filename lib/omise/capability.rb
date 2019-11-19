@@ -33,6 +33,11 @@ module Omise
       end
     end
 
+    # Gets the location of the capabilities which will always be equal to the
+    # {Capability.endpoint}.
+    #
+    # Returns a {String}.
+    #
     def location
       self.class.location
     end
