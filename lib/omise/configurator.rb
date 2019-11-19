@@ -58,8 +58,6 @@ module Omise
     #
     attr_accessor :user_agent_suffix
 
-    attr_accessor :app_key
-
     # Backward compatibility with old API Keys naming conventions
     #
     # This key is used for all call to the main API.
