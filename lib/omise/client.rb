@@ -22,7 +22,7 @@ module Omise
     # Returns an instance of {Client}.
     #
     def self.with_credentials(secret_api_key:, public_api_key: nil)
-      new({}, { secret_api_key: secret_api_key, public_api_key: public_api_key })
+      new(secret_api_key: secret_api_key, public_api_key: public_api_key)
     end
 
     # Issues a single GET request.
