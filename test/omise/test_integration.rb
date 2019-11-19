@@ -9,5 +9,4 @@ class TestIntegration < Omise::Test
     assert_instance_of Omise::Integration, @integration
     assert_equal "integration_test_5h24qlv37qyx537p1ub", @integration.id
   end
-
 end
