@@ -1,10 +1,10 @@
 require "omise/version"
-require "omise/config"
+require "omise/configurator"
 
 module Omise
   LIB_PATH = File.expand_path("../", __FILE__)
 
-  extend Config
+  extend Configurator
 
   self.api_url   = "https://api.omise.co"
   self.vault_url = "https://vault.omise.co"

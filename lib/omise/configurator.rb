@@ -2,7 +2,7 @@ require "omise/http_logger"
 require "omise/client"
 
 module Omise
-  module Config
+  module Configurator
     # Gets the currently configured client. If none have been set, the first
     # call to this method will instantiate an empty client which will defaults
     # its configuration and credentials to this class. You can override this

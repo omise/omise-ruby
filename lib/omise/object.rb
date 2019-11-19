@@ -1,5 +1,3 @@
-require "omise/config"
-
 module Omise
   class OmiseObject
     def initialize(attributes = {}, options = {})
