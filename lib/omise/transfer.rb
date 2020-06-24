@@ -1,7 +1,3 @@
-require "omise/object"
-require "omise/bank_account"
-require "omise/search_scope"
-
 module Omise
   class Transfer < OmiseObject
     self.endpoint = "/transfers"
@@ -10,40 +6,40 @@ module Omise
       SearchScope.new(:transfer)
     end
 
-    def self.schedule(attributes = {})
-      Scheduler.new(:transfer, attributes)
+    def self.schedule(params = {})
+      Scheduler.new(:transfer, params: params)
     end
 
-    def self.create(attributes = {})
-      new resource(location, attributes).post(attributes)
+    def self.create(params = {})
+      client.post(location, params: params)
     end
 
-    def self.retrieve(id, attributes = {})
-      new resource(location(id), attributes).get(attributes)
+    def self.retrieve(id, params = {})
+      client.get(location(id), params: params)
     end
 
-    def self.list(attributes = {})
-      List.new resource(location, attributes).get(attributes)
+    def self.list(params = {})
+      client.get(location, params: params)
     end
 
-    def reload(attributes = {})
-      assign_attributes resource(attributes).get(attributes)
+    def reload(params = {})
+      assign_attributes client.get(location, params: params)
     end
 
-    def update(attributes = {})
-      assign_attributes resource(attributes).patch(attributes)
+    def update(params = {})
+      assign_attributes client.patch(location, params: params)
     end
 
-    def destroy(attributes = {})
-      assign_attributes resource(attributes).delete
+    def destroy
+      assign_attributes client.delete(location)
     end
 
-    def recipient(options = {})
+    def recipient(params = {})
       if !defined?(Recipient)
         require "omise/recipient"
       end
 
-      expand_attribute Recipient, "recipient", options
+      expand_attribute Recipient, "recipient", params
     end
 
     def bank_account

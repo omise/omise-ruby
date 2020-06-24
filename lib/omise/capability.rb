@@ -1,9 +1,6 @@
-require "omise/object"
-
 module Omise
   class Capability < OmiseObject
     self.endpoint = "/capability"
-    singleton!
 
     PaymentMethod = Struct.new(
       :object,
@@ -13,8 +10,13 @@ module Omise
       :installment_terms
     )
 
-    def self.resource_key
-      Omise.public_api_key
+    # Retrieves the {Capability} object.
+    #
+    # Returns an {Capability} instance if successful and raises an {Error} if 
+    # the request fails.
+    #
+    def self.retrieve(params = {})
+      client.get(location, params: params)
     end
 
     def payment_methods
@@ -27,6 +29,15 @@ module Omise
           payment_method["installment_terms"]
         )
       end
+    end
+
+    # Gets the location of the capabilities which will always be equal to the
+    # {Capability.endpoint}.
+    #
+    # Returns a {String}.
+    #
+    def location
+      self.class.location
     end
   end
 end

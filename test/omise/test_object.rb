@@ -1,12 +1,11 @@
 require "support"
 
 module Omise
-  class Teapot
-    include Attributes
+  class Teapot < OmiseObject
   end
 end
 
-class TestAttributes < Omise::Test
+class TestOmiseObject < Omise::Test
   setup do
     @attributes = JSON.load(JSON.dump({
       object: "teapot",

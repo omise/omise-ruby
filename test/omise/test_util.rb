@@ -1,37 +1,6 @@
 require "support"
 
 class TestSearchScope < Omise::Test
-  def test_that_we_can_typecast_a_simple_object
-    object = Omise::Util.typecast({})
-
-    assert_instance_of Omise::OmiseObject, object
-  end
-
-  def test_that_we_can_typecast_a_recognized_omise_object
-    charge = Omise::Util.typecast({ "object" => "charge" })
-
-    assert_instance_of Omise::Charge, charge
-  end
-
-  def test_that_we_can_load_an_object_from_a_json_response
-    response = JSON.dump({})
-    object = Omise::Util.load_response(response)
-
-    assert_instance_of Hash, object
-  end
-
-  def test_that_an_exception_is_raised_when_a_json_response_comes_back_as_an_error
-    response = JSON.dump({
-      "object"  => "error",
-      "code"    => "not_found",
-      "message" => "the request object was not found",
-    })
-
-    error = assert_raises(Omise::Error) { Omise::Util.load_response(response) }
-    assert_equal "the request object was not found (not_found)", error.message
-    assert_equal "not_found", error.code
-  end
-
   def test_that_we_can_generate_a_query
     assert_equal "hash[key]=value",
       CGI.unescape(Omise::Util.generate_query(hash: { key: "value" }))

@@ -1,15 +1,13 @@
-require "omise/object"
-
 module Omise
   class Source < OmiseObject
     self.endpoint = "/sources"
 
-    def self.retrieve(id, attributes = {})
-      new resource(location(id), attributes).get(attributes)
+    def self.retrieve(id, params = {})
+      client.get(location(id), params: params)
     end
 
-    def self.create(attributes = {})
-      new resource(location, attributes).post(attributes)
+    def self.create(params = {})
+      client.post(location, params: params)
     end
   end
 end
