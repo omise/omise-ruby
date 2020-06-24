@@ -1,8 +1,3 @@
-require "omise/object"
-require "omise/list"
-require "omise/charge_list"
-require "omise/search_scope"
-
 module Omise
   # A {Link} gives you a url to a payment page to which you can redirect your
   # customer to. The link API accepts attributes similar to the charge API.

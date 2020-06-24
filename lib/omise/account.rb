@@ -1,11 +1,3 @@
-require "uri"
-require "openssl"
-require "rest-client"
-
-require "omise/object"
-require "omise/util"
-require "omise/version"
-
 module Omise
   # {Account} allows you to retrieve an Omise account. Note that the `/account`
   # endpoint is a singleton resource. But this class isn't a singleton and each

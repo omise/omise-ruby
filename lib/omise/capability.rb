@@ -1,5 +1,3 @@
-require "omise/object"
-
 module Omise
   class Capability < OmiseObject
     self.endpoint = "/capability"

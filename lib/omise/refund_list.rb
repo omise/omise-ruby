@@ -1,5 +1,3 @@
-require "omise/list"
-
 module Omise
   # A {RefundList} represents a list of refunds. It inherits from {List} and as
   # such can be paginated. This class exposes two additional methods to help

@@ -1,5 +1,3 @@
-require "omise/object"
-
 module Omise
   class Token < OmiseObject
     self.endpoint = "/tokens"

@@ -1,5 +1,3 @@
-require "omise/object"
-
 module Omise
   class Search < OmiseObject
     def self.execute(params = {})

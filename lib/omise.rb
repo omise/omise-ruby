@@ -1,40 +1,56 @@
-require "omise/version"
+require "uri"
+require "date"
+require "openssl"
+require "rest-client"
+require "cgi"
+require "json"
+
 require "omise/configurator"
+require "omise/http_logger"
+require "omise/client"
+require "omise/scheduler"
+require "omise/search_scope"
+require "omise/util"
+require "omise/version"
+
+require "omise/object"
+require "omise/account"
+require "omise/balance"
+require "omise/bank_account"
+require "omise/capability"
+require "omise/card"
+require "omise/chain"
+require "omise/charge"
+require "omise/customer"
+require "omise/dispute"
+require "omise/document"
+require "omise/error"
+require "omise/event"
+require "omise/forex"
+require "omise/integration"
+require "omise/link"
+require "omise/occurrence"
+require "omise/recipient"
+require "omise/refund"
+require "omise/schedule"
+require "omise/search"
+require "omise/source"
+require "omise/token"
+require "omise/transaction"
+require "omise/transfer"
+
+require "omise/list"
+require "omise/card_list"
+require "omise/charge_list"
+require "omise/document_list"
+require "omise/occurrence_list"
+require "omise/refund_list"
 
 module Omise
   LIB_PATH = File.expand_path("../", __FILE__)
-  OBJECTS = [
-    "account",
-    "balance",
-    "bank_account",
-    "capability",
-    "card",
-    "chain",
-    "charge",
-    "customer",
-    "dispute",
-    "document",
-    "event",
-    "forex",
-    "integration",
-    "link",
-    "occurrence",
-    "recipient",
-    "refund",
-    "schedule",
-    "search",
-    "source",
-    "token",
-    "transaction",
-    "transfer",
-  ]
 
   extend Configurator
 
   self.api_url   = "https://api.omise.co"
   self.vault_url = "https://vault.omise.co"
-
-  OBJECTS.each do |object|
-    require "omise/#{object}"
-  end
 end

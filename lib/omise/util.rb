@@ -1,8 +1,3 @@
-require "cgi"
-require "json"
-
-require "omise/error"
-
 module Omise
   module Util module_function
     def generate_query(object, namespace = nil)

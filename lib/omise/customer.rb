@@ -1,8 +1,3 @@
-require "omise/object"
-require "omise/list"
-require "omise/card_list"
-require "omise/search_scope"
-
 module Omise
   # A {Customer} represents a person who holds one or more cards. customer can
   # be passed to the {Charge.create} method instead of a token in order to

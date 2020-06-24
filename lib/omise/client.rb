@@ -1,10 +1,3 @@
-require "uri"
-require "openssl"
-require "rest-client"
-
-require "omise/util"
-require "omise/version"
-
 module Omise
   class Client
     DEFAULT_HEADERS = {

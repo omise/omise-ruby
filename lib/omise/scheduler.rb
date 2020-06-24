@@ -1,7 +1,3 @@
-require "date"
-
-require "omise/schedule"
-
 module Omise
   class Scheduler
     WEEKDAYS = %w[sunday monday tuesday wednesday thursday friday saturday]

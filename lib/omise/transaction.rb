@@ -1,6 +1,3 @@
-require "omise/object"
-require "omise/list"
-
 module Omise
   class Transaction < OmiseObject
     self.endpoint = "/transactions"

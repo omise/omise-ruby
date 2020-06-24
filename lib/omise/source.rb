@@ -1,5 +1,3 @@
-require "omise/object"
-
 module Omise
   class Source < OmiseObject
     self.endpoint = "/sources"

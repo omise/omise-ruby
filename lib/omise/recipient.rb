@@ -1,7 +1,3 @@
-require "omise/object"
-require "omise/list"
-require "omise/search_scope"
-
 module Omise
   # A {Recipient} represents a person who holds one bank client. Recipient can
   # be passed to the {Transfer.create} method in order to transfer some amount

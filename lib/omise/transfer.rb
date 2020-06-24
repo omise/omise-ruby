@@ -1,7 +1,3 @@
-require "omise/object"
-require "omise/bank_account"
-require "omise/search_scope"
-
 module Omise
   class Transfer < OmiseObject
     self.endpoint = "/transfers"

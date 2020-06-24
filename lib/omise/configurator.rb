@@ -1,6 +1,3 @@
-require "omise/http_logger"
-require "omise/client"
-
 module Omise
   module Configurator
     # Gets the currently configured client. If none have been set, the first

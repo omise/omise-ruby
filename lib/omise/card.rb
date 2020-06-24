@@ -1,5 +1,3 @@
-require "omise/object"
-
 module Omise
   # {Card} represents a debit or credit card. Cards can either be associated to
   # a charge as a one time use card or to a customer for multiple use. Cards

@@ -1,5 +1,3 @@
-require "omise/object"
-
 module Omise
   class Integration < OmiseObject
     self.endpoint = "/integrations"

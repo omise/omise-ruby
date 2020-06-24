@@ -1,9 +1,3 @@
-require "omise/object"
-require "omise/list"
-require "omise/refund_list"
-require "omise/search_scope"
-require "omise/scheduler"
-
 module Omise
   # A {Charge} represents a payment that has been made through one of the
   # payment methods available in the country where you're using Omise.

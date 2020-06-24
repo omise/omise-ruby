@@ -1,7 +1,3 @@
-require "omise/object"
-require "omise/list"
-require "omise/occurrence_list"
-
 module Omise
   class Schedule < OmiseObject
     self.endpoint = "/schedules"

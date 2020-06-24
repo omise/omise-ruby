@@ -1,5 +1,3 @@
-require "omise/object"
-
 module Omise
   # A {Forex} object represents the foreign exchange rate that will be applied
   # if you create a charge that uses a different currency than your account

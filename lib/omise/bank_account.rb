@@ -1,5 +1,3 @@
-require "omise/object"
-
 module Omise
   # {BankAccount} represents a bank account object. Bank accounts can be found
   # in transfer and recipient objects. Note that bank accounts can't be

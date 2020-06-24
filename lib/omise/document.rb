@@ -1,5 +1,3 @@
-require "omise/object"
-
 module Omise
   # A {Document} allows you to upload and store files related, at this time, to
   # disputes.

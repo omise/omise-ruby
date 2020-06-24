@@ -1,6 +1,3 @@
-require "omise/object"
-require "omise/search_scope"
-
 module Omise
   # A {Refund} represents the return of a payment that has originally been made
   # through one of the payment methods available in the country where you're

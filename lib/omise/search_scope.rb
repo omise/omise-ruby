@@ -1,5 +1,3 @@
-require "omise/search"
-
 module Omise
   class SearchScope
     def initialize(scope, options = {})

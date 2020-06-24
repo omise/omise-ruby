@@ -1,6 +1,3 @@
-require "omise/object"
-require "omise/list"
-
 module Omise
   # An {Event} is created every time an action is carried out inside of your
   # Omise client. Those events can be send out to a URL of your choice if you

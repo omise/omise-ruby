@@ -1,6 +1,3 @@
-require "omise/list"
-require "omise/occurrence"
-
 module Omise
   # {OccurrenceList} represents a list of occurences. It inherits from {List}
   # and as such can be paginated. This class exposes one additional method to

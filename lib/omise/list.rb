@@ -1,6 +1,3 @@
-require "omise/util"
-require "omise/object"
-
 module Omise
   class List < OmiseObject
     include Enumerable

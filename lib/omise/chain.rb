@@ -1,6 +1,3 @@
-require "omise/object"
-require "omise/list"
-
 module Omise
   # A {Chain} object is a composite object that represent an overlap between
   # your own account (the merchant account) and a sub account which has given

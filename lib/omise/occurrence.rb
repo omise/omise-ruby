@@ -1,5 +1,3 @@
-require "omise/object"
-
 module Omise
   # An {Occurrence} represents the tick of a clock, if the {Schedule} represents
   # the clock. Everytime a schedule is run, an occurrence will be created and it

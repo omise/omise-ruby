@@ -1,5 +1,3 @@
-require "omise/object"
-
 module Omise
   # {Balance} allows you to retrieve an Omise balance. Note that the `/balance`
   # endpoint is a singleton resource. But this class isn't a singleton and each

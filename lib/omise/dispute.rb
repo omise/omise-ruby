@@ -1,8 +1,3 @@
-require "omise/object"
-require "omise/list"
-require "omise/document_list"
-require "omise/search_scope"
-
 module Omise
   # A {Dispute} in a consumer initiated complain about a charge either because
   # the transaction was fraudulent, or the good was not received, or for other
