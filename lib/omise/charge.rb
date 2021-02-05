@@ -44,6 +44,10 @@ module Omise
       assign_attributes nested_resource("reverse", options).post
     end
 
+    def expire(options = {})
+      assign_attributes nested_resource("expire", options).post
+    end
+
     def customer(options = {})
       if !defined?(Customer)
         require "omise/customer"
