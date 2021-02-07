@@ -28,6 +28,10 @@ module Omise
       assign_attributes resource(attributes).patch(attributes)
     end
 
+    def accept(attributes = {})
+      assign_attributes nested_resource("accept", attributes).patch(attributes)
+    end
+
     def charge(options = {})
       if !defined?(Charge)
         require "omise/charge"
