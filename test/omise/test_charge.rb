@@ -120,4 +120,11 @@ class TestCharge < Omise::Test
     assert_instance_of Omise::Scheduler, Omise::Charge.schedule
     assert_equal "charge", Omise::Charge.schedule.type
   end
+
+  def test_that_we_can_fetch_an_event_list_for_a_given_charge
+    events = @charge.events
+
+    assert events
+    assert_instance_of Omise::List, events
+  end
 end

@@ -68,6 +68,10 @@ module Omise
       expand_attribute Transaction, "transaction", options
     end
 
+    def events(attributes = {})
+      List.new nested_resource("events", attributes).get(attributes)
+    end
+
     def refunds
       list_attribute RefundList, "refunds"
     end
