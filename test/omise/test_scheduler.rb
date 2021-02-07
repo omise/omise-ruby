@@ -87,6 +87,16 @@ class TestScheduler < Omise::Test
     assert_equal "first_monday", scheduler.to_attributes[:on][:weekday_of_month]
   end
 
+  def test_we_can_set_month_with_weekday_in_other_formats
+    scheduler = @scheduler.every(1).month(on: "1st_monday")
+
+    assert_scheduler_attributes(@scheduler)
+    refute_equal scheduler.object_id, @scheduler.object_id
+    assert_equal 1, scheduler.to_attributes[:every]
+    assert_equal "month", scheduler.to_attributes[:period]
+    assert_equal "1st_monday", scheduler.to_attributes[:on][:weekday_of_month]
+  end
+
   def test_we_can_set_months_with_weekday
     scheduler = @scheduler.every(3).months(on: "last_friday")
 
@@ -154,6 +164,9 @@ class TestScheduler < Omise::Test
 
     scheduler = @scheduler.parse("every month on the third Thursday until January 1st 2020")
     assert_scheduler_attributes(scheduler, 1, "month", "2020-01-01", weekday_of_month: "third_thursday")
+
+    scheduler = @scheduler.parse("every month on the 2nd Monday until January 1st 2020")
+    assert_scheduler_attributes(scheduler, 1, "month", "2020-01-01", weekday_of_month: "2nd_monday")
 
     scheduler = @scheduler.parse("every 3 months on 1, 2 and 3 until January 1st 2020")
     assert_scheduler_attributes(scheduler, 3, "month", "2020-01-01", days_of_month: [1, 2, 3])

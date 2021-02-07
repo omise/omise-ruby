@@ -5,7 +5,7 @@ require "omise/schedule"
 module Omise
   class Scheduler
     WEEKDAYS       = Date::DAYNAMES.map(&:downcase).freeze
-    MONTH_WEEKDAYS = %w[first second third fourth last]
+    MONTH_WEEKDAYS = %w[first 1st second 2nd third 3rd fourth 4th last]
       .product(WEEKDAYS)
       .map { |d| d.join("_") }
       .freeze
