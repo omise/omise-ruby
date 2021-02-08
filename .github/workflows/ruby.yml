@@ -1,13 +1,16 @@
 name: Ruby
 
-on: push
-
+on:
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby: [ '2.3', '2.4', '2.5', '2.6' ]
+        ruby: [ '2.6', '2.7', '3.0' ]
     name: Ruby ${{ matrix.ruby }}
     steps:
     - uses: actions/checkout@master
