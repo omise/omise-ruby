@@ -27,14 +27,12 @@ Tested on Ruby 2.5 and above
 First configure your secret key:
 
 ```ruby
+require "omise"
+
 Omise.api_key = "skey_test_xxxxxxxxxxxxxxxxxxx"
 ```
 
-If you need to use the Token API you also need to set your public key:
 
-```ruby
-Omise.public_api_key = "pkey_test_xxxxxxxxxxxxxxxxxxx"
-```
 
 With this set you'll be able to retrieve tokens or create new ones.
 
