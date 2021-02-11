@@ -111,6 +111,10 @@ class TestCharge < Omise::Test
     assert @charge.reverse
   end
 
+  def test_that_we_can_set_a_charge_to_expire
+    assert @charge.expire
+  end
+
   def test_that_search_returns_a_scoped_search
     assert_instance_of Omise::SearchScope, Omise::Charge.search
     assert_equal "charge", Omise::Charge.search.scope
