@@ -41,18 +41,16 @@ environments with different API versions (e.g. development on the latest but
 production on the older version).
 
 ```ruby
-require "omise"
 Omise.api_version = "2019-05-29"
 ```
 
-It is highly recommended to set this version to the current version
-you're using.
+It is highly recommended to set this version to the current version you're using.
 
 ### Logging
 
-To enable log you can set `Omise.logger` with a Ruby logger. All HTTP requests and responses will be logged.
+To enable logging you can set `Omise.logger` with a Ruby logger. All HTTP requests and responses will be logged.
 
-To disable log, just configure `Omise.logger` to `nil`. Default is disabled.
+To disable logging, just configure `Omise.logger` to `nil`. Default is disabled.
 
 An example configuring Rails logger:
 
