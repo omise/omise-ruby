@@ -32,15 +32,6 @@ require "omise"
 Omise.api_key = "skey_test_xxxxxxxxxxxxxxxxxxx"
 ```
 
-
-
-With this set you'll be able to retrieve tokens or create new ones.
-
-However we recommend using [Omise.js](https://www.omise.co/omise-js-api) to
-[collect cards](https://www.omise.co/collecting-card-information). When creating a token server side you'll need card data
-transiting to and from your server and this requires that your organization be
-PCI compliant.
-
 ### API version
 
 In case you want to enforce API version the application use, you can specify it
