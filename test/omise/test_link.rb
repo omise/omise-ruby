@@ -17,6 +17,13 @@ class TestLink < Omise::Test
     assert_equal "link_test_55pcclmznvrv9lc7r9s", @link.id
   end
 
+  def test_that_we_can_destroy_a_link
+    @link.destroy
+
+    assert @link.deleted
+    assert @link.destroyed?
+  end
+
   def test_that_we_can_list_all_links
     links = Omise::Link.list
 

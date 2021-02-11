@@ -27,6 +27,10 @@ module Omise
       assign_attributes resource(attributes).get(attributes)
     end
 
+    def destroy(attributes = {})
+      assign_attributes resource(attributes).delete
+    end
+
     def charges(options = {})
       if options.empty?
         list_attribute ChargeList, "charges"
