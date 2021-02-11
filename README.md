@@ -3,7 +3,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/8297834e28572da75cf2/maintainability)](https://codeclimate.com/github/omise/omise-ruby/maintainability)
 <img alt="GitHub Actions status" src="https://github.com/omise/omise-ruby/workflows/Ruby/badge.svg">
 [![Gem](https://img.shields.io/gem/v/omise.svg?style=flat)](https://rubygems.org/gems/omise)
-[![Join the chat at https://gitter.im/omise/omise-ruby](https://badges.gitter.im/omise/omise-ruby.svg)](https://gitter.im/omise/omise-ruby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Installation
 
