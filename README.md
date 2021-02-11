@@ -6,7 +6,7 @@
 
 ## Installation
 
-Add the following to your `Gemfile` to install via [RubyGems](https://rubygems.org/gems/omise):
+Add the following to your `Gemfile` and run `bundle install` to install via [RubyGems](https://rubygems.org/gems/omise):
 
 ```ruby
 gem 'omise'
