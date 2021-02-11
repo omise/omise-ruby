@@ -34,10 +34,28 @@ class TestDispute < Omise::Test
     assert_equal "dspt_test_5089off452g5m5te7xs", @dispute.id
   end
 
+  def test_that_we_can_reload_a_dispute
+    @dispute.attributes.taint
+    @dispute.reload
+
+    refute @dispute.attributes.tainted?
+  end
+
   def test_that_we_can_update_a_dispute
     @dispute.update(message: "Your dispute message")
 
     assert_equal @dispute.message, "Your dispute message"
+  end
+
+  def test_that_we_can_accept_a_dispute
+    @dispute.attributes.taint
+
+    assert_equal @dispute.status, "open"
+
+    @dispute.accept
+
+    assert_equal @dispute.status, "lost"
+    refute @dispute.attributes.tainted?
   end
 
   def test_that_we_can_retrieve_a_list_of_documents
