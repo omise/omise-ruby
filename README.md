@@ -20,7 +20,7 @@ gem 'omise', github: 'omise/omise-ruby'
 
 ## Requirements
 
-Requires ruby 1.9.2 or above, the rest-client and json gems.
+Tested on Ruby 2.5 and above
 
 ## Configuration
 
@@ -53,7 +53,7 @@ production on the older version).
 
 ```ruby
 require "omise"
-Omise.api_version = "2014-07-27"
+Omise.api_version = "2019-05-29"
 ```
 
 It is highly recommended to set this version to the current version
