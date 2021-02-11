@@ -6,13 +6,13 @@
 
 ## Installation
 
-Add the following to your `Gemfile` to install via rubygems:
+Add the following to your `Gemfile` to install via RubyGems:
 
 ```ruby
 gem 'omise'
 ```
 
-Or use the cutting-edge version by installing via github:
+Or use the cutting-edge version by installing via GitHub:
 
 ```ruby
 gem 'omise', github: 'omise/omise-ruby'
