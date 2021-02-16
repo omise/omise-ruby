@@ -2,6 +2,24 @@
 
 An [unreleased] version is not available on rubygems and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
+## [0.10.0] 2021-02-16
+
+- [Added] Add a new method to fetch all events belonging to a charge (https://github.com/omise/omise-ruby/pull/45)
+- [Added] Add Receipt API (https://github.com/omise/omise-ruby/pull/44)
+- [Added] Allow shortened form of ordinal numbers on Scheduler (https://github.com/omise/omise-ruby/pull/43)
+- [Added] Add update method for Account (https://github.com/omise/omise-ruby/pull/42)
+- [Added] Add accept method for Dispute (https://github.com/omise/omise-ruby/pull/41)
+- [Added] Add expire method for Charge (https://github.com/omise/omise-ruby/pull/40)
+- [Added] Add destroy method for Link (https://github.com/omise/omise-ruby/pull/39)
+
+## [0.9.1] 2019-11-15
+
+- [Fixed] Tests
+
+## [0.9.0] 2019-11-15
+
+- [Added] Integrations support
+
 ## [0.8.0] 2019-11-04
 
 - [Added] Capability object
@@ -73,7 +91,7 @@ An [unreleased] version is not available on rubygems and is subject to changes a
 ## [0.1.0] 2015-01-19
 
 - [Added] Add support for the Refund API.
-- [Added] Add a test suite that can be run locally without the need for a    
+- [Added] Add a test suite that can be run locally without the need for a
           network connection or to set Omise keys.
 - [Added] Add a list method to retrieve a list of objects.
 - [Changed] Move typecast and load_response methods into a Util module.
