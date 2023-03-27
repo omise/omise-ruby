@@ -23,10 +23,10 @@ class TestRecipient < Omise::Test
   end
 
   def test_that_we_can_reload_a_recipient
-    @recipient.attributes.taint
+    @recipient.attributes.frozen?
     @recipient.reload
 
-    refute @recipient.attributes.tainted?
+    refute @recipient.attributes.frozen?
   end
 
   def test_that_we_can_destroy_a_recipient

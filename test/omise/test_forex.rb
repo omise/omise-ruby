@@ -18,9 +18,9 @@ class TestForex < Omise::Test
   end
 
   def test_that_we_can_reload_a_forex
-    @forex.attributes.taint
+    @forex.attributes.frozen?
     @forex.reload
 
-    refute @forex.attributes.tainted?
+    refute @forex.attributes.frozen?
   end
 end

@@ -11,10 +11,10 @@ class TestAccount < Omise::Test
   end
 
   def test_that_we_can_reload_the_account
-    @account.attributes.taint
+    @account.attributes.frozen?
     @account.reload
 
-    refute @account.attributes.tainted?
+    refute @account.attributes.frozen?
   end
 
   def test_that_we_can_update_the_account

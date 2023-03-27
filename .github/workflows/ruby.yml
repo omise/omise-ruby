@@ -2,16 +2,13 @@ name: Ruby
 
 on: 
   push:
-    branches: [ 'master' ]
-  pull_request:
-    branches: [ 'master' ]
     
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby: [ '2.5', '2.6', '2.7', '3.0' ]
+        ruby: [ '2.5', '2.6', '2.7', '3.0', '3.2' ]
     name: Ruby ${{ matrix.ruby }}
     steps:
     - uses: actions/checkout@v2

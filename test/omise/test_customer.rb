@@ -37,10 +37,10 @@ class TestCustomer < Omise::Test
   end
 
   def test_that_we_can_reload_a_customer
-    @customer.attributes.taint
+    @customer.attributes.frozen?
     @customer.reload
 
-    refute @customer.attributes.tainted?
+    refute @customer.attributes.frozen?
   end
 
   def test_that_we_can_charge_a_customer

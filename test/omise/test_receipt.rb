@@ -21,9 +21,9 @@ class TestReceipt < Omise::Test
   end
 
   def test_that_we_can_reload_a_receipt
-    @receipt.attributes.taint
+    @receipt.attributes.frozen?
     @receipt.reload
 
-    refute @receipt.attributes.tainted?
+    refute @receipt.attributes.frozen?
   end
 end

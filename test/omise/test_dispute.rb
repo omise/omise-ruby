@@ -35,10 +35,10 @@ class TestDispute < Omise::Test
   end
 
   def test_that_we_can_reload_a_dispute
-    @dispute.attributes.taint
+    @dispute.attributes.frozen?
     @dispute.reload
 
-    refute @dispute.attributes.tainted?
+    refute @dispute.attributes.frozen?
   end
 
   def test_that_we_can_update_a_dispute
@@ -48,14 +48,14 @@ class TestDispute < Omise::Test
   end
 
   def test_that_we_can_accept_a_dispute
-    @dispute.attributes.taint
+    @dispute.attributes.frozen?
 
     assert_equal @dispute.status, "open"
 
     @dispute.accept
 
     assert_equal @dispute.status, "lost"
-    refute @dispute.attributes.tainted?
+    refute @dispute.attributes.frozen?
   end
 
   def test_that_we_can_retrieve_a_list_of_documents
