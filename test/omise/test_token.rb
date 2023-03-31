@@ -23,7 +23,7 @@ class TestToken < Omise::Test
   end
 
   def test_that_we_can_reload_a_token
-    @token.attributes.frozen?
+    @token.attributes.freeze
     @token.reload
 
     refute @token.attributes.frozen?

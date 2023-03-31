@@ -31,7 +31,7 @@ class TestLink < Omise::Test
   end
 
   def test_that_we_can_reload_a_link
-    @link.attributes.frozen?
+    @link.attributes.freeze
     @link.reload
 
     refute @link.attributes.frozen?

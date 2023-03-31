@@ -57,7 +57,7 @@ class TestCharge < Omise::Test
   end
 
   def test_that_we_can_reload_a_charge
-    @charge.attributes.frozen?
+    @charge.attributes.freeze
     @charge.reload
 
     refute @charge.attributes.frozen?

@@ -37,7 +37,7 @@ class TestCustomer < Omise::Test
   end
 
   def test_that_we_can_reload_a_customer
-    @customer.attributes.frozen?
+    @customer.attributes.freeze
     @customer.reload
 
     refute @customer.attributes.frozen?

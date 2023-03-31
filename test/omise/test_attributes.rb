@@ -40,7 +40,7 @@ class TestAttributes < Omise::Test
   end
 
   def test_that_we_can_update_the_teapot_attributes
-    @teapot.attributes.frozen?
+    @teapot.attributes.freeze
     @teapot.assign_attributes({})
 
     refute @teapot.attributes.frozen?

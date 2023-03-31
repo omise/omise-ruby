@@ -11,7 +11,7 @@ class TestAccount < Omise::Test
   end
 
   def test_that_we_can_reload_the_account
-    @account.attributes.frozen?
+    @account.attributes.freeze
     @account.reload
 
     refute @account.attributes.frozen?

@@ -21,14 +21,14 @@ class TestChain < Omise::Test
   end
 
   def test_that_we_can_reload_a_chain
-    @chain.attributes.frozen?
+    @chain.attributes.freeze
     @chain.reload
 
     refute @chain.attributes.frozen?
   end
 
   def test_that_we_can_revoke_a_chain
-    @chain.attributes.frozen?
+    @chain.attributes.freeze
 
     refute @chain.revoked
 

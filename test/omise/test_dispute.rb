@@ -35,7 +35,7 @@ class TestDispute < Omise::Test
   end
 
   def test_that_we_can_reload_a_dispute
-    @dispute.attributes.frozen?
+    @dispute.attributes.freeze
     @dispute.reload
 
     refute @dispute.attributes.frozen?
@@ -48,7 +48,7 @@ class TestDispute < Omise::Test
   end
 
   def test_that_we_can_accept_a_dispute
-    @dispute.attributes.frozen?
+    @dispute.attributes.freeze
 
     assert_equal @dispute.status, "open"
 

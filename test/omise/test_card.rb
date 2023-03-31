@@ -25,7 +25,7 @@ class TestCard < Omise::Test
   end
 
   def test_that_a_card_can_be_reloaded
-    @card.attributes.frozen?
+    @card.attributes.freeze
     @card.reload
 
     refute @card.attributes.frozen?

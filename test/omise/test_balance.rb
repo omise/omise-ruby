@@ -11,7 +11,7 @@ class TestBalance < Omise::Test
   end
 
   def test_that_we_can_reload_a_customer
-    @balance.attributes.frozen?
+    @balance.attributes.freeze
     @balance.reload
 
     refute @balance.attributes.frozen?

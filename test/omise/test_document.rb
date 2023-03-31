@@ -19,7 +19,7 @@ class TestDocument < Omise::Test
   end
 
   def test_that_a_document_can_be_reloaded
-    @document.attributes.frozen?
+    @document.attributes.freeze
     @document.reload
 
     refute @document.attributes.frozen?

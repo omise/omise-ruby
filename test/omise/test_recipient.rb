@@ -23,7 +23,7 @@ class TestRecipient < Omise::Test
   end
 
   def test_that_we_can_reload_a_recipient
-    @recipient.attributes.frozen?
+    @recipient.attributes.freeze
     @recipient.reload
 
     refute @recipient.attributes.frozen?

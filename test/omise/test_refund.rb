@@ -27,7 +27,7 @@ class TestRefund < Omise::Test
   end
 
   def test_that_a_refund_can_be_reloaded
-    @refund.attributes.frozen?
+    @refund.attributes.freeze
     @refund.reload
 
     refute @refund.attributes.frozen?
