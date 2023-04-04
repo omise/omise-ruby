@@ -57,10 +57,10 @@ class TestCharge < Omise::Test
   end
 
   def test_that_we_can_reload_a_charge
-    @charge.attributes.taint
+    @charge.attributes.freeze
     @charge.reload
 
-    refute @charge.attributes.tainted?
+    refute @charge.attributes.frozen?
   end
 
   def test_that_retrieveing_a_non_existing_charge_will_raise_an_error

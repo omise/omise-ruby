@@ -19,10 +19,10 @@ class TestDocument < Omise::Test
   end
 
   def test_that_a_document_can_be_reloaded
-    @document.attributes.taint
+    @document.attributes.freeze
     @document.reload
 
-    refute @document.attributes.tainted?
+    refute @document.attributes.frozen?
   end
 
   def test_that_we_can_destroy_a_document

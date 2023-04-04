@@ -25,10 +25,10 @@ class TestCard < Omise::Test
   end
 
   def test_that_a_card_can_be_reloaded
-    @card.attributes.taint
+    @card.attributes.freeze
     @card.reload
 
-    refute @card.attributes.tainted?
+    refute @card.attributes.frozen?
   end
 
   def test_that_retrieveing_a_non_existing_card_will_raise_an_error

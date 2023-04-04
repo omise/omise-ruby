@@ -11,9 +11,9 @@ class TestBalance < Omise::Test
   end
 
   def test_that_we_can_reload_a_customer
-    @balance.attributes.taint
+    @balance.attributes.freeze
     @balance.reload
 
-    refute @balance.attributes.tainted?
+    refute @balance.attributes.frozen?
   end
 end

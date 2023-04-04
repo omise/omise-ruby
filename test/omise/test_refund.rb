@@ -27,10 +27,10 @@ class TestRefund < Omise::Test
   end
 
   def test_that_a_refund_can_be_reloaded
-    @refund.attributes.taint
+    @refund.attributes.freeze
     @refund.reload
 
-    refute @refund.attributes.tainted?
+    refute @refund.attributes.frozen?
   end
 
   def test_that_retrieveing_a_non_existing_refund_will_raise_an_error

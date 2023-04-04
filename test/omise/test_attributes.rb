@@ -40,10 +40,10 @@ class TestAttributes < Omise::Test
   end
 
   def test_that_we_can_update_the_teapot_attributes
-    @teapot.attributes.taint
+    @teapot.attributes.freeze
     @teapot.assign_attributes({})
 
-    refute @teapot.attributes.tainted?
+    refute @teapot.attributes.frozen?
   end
 
   def test_that_we_can_tell_if_a_teapot_has_not_been_destroyed

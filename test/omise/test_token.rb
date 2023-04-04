@@ -23,9 +23,9 @@ class TestToken < Omise::Test
   end
 
   def test_that_we_can_reload_a_token
-    @token.attributes.taint
+    @token.attributes.freeze
     @token.reload
 
-    refute @token.attributes.tainted?
+    refute @token.attributes.frozen?
   end
 end

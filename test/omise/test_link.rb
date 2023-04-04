@@ -31,10 +31,10 @@ class TestLink < Omise::Test
   end
 
   def test_that_we_can_reload_a_link
-    @link.attributes.taint
+    @link.attributes.freeze
     @link.reload
 
-    refute @link.attributes.tainted?
+    refute @link.attributes.frozen?
   end
 
   def test_that_a_link_has_a_list_of_charges
