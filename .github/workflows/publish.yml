@@ -16,8 +16,14 @@ jobs:
       with:
         ruby-version: '3.2'
         bundler-cache: true
+
     - name: Build and test with Rake
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3
         bundle exec rake test
+
+    - name: Publish to RubyGems
+      uses: actionshub/publish-gem-to-rubygems@main
+      with:
+        api_key: ${{ secrets.RUBY_GEMS_API_KEY_1 }}
