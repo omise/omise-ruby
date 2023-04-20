@@ -3,7 +3,8 @@
 An [unreleased] version is not available on rubygems and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
 ## [0.10.1] 2023-04-20
-- [Updated] Updated test case for ruby greater than 3.0 (https://github.com/omise/omise-ruby/pull/48)
+
+- [Updated] Updated test case for ruby >= 3.0 (https://github.com/omise/omise-ruby/pull/48)
 
 ## [0.10.0] 2021-02-16
 
