@@ -17,7 +17,7 @@ class TestHTTPLogger < Omise::Test
   end
 
   def setup
-    @log_mock = MiniTest::Mock.new
+    @log_mock = Minitest::Mock.new
   end
 
   def test_we_can_log_an_http_request
