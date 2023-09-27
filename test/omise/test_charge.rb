@@ -128,6 +128,10 @@ class TestCharge < Omise::Test
     assert @charge.capture
   end
 
+  def test_that_we_can_send_a_capture_request_with_parameters
+    assert @charge.capture({capture_amount:3000})
+  end
+
   def test_that_we_can_send_a_reverse_request
     assert @charge.reverse
   end
