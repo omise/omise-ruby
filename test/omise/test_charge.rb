@@ -12,6 +12,15 @@ class TestCharge < Omise::Test
     assert_equal "chrg_test_4yq7duw15p9hdrjp8oq", charge.id
   end
 
+  def test_that_we_can_create_a_partial_charge
+    @partial_charge_create = Omise::Charge.new(JSON.load('{ "capture": false,"authorization_type":"pre_auth","captured_amount": 0 }'))
+
+    assert_instance_of Omise::Charge, @partial_charge_create
+    assert_equal false, @partial_charge_create['capture']
+    assert_equal "pre_auth", @partial_charge_create.authorization_type
+    assert_equal 0, @partial_charge_create.captured_amount
+  end
+
   def test_that_we_can_create_a_charge_even_if_api_key_is_nil
     without_keys do
       charge = Omise::Charge.create(key: "skey_test_4yq6tct0lblmed2yp5t")
@@ -42,6 +51,18 @@ class TestCharge < Omise::Test
     assert_instance_of Omise::Customer, @charge.customer
     assert_instance_of Omise::Transaction, @charge.transaction
     assert_instance_of Omise::RefundList, @charge.refunds
+  end
+
+  def test_that_we_can_retrieve_a_partial_charge
+    @partialCharge =  Omise::Charge.retrieve("chrg_test_5x8glktwl62j63dr3me")
+
+    assert_instance_of Omise::Charge, @partialCharge
+    assert_equal "chrg_test_5x8glktwl62j63dr3me", @partialCharge.id
+    assert_equal "pre_auth", @partialCharge.authorization_type
+    assert_equal 100000, @partialCharge.authorized_amount
+    assert_equal 3000, @partialCharge.captured_amount
+    assert_equal false, @partialCharge['capture']
+
   end
 
   def test_that_we_can_list_all_charge
@@ -105,6 +126,10 @@ class TestCharge < Omise::Test
 
   def test_that_we_can_send_a_capture_request
     assert @charge.capture
+  end
+
+  def test_that_we_can_send_a_capture_request_with_parameters
+    assert @charge.capture({capture_amount:3000})
   end
 
   def test_that_we_can_send_a_reverse_request

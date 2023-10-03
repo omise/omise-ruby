@@ -37,7 +37,7 @@ module Omise
     end
 
     def capture(options = {})
-      assign_attributes nested_resource("capture", options).post
+      assign_attributes nested_resource("capture", options).post(options)
     end
 
     def reverse(options = {})
