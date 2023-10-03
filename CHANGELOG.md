@@ -2,6 +2,10 @@
 
 An [unreleased] version is not available on rubygems and is subject to changes and must not be considered final. Elements of unreleased list may be edited or removed at any time.
 
+## [0.11.0] 2023-10-03
+
+- [Added] Support partial capture of charges (https://github.com/omise/omise-ruby/pull/55)
+
 ## [0.10.1] 2023-04-20
 
 - [Updated] Updated test case for ruby >= 3.0 (https://github.com/omise/omise-ruby/pull/48)
