@@ -4,6 +4,11 @@
 <img alt="GitHub Actions status" src="https://github.com/omise/omise-ruby/workflows/Ruby/badge.svg">
 [![Gem](https://img.shields.io/gem/v/omise.svg?style=flat)](https://rubygems.org/gems/omise)
 
+## Security Warning
+
+**Please do NOT use Omise Ruby client versions less than 0.8.0, as they are outdated and have security vulnerabilities.**
+
+
 ## Installation
 
 Add the following to your `Gemfile` and run `bundle install` to install via [RubyGems](https://rubygems.org/gems/omise):
