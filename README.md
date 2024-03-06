@@ -1,8 +1,13 @@
-# Omise Ruby Client
+# Omise Ruby Library
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/8297834e28572da75cf2/maintainability)](https://codeclimate.com/github/omise/omise-ruby/maintainability)
 <img alt="GitHub Actions status" src="https://github.com/omise/omise-ruby/workflows/Ruby/badge.svg">
 [![Gem](https://img.shields.io/gem/v/omise.svg?style=flat)](https://rubygems.org/gems/omise)
+
+## Security Warning
+
+**Please do NOT use Omise Ruby library versions less than 0.8.0, as they are outdated and have security vulnerabilities.**
+
 
 ## Installation
 
